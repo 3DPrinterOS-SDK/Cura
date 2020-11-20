@@ -2,7 +2,6 @@
 // OctoPrintPlugin is released under the terms of the AGPLv3 or higher.
 
 import QtQuick 2.2
-import QtQuick.Controls 2.3
 import UM 1.2 as UM
 import Cura 1.0 as Cura
 import OctoPrintPlugin 1.0 as OctoPrintPlugin
@@ -114,14 +113,12 @@ Component
             cornerSide: Cura.RoundedRectangle.Direction.Left
             radius: UM.Theme.getSize("default_radius").width
 
-            ScrollView {
-                id: flick
+            Item {
+                id: printMonitorWrapper
                 width: parent.width
                 height: parent.height - parent.border.width * 2
                 clip: true
-                contentHeight: 605
                 anchors.topMargin: sidebar.border.width * 2
-                contentWidth: printMonitor.width
 
                 Cura.PrintMonitor {
                     id: printMonitor

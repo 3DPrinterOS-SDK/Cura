@@ -131,7 +131,7 @@ Item
         ManualPrinterControl
         {
             printerModel: activePrinter
-            visible: activePrinter != null ? activePrinter.canControlManually : false
+            visible: false
         }
 
 
