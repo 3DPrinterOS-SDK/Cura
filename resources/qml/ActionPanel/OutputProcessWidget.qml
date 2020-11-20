@@ -127,7 +127,7 @@ Column
             text: catalog.i18nc("@button", "Preview")
             tooltip: text
             fixedWidthMode: true
-
+            visible: false
             toolTipContentAlignment: Cura.ToolTip.ContentAlignment.AlignLeft
 
             onClicked: UM.Controller.setActiveStage("PreviewStage")

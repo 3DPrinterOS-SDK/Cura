@@ -53,7 +53,7 @@ Item
             {
                 if(actionPanelWidget.outputAvailable)
                 {
-                    loader.item.hasPreviewButton = base.hasPreviewButton;
+                    loader.item.hasPreviewButton = false;
                 }
             }
         }
