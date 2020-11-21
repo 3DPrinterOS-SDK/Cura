@@ -266,21 +266,40 @@ Item
     }
 
     // Confirmation dialog for removing a profile
-    MessageDialog
+    Dialog
     {
         id: confirmRemoveQualityDialog
 
-        icon: StandardIcon.Question;
         title: catalog.i18nc("@title:window", "Confirm Remove")
-        text: catalog.i18nc("@label (%1 is object name)", "Are you sure you wish to remove %1? This cannot be undone!").arg(base.currentItemName)
-        standardButtons: StandardButton.Yes | StandardButton.No
+        standardButtons: StandardButton.NoButton
         modality: Qt.ApplicationModal
 
-        onYes:
-        {
-            base.qualityManagementModel.removeQualityChangesGroup(base.currentItem.quality_changes_group);
-            // reset current item to the first if available
-            qualityListView.currentIndex = -1;  // Reset selection.
+        ColumnLayout {
+            id: column
+            width: parent ? parent.width : 100
+            Label {
+                text: catalog.i18nc("@label (%1 is object name)", "Are you sure you wish to remove %1? This cannot be undone!").arg(base.currentItemName)
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
+            }
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Button{
+                    text: "Да"
+                    onClicked: {
+                        base.qualityManagementModel.removeQualityChangesGroup(base.currentItem.quality_changes_group);
+                        // reset current item to the first if available
+                        qualityListView.currentIndex = -1;  // Reset selection.
+                        confirmRemoveQualityDialog.close();
+                    }
+                }
+                Button{
+                    text: "Нет"
+                    onClicked: {
+                        confirmRemoveQualityDialog.close();
+                    }
+                }
+            }
         }
     }
 

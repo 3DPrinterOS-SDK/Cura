@@ -291,21 +291,42 @@ Item
     }
 
     // Dialogs
-    MessageDialog
+    Dialog
     {
         id: confirmRemoveMaterialDialog
-        icon: StandardIcon.Question;
+//        icon: StandardIcon.Question;
         title: catalog.i18nc("@title:window", "Confirm Remove")
         property string materialName: base.currentItem !== null ? base.currentItem.name : ""
 
-        text: catalog.i18nc("@label (%1 is object name)", "Are you sure you wish to remove %1? This cannot be undone!").arg(materialName)
-        standardButtons: StandardButton.Yes | StandardButton.No
+        standardButtons: StandardButton.NoButton
         modality: Qt.ApplicationModal
-        onYes:
-        {
-            // Set the active material as the fallback. It will be selected when the current material is deleted
-            base.newRootMaterialIdToSwitchTo = base.active_root_material_id
-            base.materialManagementModel.removeMaterial(base.currentItem.container_node);
+
+        ColumnLayout {
+            id: confirmRemoveColumn
+            width: parent ? parent.width : 100
+            Label {
+                text: catalog.i18nc("@label (%1 is object name)", "Are you sure you wish to remove %1? This cannot be undone!").arg(confirmRemoveMaterialDialog.materialName)
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
+            }
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Button{
+                    text: "Да"
+                    onClicked: {
+                        // Set the active material as the fallback. It will be selected when the current material is deleted
+                        base.newRootMaterialIdToSwitchTo = base.active_root_material_id
+                        base.materialManagementModel.removeMaterial(base.currentItem.container_node);
+                        confirmRemoveMaterialDialog.close()
+                    }
+                }
+                Button{
+                    text: "Нет"
+                    onClicked: {
+                        confirmRemoveMaterialDialog.close();
+                    }
+                }
+            }
         }
     }
 
