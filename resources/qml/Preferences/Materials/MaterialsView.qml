@@ -3,7 +3,9 @@
 
 import QtQuick 2.7
 import QtQuick.Controls 1.4
-import QtQuick.Dialogs 1.2
+import QtQuick.Controls.Styles 1.1
+import QtQuick.Dialogs 1.3
+import QtQuick.Layouts 1.1
 
 import UM 1.2 as UM
 import Cura 1.0 as Cura
@@ -93,36 +95,79 @@ TabView
                 width: base.width
                 property real rowHeight: brandTextField.height + UM.Theme.getSize("default_lining").height
 
-                MessageDialog
+                Dialog
                 {
                     id: confirmDiameterChangeDialog
-
-                    icon: StandardIcon.Question;
+                    width: base.width * 0.6
+                   // icon: StandardIcon.Question;
                     title: catalog.i18nc("@title:window", "Confirm Diameter Change")
-                    text: catalog.i18nc("@label", "Установлен новый диаметр пластиковой нити %1 мм. Это значение несовместимо с текущим экструдером. Продолжить?".arg(new_diameter_value))
-                    standardButtons: StandardButton.Yes | StandardButton.No
+                   // text: catalog.i18nc("@label", "Установлен новый диаметр пластиковой нити %1 мм. Это значение несовместимо с текущим экструдером. Продолжить?".arg(new_diameter_value))
+                    standardButtons: StandardButton.NoButton
                     modality: Qt.ApplicationModal
+
+                    onWidthChanged: {
+                        CuraApplication.writeToLog("d", "confirmDiameterChangeDialog dialog width: " + confirmDiameterChangeDialog.width)
+
+                    }
+
+                    onVisibleChanged: {
+                        CuraApplication.writeToLog("d", "confirmDiameterChangeDialog dialog width: " + confirmDiameterChangeDialog.width)
+                        if (visible) {
+                            yesClicked = false
+                            return
+                        }
+
+                        if (yesClicked === false && visible === false) {
+                            revertDiameter()
+                        }
+                    }
 
                     property var new_diameter_value: null;
                     property var old_diameter_value: null;
                     property var old_approximate_diameter_value: null;
+                    property bool yesClicked: false
 
-                    onYes:
-                    {
-                        base.setMetaDataEntry("approximate_diameter", old_approximate_diameter_value, getApproximateDiameter(new_diameter_value).toString());
-                        base.setMetaDataEntry("properties/diameter", properties.diameter, new_diameter_value);
-                        // CURA-6868 Make sure to update the extruder to user a diameter-compatible material.
-                        Cura.MachineManager.updateMaterialWithVariant()
-                        base.resetSelectedMaterial()
-                    }
-
-                    onNo:
-                    {
-                        base.properties.diameter = old_diameter_value;
+                    function revertDiameter() {
+                        base.properties.diameter = confirmDiameterChangeDialog.old_diameter_value;
                         diameterSpinBox.value = Qt.binding(function() { return base.properties.diameter })
                     }
 
-                    onRejected: no()
+                    contentItem: ColumnLayout {
+                        id: columnConfirmDiameter
+                        width: confirmDiameterChangeDialog.width
+                        anchors.centerIn: parent
+                        Label {
+                            text: catalog.i18nc("@label", "Установлен новый диаметр пластиковой нити %1 мм. Это значение несовместимо с текущим экструдером. Продолжить?".arg(confirmDiameterChangeDialog.new_diameter_value))
+                            Layout.fillWidth: true
+
+                            wrapMode: Text.WordWrap
+                        }
+
+                        RowLayout {
+                            Layout.alignment: Qt.AlignHCenter
+                            Button {
+                                text: "Да"
+                                onClicked: {
+                                    base.setMetaDataEntry("approximate_diameter", confirmDiameterChangeDialog.old_approximate_diameter_value, getApproximateDiameter(confirmDiameterChangeDialog.new_diameter_value).toString());
+                                    base.setMetaDataEntry("properties/diameter", properties.diameter, confirmDiameterChangeDialog.new_diameter_value);
+                                    // CURA-6868 Make sure to update the extruder to user a diameter-compatible material.
+                                    Cura.MachineManager.updateMaterialWithVariant()
+                                    base.resetSelectedMaterial()
+                                    confirmDiameterChangeDialog.yesClicked = true
+                                    confirmDiameterChangeDialog.close()
+
+                                }
+                            }
+                            Button {
+                                id: diamNoBtn
+                                text: "Нет"
+                                onClicked: {
+                                    confirmDiameterChangeDialog.revertDiameter()
+                                    confirmDiameterChangeDialog.close()
+                                }
+                            }
+                        }
+                    }
                 }
 
                 Label { width: scrollView.columnWidth; height: parent.rowHeight; verticalAlignment: Qt.AlignVCenter; text: catalog.i18nc("@label", "Display Name") }
