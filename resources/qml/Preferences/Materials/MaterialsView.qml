@@ -98,20 +98,12 @@ TabView
                 Dialog
                 {
                     id: confirmDiameterChangeDialog
-                    width: base.width * 0.6
-                   // icon: StandardIcon.Question;
+
                     title: catalog.i18nc("@title:window", "Confirm Diameter Change")
-                   // text: catalog.i18nc("@label", "Установлен новый диаметр пластиковой нити %1 мм. Это значение несовместимо с текущим экструдером. Продолжить?".arg(new_diameter_value))
                     standardButtons: StandardButton.NoButton
                     modality: Qt.ApplicationModal
 
-                    onWidthChanged: {
-                        CuraApplication.writeToLog("d", "confirmDiameterChangeDialog dialog width: " + confirmDiameterChangeDialog.width)
-
-                    }
-
                     onVisibleChanged: {
-                        CuraApplication.writeToLog("d", "confirmDiameterChangeDialog dialog width: " + confirmDiameterChangeDialog.width)
                         if (visible) {
                             yesClicked = false
                             return
