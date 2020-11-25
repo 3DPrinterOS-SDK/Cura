@@ -147,7 +147,6 @@ TabView
                                     base.resetSelectedMaterial()
                                     confirmDiameterChangeDialog.yesClicked = true
                                     confirmDiameterChangeDialog.close()
-
                                 }
                             }
                             Button {

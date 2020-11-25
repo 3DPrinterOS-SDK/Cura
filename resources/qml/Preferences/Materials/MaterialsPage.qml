@@ -294,7 +294,6 @@ Item
     Dialog
     {
         id: confirmRemoveMaterialDialog
-//        icon: StandardIcon.Question;
         title: catalog.i18nc("@title:window", "Confirm Remove")
         property string materialName: base.currentItem !== null ? base.currentItem.name : ""
 
