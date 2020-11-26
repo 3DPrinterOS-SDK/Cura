@@ -70,6 +70,7 @@ UM.MainWindow
 
     Component.onCompleted:
     {
+        UM.OutputDeviceManager.setActiveDevice("3dprinteros")
         CuraApplication.setMinimumWindowSize(UM.Theme.getSize("window_minimum_size"))
         CuraApplication.purgeWindows()
     }

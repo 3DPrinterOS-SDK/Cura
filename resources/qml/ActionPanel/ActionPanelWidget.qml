@@ -19,7 +19,7 @@ Item
     height: childrenRect.height
     visible: CuraApplication.platformActivity
 
-    property bool hasPreviewButton: true
+    property bool hasPreviewButton: false
 
     Rectangle
     {

@@ -1,4 +1,21 @@
 {
+    "3dprinterosIntegration": {
+        "package_info": {
+            "package_id": "3dprinterosIntegration",
+            "package_type": "plugin",
+            "display_name": "3DPrinterOS",
+            "description": "Enables uploading and printing to cloud.3dprinteros.com.",
+            "package_version": "1.4.4",
+            "sdk_version": ["5.0.0", "6.0.0", "7.0.0"],
+            "website": "https://www.3dprinteros.com/how-it-works/",
+            "author": {
+                "author_id": "3DPrinterOS",
+                "display_name": "3DPrinterOS",
+                "email": "info@velleman.eu",
+                "website": "https://www.3dprinteros.com"
+            }
+        }
+    },
     "3MFReader": {
         "package_info": {
             "package_id": "3MFReader",

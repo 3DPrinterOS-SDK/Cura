@@ -1,0 +1,9 @@
+{
+    "name": "3DPrinterOS Integration",
+    "description": "Enables uploading and printing to cloud.3dprinteros.com",
+    "author": "3DPrinterOS",
+    "version": "1.4.4",
+    "api": 5,
+    "supported_sdk_versions": ["5.0.0", "6.0.0", "7.0.0"],
+    "i18n-catalog": "uranium"
+}
