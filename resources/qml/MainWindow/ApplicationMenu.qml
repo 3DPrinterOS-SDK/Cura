@@ -102,11 +102,8 @@ Item
             title: catalog.i18nc("@title:menu menubar:toplevel", "&Help")
 
             MenuItem { action: Cura.Actions.showProfileFolder }
-//            MenuItem { action: Cura.Actions.showTroubleshooting}
-//            MenuItem { action: Cura.Actions.documentation }
             MenuItem { action: Cura.Actions.reportBug }
             MenuSeparator { }
-            //MenuItem { action: Cura.Actions.whatsNew }
             MenuItem { action: Cura.Actions.about }
         }
     }
@@ -146,39 +143,35 @@ Item
         id: newProjectDialog
         modality: Qt.ApplicationModal
         title: catalog.i18nc("@title:window", "New project")
-        //text: catalog.i18nc("@info:question", "Are you sure you want to start a new project? This will clear the build plate and any unsaved settings.")
+
         standardButtons: StandardButton.NoButton
-        //icon: StandardIcon.Question
 
         ColumnLayout {
             id: columnNewProject
             width: parent ? parent.width : 100
 
-            Row
+            Label
             {
-                spacing: UM.Theme.getSize("default_margin").width
-
-                Label
-                {
-                    text: catalog.i18nc("@info:question", "Are you sure you want to start a new project? This will clear the build plate and any unsaved settings.")
-                    anchors.verticalCenter: newProjectDialog.verticalCenter
-                }
+                text: catalog.i18nc("@info:question", "Are you sure you want to start a new project? This will clear the build plate and any unsaved settings.")
+                anchors.verticalCenter: newProjectDialog.verticalCenter
+                Layout.fillWidth: true
+                wrapMode: Text.WordWrap
             }
 
             RowLayout {
                 Layout.alignment: Qt.AlignRight
-                Button{
-                    text: "Нет"
-                    onClicked: {
-                        newProjectDialog.close();
-                    }
-                }
                 Button{
                     text: "Да"
                     onClicked: {
                         CuraApplication.resetWorkspace()
                         Cura.Actions.resetProfile.trigger()
                         UM.Controller.setActiveStage("PrepareStage")
+                        newProjectDialog.close();
+                    }
+                }
+                Button{
+                    text: "Нет"
+                    onClicked: {
                         newProjectDialog.close();
                     }
                 }
