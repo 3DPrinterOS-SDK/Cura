@@ -4,6 +4,8 @@
 import QtQuick 2.7
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.1
+import QtQuick.Dialogs 1.3
+import QtQuick.Layouts 1.3
 
 import UM 1.2 as UM
 import Cura 1.0 as Cura
@@ -132,20 +134,45 @@ UM.ManagementPage
 
         UM.I18nCatalog { id: catalog; name: "cura"; }
 
-        UM.ConfirmRemoveDialog
+        // Confirmation dialog for removing a profile
+        Dialog
         {
             id: confirmDialog
-            object: base.currentItem && base.currentItem.name ? base.currentItem.name : ""
-            text: base.currentItem ? base.currentItem.removalWarning : "";
-            onYes:
-            {
-                Cura.MachineManager.removeMachine(base.currentItem.id)
-                if(!base.currentItem)
-                {
-                    objectList.currentIndex = activeMachineIndex()
+
+            title: catalog.i18nc("@title:window", "Confirm Remove")
+            standardButtons: StandardButton.NoButton
+            modality: Qt.ApplicationModal
+
+            ColumnLayout {
+                id: column
+                width: parent ? parent.width : 100
+                Label {
+                    text: base.currentItem ? base.currentItem.removalWarning : "";
+                    Layout.columnSpan: 2
+                    Layout.fillWidth: true
                 }
-                //Force updating currentItem and the details panel
-                objectList.onCurrentIndexChanged()
+                RowLayout {
+                    Layout.alignment: Qt.AlignRight
+                    Button{
+                        text: "Да"
+                        onClicked: {
+                            Cura.MachineManager.removeMachine(base.currentItem.id)
+                            if(!base.currentItem)
+                            {
+                                objectList.currentIndex = activeMachineIndex()
+                            }
+                            //Force updating currentItem and the details panel
+                            objectList.onCurrentIndexChanged() // Reset selection.
+                            confirmDialog.close();
+                        }
+                    }
+                    Button{
+                        text: "Нет"
+                        onClicked: {
+                            confirmDialog.close();
+                        }
+                    }
+                }
             }
         }
 
