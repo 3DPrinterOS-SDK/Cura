@@ -482,7 +482,7 @@ UM.MainWindow
     Connections
     {
         target: Cura.Actions.preferences
-        onTriggered: preferences.visible = true
+        onTriggered: preferences.visible = !preferences.visible
     }
 
     Connections

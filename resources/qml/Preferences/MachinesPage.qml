@@ -56,7 +56,6 @@ UM.ManagementPage
             id: removeMenuButton
             text: catalog.i18nc("@action:button", "Remove");
             iconName: "list-remove";
-            enabled: base.currentItem != null && model.count > 1
             onClicked: confirmDialog.open();
         },
         Button
@@ -157,6 +156,12 @@ UM.ManagementPage
                         text: "Да"
                         onClicked: {
                             Cura.MachineManager.removeMachine(base.currentItem.id)
+
+                            if (model.count === 1)
+                            {
+                                Cura.Actions.preferences.trigger()
+                                return
+                            }
                             if(!base.currentItem)
                             {
                                 objectList.currentIndex = activeMachineIndex()
