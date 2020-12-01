@@ -65,6 +65,8 @@ if TYPE_CHECKING:
 #   If we discover an instance that has the same key as the active machine instance a connection is made.
 @signalemitter
 class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
+
+    API_KEY = "0F22A68224504305889ECA247BD762F9"
     def __init__(self) -> None:
         super().__init__()
         self._zero_conf = None # type: Optional[Zeroconf]
@@ -183,8 +185,8 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
                 address_instance_exist = True
 
         if address_instance_exist:
-            Logger.log("d", "Manual instance already with address %s already exist, skipping", address)
-            return
+            Logger.log("d", "Manual instance already with address %s already exist, delete previous", address)
+            self.removeManualInstance(name)
 
         self._manual_instances[name] = {
             "address": address,
@@ -287,12 +289,13 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
                 machine_type=instance.printerType,
                 device=instance
             )
-        api_key = "0F22A68224504305889ECA247BD762F9"
-        instance.setApiKey(self._deobfuscateString(api_key))
+
+        instance.setApiKey(self._deobfuscateString(self.API_KEY))
         instance.setShowCamera(True)
         instance.connectionStateChanged.connect(self._onInstanceConnectionStateChanged)
         self._instances[instance.getId()] = instance
         self.reCheckConnections()
+
         if callback is not None:
             CuraApplication.getInstance().callLater(callback, True, address)
 
@@ -312,8 +315,6 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
 
 
     def removeFromDiscovered(self, name: str):
-        # instance = self.getInstanceById(device_id)
-
         discovered_printers_model = CuraApplication.getInstance().getDiscoveredPrintersModel()
         for item in discovered_printers_model.discoveredPrinters:
             if item:
@@ -325,7 +326,7 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
     def _connectToOutputDevice(self, device: OctoPrintOutputDevice, machine: GlobalStack) -> None:
 
         machine.setName(device.name)
-        machine.setMetaDataEntry("octoprint_api_key", "0F22A68224504305889ECA247BD762F9")
+        machine.setMetaDataEntry("octoprint_api_key", self.API_KEY)
         machine.setMetaDataEntry("group_name", device.name)
         machine.addConfiguredConnectionType(device.connectionType.value)
 
@@ -342,13 +343,11 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
 
     ## Create a machine instance based on the discovered network printer.
     def _createMachineFromDiscoveredDevice(self, device_id: str) -> None:
-        print(device_id)
         device = self.getInstanceById(device_id)
 
         if device is None:
             return
 
-        print(device.address)
         # Create a new machine and activate it.
         # We do not use use MachineManager.addMachine here because we need to set the network key before activating it.
         # If we do not do this the auto-pairing with the cloud-equivalent device will not work.
@@ -356,7 +355,7 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
         if not new_machine:
             Logger.log("e", "Failed creating a new machine")
             return
-        new_machine.setMetaDataEntry("octoprint_api_key", "0F22A68224504305889ECA247BD762F9")
+        new_machine.setMetaDataEntry("octoprint_api_key", self.API_KEY)
         CuraApplication.getInstance().getMachineManager().setActiveMachine(new_machine.getId())
 
         self._connectToOutputDevice(device, new_machine)
