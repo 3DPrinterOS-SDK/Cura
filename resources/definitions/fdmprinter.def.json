@@ -3990,6 +3990,15 @@
                     "settable_per_mesh": false,
                     "settable_per_extruder": true
                 },
+                "cool_fan_camera_enabled":
+                {
+                    "label": "Enable Camera Cooling",
+                    "description": "Enables the camera cooling, necessary for printing with materials that require cooling, such as PLA, TPU and others",
+                    "type": "bool",
+                    "default_value": false,
+                    "settable_per_mesh": false,
+                    "settable_per_extruder": false
+                },
                 "cool_fan_speed":
                 {
                     "label": "Fan Speed",

@@ -8420,4 +8420,14 @@ msgctxt "magic_mesh_surface_mode description"
 msgid "Print the surface instead of the volume. No infill, no top/bottom skin, just a single wall of which the middle coincides with the surface of the mesh. It's also possible to do both: print the insides of a closed volume as normal, but print all polygons not part of a closed volume as surface."
 msgstr ""
 
+msgctxt "cool_fan_camera_enabled label"
+msgid "Enable Camera Cooling"
+msgstr ""
+
+msgctxt "cool_fan_camera_enabled description"
+msgid "Enables the camera cooling, necessary for printing with materials that require cooling, such as PLA, TPU and others"
+msgstr ""
+
+
+
 

@@ -78,6 +78,7 @@ class GCodeWriter(MeshWriter):
         nozzle_sizes = ""
         infill_sparse_densities = ""
         layer_height = ""
+
         for extruder in sorted(stack.extruderList):
             nozzle_sizes += str(extruder.getProperty("machine_nozzle_size", "value"))
             infill_sparse_densities += str(extruder.getProperty("infill_sparse_density", "value"))
@@ -119,6 +120,10 @@ class GCodeWriter(MeshWriter):
         if not hasattr(scene, "gcode_dict"):
             self.setInformation(catalog.i18nc("@warning:status", "Please prepare G-code before exporting."))
             return False
+
+        camera_cool_enabled = Application.getInstance().getGlobalContainerStack().getProperty("cool_fan_camera_enabled", "value")
+        if camera_cool_enabled is True:
+            stream.write(";Enable Camera Cooling\nM1206\n")
         gcode_dict = getattr(scene, "gcode_dict")
         gcode_list = gcode_dict.get(active_build_plate, None)
         if gcode_list is not None:
