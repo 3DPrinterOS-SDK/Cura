@@ -133,6 +133,7 @@ UM.Dialog
             Component.onCompleted:
             {
                 projectsModel.append({ name: "Cura", description: catalog.i18nc("@label", "Graphical user interface"), license: "LGPLv3", url: "https://github.com/Ultimaker/Cura" });
+                projectsModel.append({ name: "DiaPrint", description: catalog.i18nc("@label", "Graphical user interface"), license: "LGPLv3", url: "https://github.com/3dprinteros/Cura/tree/dia_print_4.7" });
                 projectsModel.append({ name: "Uranium", description: catalog.i18nc("@label", "Application framework"), license: "LGPLv3", url: "https://github.com/Ultimaker/Uranium" });
                 projectsModel.append({ name: "CuraEngine", description: catalog.i18nc("@label", "G-code generator"), license: "AGPLv3", url: "https://github.com/Ultimaker/CuraEngine" });
                 projectsModel.append({ name: "libArcus", description: catalog.i18nc("@label", "Interprocess communication library"), license: "LGPLv3", url: "https://github.com/Ultimaker/libArcus" });
