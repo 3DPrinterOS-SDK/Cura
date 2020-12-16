@@ -9,6 +9,7 @@
     "category": "Imprinta",
     "file_formats": "text/x-gcode",
     "platform": "hercules.stl",
+    "preferred_quality_type": "pla_05_fast",
     "supports_usb_connection": true,
     "machine_extruder_trains":
     {
