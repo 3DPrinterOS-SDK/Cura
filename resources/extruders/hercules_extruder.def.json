@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "Экструдер",
+    "name": "Extruder",
     "inherits": "fdmextruder",
     "metadata": {
         "machine": "hercules",

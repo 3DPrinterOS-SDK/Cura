@@ -43,7 +43,11 @@ Cura.MachineAction
             for (var i = 0; i < extrudersModel.count; i++)
             {
                 const m = extrudersModel.getItem(i)
-                append({ name: m.name })
+                if (extrudersModel.count > 1) {
+                    append({ name: catalog.i18nc("@action:label", "Extruder %1").arg(i + 1) })
+                } else {
+                    append({ name: catalog.i18nc("@label", "Extruder") })
+                }
             }
         }
     }
