@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Cura 4.7\n"
 "Report-Msgid-Bugs-To: r.dulek@ultimaker.com\n"
 "POT-Creation-Date: 2020-07-24 05:14+0300\n"
-"PO-Revision-Date: 2020-11-30 16:53+0200\n"
+"PO-Revision-Date: 2021-01-08 17:52+0200\n"
 "Last-Translator: Lionbridge <info@lionbridge.com>\n"
 "Language-Team: Russian <info@lionbridge.com>, Ruslan Popov <ruslan."
 "popov@gmail.com>, Russian <info@bothof.nl>\n"
@@ -761,7 +761,7 @@ msgstr "Другое"
 #: /home/trin/Gedeeld/Projects/Cura/cura/UI/WelcomePagesModel.py:56
 msgctxt "@action:button"
 msgid "Next"
-msgstr "Следующий"
+msgstr "Далее"
 
 #: /home/trin/Gedeeld/Projects/Cura/cura/UI/WhatsNewPagesModel.py:17
 #: /home/trin/Gedeeld/Projects/Cura/plugins/FirmwareUpdater/FirmwareUpdaterMachineAction.qml:185
@@ -2771,7 +2771,7 @@ msgstr "Отклонить"
 #: /home/trin/Gedeeld/Projects/Cura/resources/qml/WelcomePages/FirstStartMachineActionsContent.qml:77
 msgctxt "@button"
 msgid "Next"
-msgstr "Следующий"
+msgstr "Далее"
 
 #: /home/trin/Gedeeld/Projects/Cura/plugins/Toolbox/resources/qml/dialogs/CompatibilityDialog.qml:52
 msgctxt "@label"

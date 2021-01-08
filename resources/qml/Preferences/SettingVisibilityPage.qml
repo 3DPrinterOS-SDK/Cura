@@ -11,7 +11,7 @@ import Cura 1.0 as Cura
 
 UM.PreferencesPage
 {
-    title: catalog.i18nc("@title:tab", "Видимость параметров");
+    title: catalog.i18nc("@title:tab", "Setting Visibility");
 
     property QtObject settingVisibilityPresetsModel: CuraApplication.getSettingVisibilityPresetsModel()
 
@@ -43,7 +43,7 @@ UM.PreferencesPage
                 left: parent.left;
                 leftMargin: UM.Theme.getSize("default_margin").width
             }
-            text: catalog.i18nc("@label:textbox", "Выбрать все")
+            text: catalog.i18nc("@label:textbox", "Check all")
             checkedState:
             {
                 if(definitionsModel.visibleCount == definitionsModel.categoryCount)
@@ -91,7 +91,7 @@ UM.PreferencesPage
                 rightMargin: UM.Theme.getSize("default_margin").width
             }
 
-            placeholderText: catalog.i18nc("@label:textbox", "Фильтр...")
+            placeholderText: catalog.i18nc("@label:textbox", "Filter...")
 
             onTextChanged: definitionsModel.filter = {"i18n_label": "*" + text}
         }
@@ -185,7 +185,7 @@ UM.PreferencesPage
             }
         }
 
-        UM.I18nCatalog { name: "cura"; }
+        UM.I18nCatalog { id: catalog; name: "cura"; }
         SystemPalette { id: palette; }
 
         Component

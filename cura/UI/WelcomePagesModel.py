@@ -51,10 +51,8 @@ class WelcomePagesModel(ListModel):
         self.addRoleName(self.PreviousPageButtonTextRole, "previous_page_button_text")
 
         self._application = application
+
         self._catalog = i18nCatalog("cura")
-
-        self._default_next_button_text = self._catalog.i18nc("@action:button", "Далее")
-
         self._pages = []  # type: List[Dict[str, Any]]
 
         self._current_page_index = 0
@@ -264,9 +262,11 @@ class WelcomePagesModel(ListModel):
 
     # For convenience, inject the default "next" button text to each item if it's not present.
     def setItems(self, items: List[Dict[str, Any]]) -> None:
+
+        _default_next_button_text = self._catalog.i18nc("@action:button", "Next")
         for item in items:
             if "next_page_button_text" not in item:
-                item["next_page_button_text"] = self._default_next_button_text
+                item["next_page_button_text"] = _default_next_button_text
 
         super().setItems(items)
 
