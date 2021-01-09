@@ -138,7 +138,7 @@ TabView
                         RowLayout {
                             Layout.alignment: Qt.AlignHCenter
                             Button {
-                                text: "Да"
+                                text: catalog.i18nc("@button", "Yes")
                                 onClicked: {
                                     base.setMetaDataEntry("approximate_diameter", confirmDiameterChangeDialog.old_approximate_diameter_value, getApproximateDiameter(confirmDiameterChangeDialog.new_diameter_value).toString());
                                     base.setMetaDataEntry("properties/diameter", properties.diameter, confirmDiameterChangeDialog.new_diameter_value);
@@ -151,7 +151,7 @@ TabView
                             }
                             Button {
                                 id: diamNoBtn
-                                text: "Нет"
+                                text: catalog.i18nc("@button", "No")
                                 onClicked: {
                                     confirmDiameterChangeDialog.revertDiameter()
                                     confirmDiameterChangeDialog.close()

@@ -159,7 +159,7 @@ Menu
             RowLayout {
                 Layout.alignment: Qt.AlignRight
                 Button{
-                    text: "Отмена"
+                    text: catalog.i18nc("@button", "Cancel")
                     onClicked: {
                         multiplyDialog.close();
                     }

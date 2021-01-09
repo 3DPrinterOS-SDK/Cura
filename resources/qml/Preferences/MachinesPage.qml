@@ -153,7 +153,7 @@ UM.ManagementPage
                 RowLayout {
                     Layout.alignment: Qt.AlignRight
                     Button{
-                        text: "Да"
+                        text: catalog.i18nc("@button", "Yes")
                         onClicked: {
                             Cura.MachineManager.removeMachine(base.currentItem.id)
 
@@ -172,7 +172,7 @@ UM.ManagementPage
                         }
                     }
                     Button{
-                        text: "Нет"
+                        text: catalog.i18nc("@button", "No")
                         onClicked: {
                             confirmDialog.close();
                         }

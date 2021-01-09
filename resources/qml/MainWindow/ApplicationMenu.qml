@@ -161,7 +161,7 @@ Item
             RowLayout {
                 Layout.alignment: Qt.AlignRight
                 Button{
-                    text: "Да"
+                    text: catalog.i18nc("@button", "Yes")
                     onClicked: {
                         CuraApplication.resetWorkspace()
                         Cura.Actions.resetProfile.trigger()
@@ -170,7 +170,7 @@ Item
                     }
                 }
                 Button{
-                    text: "Нет"
+                    text: catalog.i18nc("@button", "No")
                     onClicked: {
                         newProjectDialog.close();
                     }

@@ -285,7 +285,7 @@ Item
             RowLayout {
                 Layout.alignment: Qt.AlignRight
                 Button{
-                    text: "Да"
+                    text: catalog.i18nc("@button", "Yes")
                     onClicked: {
                         base.qualityManagementModel.removeQualityChangesGroup(base.currentItem.quality_changes_group);
                         // reset current item to the first if available
@@ -294,7 +294,7 @@ Item
                     }
                 }
                 Button{
-                    text: "Нет"
+                    text: catalog.i18nc("@button", "No")
                     onClicked: {
                         confirmRemoveQualityDialog.close();
                     }

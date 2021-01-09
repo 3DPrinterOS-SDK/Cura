@@ -6232,4 +6232,18 @@ msgctxt "@info:status"
 msgid "Can't send print job. Printer is not connected"
 msgstr ""
 
+#: Cura/qml/MainWindow/ApplicationMenu.qml:164
+#: Cura/resources/qml/MonitorButton.qml:348
+#: Cura/resources/qml/Preferences/MachinesPage.qml:156
+msgctxt "@button"
+msgid "Yes"
+msgstr ""
+
+#: Cura/qml/MainWindow/ApplicationMenu.qml:173
+#: Cura/resources/qml/MonitorButton.qml:355
+#: Cura/resources/qml/Preferences/MachinesPage.qml:175
+msgctxt "@button"
+msgid "No"
+msgstr ""
+
 

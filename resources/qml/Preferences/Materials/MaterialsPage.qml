@@ -311,7 +311,7 @@ Item
             RowLayout {
                 Layout.alignment: Qt.AlignRight
                 Button{
-                    text: "Да"
+                    text: catalog.i18nc("@button", "Yes")
                     onClicked: {
                         // Set the active material as the fallback. It will be selected when the current material is deleted
                         base.newRootMaterialIdToSwitchTo = base.active_root_material_id
@@ -320,7 +320,7 @@ Item
                     }
                 }
                 Button{
-                    text: "Нет"
+                    text: catalog.i18nc("@button", "No")
                     onClicked: {
                         confirmRemoveMaterialDialog.close();
                     }

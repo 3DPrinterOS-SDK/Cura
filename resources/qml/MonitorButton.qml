@@ -345,14 +345,14 @@ Item
                 RowLayout {
                     Layout.alignment: Qt.AlignRight
                     Button{
-                        text: "Да"
+                        text: catalog.i18nc("@button", "Yes")
                         onClicked: {
                             activePrintJob.setState("abort")
                             confirmationDialog.close();
                         }
                     }
                     Button{
-                        text: "Нет"
+                        text: catalog.i18nc("@button", "No")
                         onClicked: {
                             confirmationDialog.close();
                         }
