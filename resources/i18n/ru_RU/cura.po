@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Cura 4.7\n"
 "Report-Msgid-Bugs-To: r.dulek@ultimaker.com\n"
 "POT-Creation-Date: 2020-07-24 05:14+0300\n"
-"PO-Revision-Date: 2021-01-09 08:35+0200\n"
+"PO-Revision-Date: 2021-01-09 09:39+0200\n"
 "Last-Translator: Lionbridge <info@lionbridge.com>\n"
 "Language-Team: Russian <info@lionbridge.com>, Ruslan Popov <ruslan."
 "popov@gmail.com>, Russian <info@bothof.nl>\n"
@@ -6684,14 +6684,38 @@ msgid "Can't send print job. Printer is not connected"
 msgstr "Принтер не подключен."
 
 #: Cura/qml/MainWindow/ApplicationMenu.qml:164
+#: Cura/resources/qml/MonitorButton.qml:348
+#: Cura/resources/qml/Preferences/MachinesPage.qml:156
 msgctxt "@button"
 msgid "Yes"
 msgstr "Да"
 
 #: Cura/qml/MainWindow/ApplicationMenu.qml:173
+#: Cura/resources/qml/MonitorButton.qml:355
+#: Cura/resources/qml/Preferences/MachinesPage.qml:175
 msgctxt "@button"
 msgid "No"
 msgstr "Нет"
+
+#: Cura/cura/Machines/Models/SettingVisibilityPresetsModel.py:81:
+msgctxt "@button"
+msgid "All"
+msgstr "Все"
+
+#: Cura/cura/Machines/Models/SettingVisibilityPresetsModel.py:78:
+msgctxt "@button"
+msgid "Expert"
+msgstr "Эксперт"
+
+#: Cura/cura/Machines/Models/SettingVisibilityPresetsModel.py:78:
+msgctxt "@button"
+msgid "Advanced"
+msgstr "Продвинутый"
+
+#: Cura/cura/Machines/Models/SettingVisibilityPresetsModel.py:78:
+msgctxt "@button"
+msgid "Basic"
+msgstr "Базовый"
 
 #~ msgctxt "@title:column"
 #~ msgid "Customized"
@@ -7425,10 +7449,6 @@ msgstr "Нет"
 #~ msgid "See more information on what data Cura sends."
 #~ msgstr ""
 #~ "Ознакомьтесь с дополнительной информацией о данных, отправляемых Cura."
-
-#~ msgctxt "@action:button"
-#~ msgid "Allow"
-#~ msgstr "Разрешить"
 
 #~ msgctxt "@action:tooltip"
 #~ msgid ""
@@ -10362,10 +10382,6 @@ msgstr "Нет"
 #~ msgctxt "@title:tab"
 #~ msgid "Simple"
 #~ msgstr "Простая"
-
-#~ msgctxt "@title:tab"
-#~ msgid "Advanced"
-#~ msgstr "Продвинутая"
 
 #~ msgctxt "@label:listbox"
 #~ msgid "Printer:"

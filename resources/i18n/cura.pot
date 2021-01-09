@@ -6246,4 +6246,22 @@ msgctxt "@button"
 msgid "No"
 msgstr ""
 
+#: Cura/cura/Machines/Models/SettingVisibilityPresetsModel.py:81:
+msgctxt "@button"
+msgid "All"
+msgstr ""
 
+#: Cura/cura/Machines/Models/SettingVisibilityPresetsModel.py:78:
+msgctxt "@button"
+msgid "Expert"
+msgstr ""
+
+#: Cura/cura/Machines/Models/SettingVisibilityPresetsModel.py:78:
+msgctxt "@button"
+msgid "Advanced"
+msgstr ""
+
+#: Cura/cura/Machines/Models/SettingVisibilityPresetsModel.py:78:
+msgctxt "@button"
+msgid "Basic"
+msgstr ""
