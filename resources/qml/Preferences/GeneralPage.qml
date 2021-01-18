@@ -20,6 +20,7 @@ UM.PreferencesPage
         //loops trough the languageList and sets the language using the languageCode
         for(var i = 0; i < languageList.count; i++)
         {
+
             if (languageComboBox.model.get(i).code == languageCode)
             {
                 languageComboBox.currentIndex = i
@@ -158,22 +159,6 @@ UM.PreferencesPage
                         Component.onCompleted: {
 							append({ text: "Русский", code: "ru_RU" })
                             append({ text: "English", code: "en_US" })
-                            append({ text: "Čeština", code: "cs_CZ" })
-                            append({ text: "Deutsch", code: "de_DE" })
-                            append({ text: "Español", code: "es_ES" })
-                            //Finnish is disabled for being incomplete: append({ text: "Suomi", code: "fi_FI" })
-                            append({ text: "Français", code: "fr_FR" })
-                            append({ text: "Italiano", code: "it_IT" })
-                            append({ text: "日本語", code: "ja_JP" })
-                            append({ text: "한국어", code: "ko_KR" })
-                            append({ text: "Nederlands", code: "nl_NL" })
-                            //Polish is disabled for being incomplete: append({ text: "Polski", code: "pl_PL" })
-                            append({ text: "Português do Brasil", code: "pt_BR" })
-                            append({ text: "Português", code: "pt_PT" })
-                            
-                            append({ text: "Türkçe", code: "tr_TR" })
-                            append({ text: "简体中文", code: "zh_CN" })
-                            append({ text: "正體字", code: "zh_TW" })
 
                             var date_object = new Date();
                             if (date_object.getUTCMonth() == 8 && date_object.getUTCDate() == 19) //Only add Pirate on the 19th of September.

@@ -220,5 +220,12 @@ if ApplicationMetadata.CuraDebugMode:
     ssl_conf.setPeerVerifyMode(QSslSocket.VerifyNone)
     QSslConfiguration.setDefaultConfiguration(ssl_conf)
 
+
 app = CuraApplication()
 app.run()
+
+if app.getIsRestartOnExit():
+    print("Restarting application")
+    os.execl(sys.executable, sys.executable, *sys.argv)
+
+

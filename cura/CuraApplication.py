@@ -158,7 +158,7 @@ class CuraApplication(QtApplication):
 
         self._default_language = "ru_RU"
         self.default_theme = "dia-light"
-
+        self._restart_on_exit = False
         self.change_log_url = "https://ultimaker.com/ultimaker-cura-latest-features"
 
         self._boot_loading_time = time.time()
@@ -593,6 +593,10 @@ class CuraApplication(QtApplication):
     def setNeedToShowUserAgreement(self, set_value: bool = True) -> None:
         self.getPreferences().setValue("general/accepted_user_agreement", str(not set_value))
 
+    @pyqtSlot(bool)
+    def setNeedToShowSelectLanguage(self, set_value: bool = True) -> None:
+        self.getPreferences().setValue("general/select_language", str(not set_value))
+
     @pyqtSlot(str, str)
     def writeToLog(self, severity: str, message: str) -> None:
         Logger.log(severity, message)
@@ -608,6 +612,17 @@ class CuraApplication(QtApplication):
             main_window.close()
         else:
             self.exit(0)
+
+    def getIsRestartOnExit(self) -> bool:
+        return self._restart_on_exit
+
+    @pyqtSlot()
+    def restartApplication(self) -> None:
+        Logger.log("i", "Restart application")
+
+        self._restart_on_exit = True
+        self.savePreferences()
+        self.exit(10)
 
     # This function first performs all upon-exit checks such as USB printing that is in progress.
     # Use this to close the application.
@@ -844,7 +859,7 @@ class CuraApplication(QtApplication):
         self._auto_save = AutoSave(self)
         self._auto_save.initialize()
 
-        self.exec_()
+        return self.exec_()
 
     def __setUpSingleInstanceServer(self):
         if self._use_single_instance:
