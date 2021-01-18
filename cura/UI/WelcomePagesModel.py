@@ -257,15 +257,18 @@ class WelcomePagesModel(ListModel):
                           ]
 
         pages_to_show = all_pages_list
-        if show_whatsnew_only:
-            pages_to_show = list(filter(lambda x: x["id"] == "whats_new", all_pages_list))
+
+        if self._application.needToShowSelectLanguage is False:
+            pages_to_show = list(filter(lambda x: x["id"] != "select_language", all_pages_list))
+
+        if self._application.needToShowUserAgreement is False:
+            pages_to_show = list(filter(lambda x: x["id"] != "user_agreement", pages_to_show))
 
         self._pages = pages_to_show
         self.setItems(self._pages)
 
     # For convenience, inject the default "next" button text to each item if it's not present.
     def setItems(self, items: List[Dict[str, Any]]) -> None:
-
         _default_next_button_text = self._catalog.i18nc("@action:button", "Next")
         for item in items:
             if "next_page_button_text" not in item:

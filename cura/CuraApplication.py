@@ -565,6 +565,7 @@ class CuraApplication(QtApplication):
         preferences.addPreference("cura/expanded_types", "")
 
         preferences.addPreference("general/accepted_user_agreement", False)
+        preferences.addPreference("general/select_language", False)
 
         for key in [
             "dialog_load_path",  # dialog_save_path is in LocalFileOutputDevicePlugin
@@ -592,6 +593,10 @@ class CuraApplication(QtApplication):
     @pyqtSlot(bool)
     def setNeedToShowUserAgreement(self, set_value: bool = True) -> None:
         self.getPreferences().setValue("general/accepted_user_agreement", str(not set_value))
+
+    @pyqtProperty(bool)
+    def needToShowSelectLanguage(self) -> bool:
+        return not UM.Util.parseBool(self.getPreferences().getValue("general/select_language"))
 
     @pyqtSlot(bool)
     def setNeedToShowSelectLanguage(self, set_value: bool = True) -> None:
