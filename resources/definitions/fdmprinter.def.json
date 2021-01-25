@@ -3995,6 +3995,7 @@
                     "label": "Enable Camera Cooling",
                     "description": "Enables the camera cooling, necessary for printing with materials that require cooling, such as PLA, TPU and others",
                     "type": "bool",
+                    "enabled": "machine_name == 'Hercules'",
                     "default_value": false,
                     "settable_per_mesh": false,
                     "settable_per_extruder": false

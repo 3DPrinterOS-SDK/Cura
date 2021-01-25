@@ -628,14 +628,13 @@ Item
 
                     Repeater
                     {
+                        id: extRep
                         model: base.extrudersModel
-
                         ProfileTab
                         {
-                            title: (extrudersModel.count > 1)
-                                    ? catalog.i18nc("@action:label", "Extruder %1").arg(i + 1)
+                            title: (model.count > 1)
+                                    ? catalog.i18nc("@action:label", "Extruder #%1").arg(model.index + 1)
                                     : catalog.i18nc("@label", "Extruder")
-
                             extruderPosition: model.index
                             qualityItem: base.currentItem
                         }
