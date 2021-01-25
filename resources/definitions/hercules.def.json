@@ -13,7 +13,7 @@
     "supports_usb_connection": true,
     "machine_extruder_trains":
     {
-        "0": "hercules_extruder"
+        "0": "imprinta_extruder_0"
     }
   },
 
