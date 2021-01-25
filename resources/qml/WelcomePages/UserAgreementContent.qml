@@ -14,6 +14,14 @@ Item
 {
     UM.I18nCatalog { id: catalog; name: "cura" }
 
+    property string enText: "<p><b>Disclaimer by Imprinta</b></p>"
+            + "<p>Please read this disclaimer carefully.</p>"
+            + "<p>Except when otherwise stated in writing, Imprinta provides any Diaprint software or third party software \"As is\" without warranty of any kind. The entire risk as to the quality and performance of Diaprint software is with you.</p>"
+            + "<p>Unless required by applicable law or agreed to in writing, in no event will Imprinta be liable to you for damages, including any general, special, incidental, or consequential damages arising out of the use or inability to use any Diaprint software or third party software.</p>"
+    property string ruText: "<p> <b> Заявление об отказе от ответственности со стороны DiaPrint </b> </p> "
+            + "<p> Пожалуйста, внимательно прочтите этот отказ от ответственности. </p>"
+            + "<p> Если иное не указано в письменной форме, DiaPrint предоставляет любое программное обеспечение Imprinta или стороннее программное обеспечение \" как есть \" без каких-либо гарантий. Вы несете весь риск, связанный с качеством и производительностью программного обеспечения DiaPrint. </р>»"
+            + "<p> Если это не требуется в соответствии с применимым законодательством или не согласовано в письменной форме, DiaPrint ни при каких обстоятельствах не несет ответственности перед вами за ущерб, включая любые общие, особые, случайные или косвенные убытки, возникшие в результате использования или невозможности использования любого программного обеспечения DiaPrint или стороннего программного обеспечения. </p>"
     Label
     {
         id: titleLabel
@@ -37,10 +45,7 @@ Item
             right: parent.right
         }
 
-        text: "<p> <b> Заявление об отказе от ответственности со стороны DiaPrint </b> </p> "
-            + "<p> Пожалуйста, внимательно прочтите этот отказ от ответственности. </p>"
-            + "<p> Если иное не указано в письменной форме, DiaPrint предоставляет любое программное обеспечение Imprinta или стороннее программное обеспечение \" как есть \" без каких-либо гарантий. Вы несете весь риск, связанный с качеством и производительностью программного обеспечения DiaPrint. </р>»"
-            + "<p> Если это не требуется в соответствии с применимым законодательством или не согласовано в письменной форме, DiaPrint ни при каких обстоятельствах не несет ответственности перед вами за ущерб, включая любые общие, особые, случайные или косвенные убытки, возникшие в результате использования или невозможности использования любого программного обеспечения DiaPrint или стороннего программного обеспечения. </p>"
+        text: (UM.Preferences.getValue("general/language") == "en_US") ? enText : ruText
         textFormat: Text.RichText
         wrapMode: Text.WordWrap
         font: UM.Theme.getFont("medium")

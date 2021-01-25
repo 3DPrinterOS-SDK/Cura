@@ -6265,3 +6265,18 @@ msgstr ""
 msgctxt "@button"
 msgid "Basic"
 msgstr ""
+
+#: Cura/resources/qml/WelcomePages/SelectLanguageContent.qml:34
+msgctxt "@label"
+msgid "Select language:"
+msgstr ""
+
+#: Cura/resources/qml/WelcomePages/SelectLanguageContent.qml:103
+msgctxt "@button"
+msgid "Exit"
+msgstr ""
+
+#: Cura/cura/UI/CuraSplashScreen.py:82
+msgctxt "@label"
+msgid "Powered by"
+msgstr ""

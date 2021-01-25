@@ -7,6 +7,8 @@ from PyQt5.QtWidgets import QSplashScreen
 
 from UM.Resources import Resources
 from UM.Application import Application
+from UM.i18n import i18nCatalog
+
 from cura import ApplicationMetadata
 
 import time
@@ -16,7 +18,7 @@ class CuraSplashScreen(QSplashScreen):
         super().__init__()
         self._scale = 0.7
         self._version_y_offset = 0  # when extra visual elements are in the background image, move version text down
-
+        self._i18n_catalog = i18nCatalog("cura")
         if ApplicationMetadata.IsEnterpriseVersion:
             splash_image = QPixmap(Resources.getPath(Resources.Images, "cura_enterprise.png"))
             self._version_y_offset = 26
@@ -77,6 +79,12 @@ class CuraSplashScreen(QSplashScreen):
             painter.setPen(QColor(200, 200, 200, 255))
             painter.drawText(247, 105 + self._version_y_offset, 330 * self._scale, 255 * self._scale, Qt.AlignLeft | Qt.AlignTop, version[1])
         painter.setPen(QColor(255, 255, 255, 255))
+
+        #Draw label
+        font = QFont()  # Using system-default font here
+        font.setPixelSize(13)
+        painter.setFont(font)
+        painter.drawText(30, 295, self._i18n_catalog.i18nc("@label", "Powered by"))
 
         # Draw the loading image
         pen = QPen()

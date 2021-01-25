@@ -42,6 +42,10 @@ Item
         id: wizardPanel
         anchors.fill: parent
         model: dialog.model
+        progressBarVisible: false
+        backgroundColor: (wizardPanel.currentItem != null)
+                            ? (wizardPanel.currentItem.id == 'select_language' ? "transparent" : UM.Theme.getColor("main_background"))
+                            : UM.Theme.getColor("main_background")
     }
 
     // Drop shadow around the panel
