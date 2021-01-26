@@ -46,6 +46,7 @@ parser.add_argument("--debug",
 
 known_args = vars(parser.parse_known_args()[0])
 
+
 if with_sentry_sdk:
     sentry_env = "unknown"  # Start off with a "IDK"
     if hasattr(sys, "frozen"):
@@ -220,18 +221,16 @@ if ApplicationMetadata.CuraDebugMode:
     ssl_conf.setPeerVerifyMode(QSslSocket.VerifyNone)
     QSslConfiguration.setDefaultConfiguration(ssl_conf)
 
-
+print("args")
+print(*sys.argv)
 app = CuraApplication()
 app.run()
 
 if app.getIsRestartOnExit():
     print("Restarting application")
     # works only with exe
-    args = []
-    print(sys.executable)
     print(sys.argv[0])
     print(*sys.argv[1:])
-    # WORKAROUND: add --debug argument to restart without input file error
-    os.execl(sys.executable, sys.argv[0], "--debug") #NOTE, works only with executables on release
+    os.execl(sys.executable, '"' + sys.executable + '"', *argv[1:]) #NOTE, works only with executables on release
 
 
