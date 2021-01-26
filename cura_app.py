@@ -228,6 +228,9 @@ if app.getIsRestartOnExit():
     print("Restarting application")
     # works only with exe
     args = []
-    os.execl(sys.executable, *args)
+    print(sys.executable)
+    print(sys.argv[0])
+    print(*sys.argv[1:])
+    os.execl(sys.executable, sys.argv[0], *sys.argv[1:]) #NOTE, works only with executables on release
 
 
