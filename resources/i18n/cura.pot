@@ -6268,7 +6268,7 @@ msgstr ""
 
 #: Cura/resources/qml/WelcomePages/SelectLanguageContent.qml:34
 msgctxt "@label"
-msgid "Select language:"
+msgid "Select language"
 msgstr ""
 
 #: Cura/resources/qml/WelcomePages/SelectLanguageContent.qml:103

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Cura 4.7\n"
 "Report-Msgid-Bugs-To: r.dulek@ultimaker.com\n"
 "POT-Creation-Date: 2020-07-24 05:14+0300\n"
-"PO-Revision-Date: 2021-01-26 01:59+0200\n"
+"PO-Revision-Date: 2021-01-26 02:52+0200\n"
 "Last-Translator: Lionbridge <info@lionbridge.com>\n"
 "Language-Team: Russian <info@lionbridge.com>, Ruslan Popov <ruslan."
 "popov@gmail.com>, Russian <info@bothof.nl>\n"
@@ -6719,8 +6719,8 @@ msgstr "Базовый"
 
 #: Cura/resources/qml/WelcomePages/SelectLanguageContent.qml:34
 msgctxt "@label"
-msgid "Select language:"
-msgstr "Выберите язык:"
+msgid "Select language"
+msgstr "Выберите язык"
 
 #: Cura/resources/qml/WelcomePages/SelectLanguageContent.qml:103
 msgctxt "@button"
@@ -6732,7 +6732,7 @@ msgctxt "@label"
 msgid "Powered by"
 msgstr "При поддержке"
 
-msgctxt "@button"
+msgctxt "@action:button"
 msgid "Normal"
 msgstr "Стандартный"
 
