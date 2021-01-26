@@ -221,17 +221,20 @@ if ApplicationMetadata.CuraDebugMode:
     ssl_conf.setPeerVerifyMode(QSslSocket.VerifyNone)
     QSslConfiguration.setDefaultConfiguration(ssl_conf)
 
-print("args")
-print(*sys.argv)
+
 app = CuraApplication()
 app.run()
 
 if app.getIsRestartOnExit():
     print("Restarting application")
     # works only with exe
-    print(sys.argv[0])
-    print(*sys.argv[1:])
-    # NOTE: works only with compiled executables
-    os.execl(sys.executable, os.path.abspath(sys.executable), *sys.argv[1:])
 
+    # NOTE: works only with executables
+    os.execl(sys.executable, os.path.normpath(sys.executable), *sys.argv[1:])
+
+  #  if Platform.isWindows():
+  #      os.execl(sys.executable, os.path.abspath(sys.executable), *sys.argv[1:]) #NOTE: works only with executables
+
+  #  if Platform.isOSX():
+  #      os.execl(sys.executable, os.path.abspath(sys.executable), *sys.argv[1:])
 
