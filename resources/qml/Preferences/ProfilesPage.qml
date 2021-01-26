@@ -492,7 +492,7 @@ Item
                         anchors.leftMargin: UM.Theme.getSize("default_margin").width
                         anchors.right: parent.right
                         width: Math.floor((parent.width * 0.8))
-                        text: model.name
+                        text: catalog.i18nc("@action:button", model.name)
                         elide: Text.ElideRight
                         font.italic:
                         {

@@ -69,7 +69,7 @@ Popup
                         Label
                         {
                             id: headerLabel
-                            text: model.name
+                            text: catalog.i18nc("@action:button", model.name)
                             color: UM.Theme.getColor("text_inactive")
                             renderType: Text.NativeRendering
                             width: parent.width
@@ -118,7 +118,7 @@ Popup
                                     width: parent.width
                                     checkable: true
                                     visible: model.available
-                                    text: model.name + " - " + model.layer_height + " mm"
+                                    text: catalog.i18nc("@action:button", model.name) + " - " + model.layer_height + " mm"
                                     checked:
                                     {
                                         if (Cura.MachineManager.hasCustomQuality)
@@ -184,7 +184,7 @@ Popup
                                 width: parent.width
                                 checkable: true
                                 visible: model.available
-                                text: model.name
+                                text: catalog.i18nc("@action:button", model.name)
                                 checked:
                                 {
                                     var active_quality_group = Cura.MachineManager.activeQualityChangesGroup

@@ -83,7 +83,7 @@ Item
                 Label
                 {
                     id: textLabel
-                    text: Cura.MachineManager.activeQualityDisplayNameMap["main"]
+                    text: catalog.i18nc("@action:button", Cura.MachineManager.activeQualityDisplayNameMap["main"])
                     font: UM.Theme.getFont("default")
                     color: UM.Theme.getColor("text")
                     Layout.margins: 0
