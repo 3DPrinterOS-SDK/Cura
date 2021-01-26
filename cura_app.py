@@ -44,6 +44,12 @@ parser.add_argument("--debug",
                     help = "Turn on the debug mode by setting this option."
                     )
 
+parser.add_argument("--no-arg",
+                    action = "",
+                    default = False,
+                    help = "Workaround for program restart without errors."
+                    )
+
 known_args = vars(parser.parse_known_args()[0])
 
 if with_sentry_sdk:
@@ -231,6 +237,7 @@ if app.getIsRestartOnExit():
     print(sys.executable)
     print(sys.argv[0])
     print(*sys.argv[1:])
-    os.execl(sys.executable, sys.argv[0], *sys.argv[1:]) #NOTE, works only with executables on release
+    # WORKAROUND: add --no-arg argument to restart without input file error
+    os.execl(sys.executable, sys.argv[0], "--no-arg") #NOTE, works only with executables on release
 
 
