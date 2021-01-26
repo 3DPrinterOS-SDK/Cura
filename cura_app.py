@@ -231,6 +231,7 @@ if app.getIsRestartOnExit():
     # works only with exe
     print(sys.argv[0])
     print(*sys.argv[1:])
-    os.execl(sys.executable, '"' + sys.executable + '"', *sys.argv[1:]) #NOTE, works only with executables on release
+    # NOTE: works only with compiled executables
+    os.execl(sys.executable, os.path.abspath(sys.executable), *sys.argv[1:])
 
 
