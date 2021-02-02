@@ -25,7 +25,7 @@ Item
         }
         font: UM.Theme.getFont("huge")
         color: "white"
-        text: catalog.i18nc("@label", "Select language")
+        text: catalog.i18nc("@label", "Выберите язык / Choose language")
     }
     Row {
         id: btnRow
