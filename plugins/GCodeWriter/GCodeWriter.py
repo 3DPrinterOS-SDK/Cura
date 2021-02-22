@@ -126,11 +126,19 @@ class GCodeWriter(MeshWriter):
             stream.write(";Enable Camera Cooling\nM1206\n")
         gcode_dict = getattr(scene, "gcode_dict")
         gcode_list = gcode_dict.get(active_build_plate, None)
+
+        # WORKAROUND: comment first T0 command from gcode for Hercules Strong Duo
+        comment_T0 = Application.getInstance().getGlobalContainerStack().getProperty("machine_name", "value") == "Hercules Strong Duo"
+
         if gcode_list is not None:
             has_settings = False
             for gcode in gcode_list:
                 if gcode[:len(self._setting_keyword)] == self._setting_keyword:
                     has_settings = True
+                if comment_T0 is True and gcode.find('T0') > 0:
+                    comment_T0 = False
+                    gcode = gcode.replace('T0', ';T0', 1)
+
                 stream.write(gcode)
 
             # Serialise the current container stack and put it at the end of the file.
