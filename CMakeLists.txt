@@ -18,9 +18,9 @@ endif()
 
 option(GENERATE_TRANSLATIONS "Should the translations be generated?" ON)
 
-set(CURA_APP_NAME "cura" CACHE STRING "Short name of Cura, used for configuration folder")
-set(CURA_APP_DISPLAY_NAME "Ultimaker Cura" CACHE STRING "Display name of Cura")
-set(CURA_VERSION "master" CACHE STRING "Version name of Cura")
+set(CURA_APP_NAME "formers_farm" CACHE STRING "Short name of Cura, used for configuration folder")
+set(CURA_APP_DISPLAY_NAME "Former's Farm Slicer" CACHE STRING "Display name of Cura")
+set(CURA_VERSION "4.12" CACHE STRING "Version name of Cura")
 set(CURA_BUILDTYPE "" CACHE STRING "Build type of Cura, eg. 'PPA'")
 set(CURA_CLOUD_API_ROOT "" CACHE STRING "Alternative Cura cloud API root")
 set(CURA_CLOUD_API_VERSION "" CACHE STRING "Alternative Cura cloud API version")
