@@ -4,8 +4,8 @@
 # ---------
 # General constants used in Cura
 # ---------
-DEFAULT_CURA_APP_NAME = "formers_farm"
-DEFAULT_CURA_DISPLAY_NAME = "Former's Farm Slicer"
+DEFAULT_CURA_APP_NAME = "lugo_cura"
+DEFAULT_CURA_DISPLAY_NAME = "LUGO Cura"
 DEFAULT_CURA_VERSION = "4.12"
 DEFAULT_CURA_BUILD_TYPE = ""
 DEFAULT_CURA_DEBUG_MODE = False

@@ -29,7 +29,7 @@ try:
 except ImportError:
     with_sentry_sdk = False
 
-parser = argparse.ArgumentParser(prog = "formers_farm",
+parser = argparse.ArgumentParser(prog = "lugo_cura",
                                  add_help = False)
 parser.add_argument("--debug",
                     action = "store_true",
