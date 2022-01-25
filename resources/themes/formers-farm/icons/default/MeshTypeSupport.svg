@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.97 41.34"><defs><style>.cls-1{fill:none;stroke:#231916;stroke-miterlimit:10;stroke-width:3.4px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="레이어_1" data-name="레이어 1"><path class="cls-1" d="M34.05,1.7H6.92A5.22,5.22,0,0,0,1.7,6.92V19.3H15.27a5.22,5.22,0,0,1,5.22,5.22V39.64H39.27V6.92A5.22,5.22,0,0,0,34.05,1.7Z"/><line class="cls-1" x1="2.22" y1="23.37" x2="2.22" y2="40.95"/><line class="cls-1" x1="7.87" y1="23.37" x2="7.87" y2="40.95"/><line class="cls-1" x1="13.59" y1="27.6" x2="13.59" y2="40.95"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.2" baseProfile="tiny" id="레이어_1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"
+	 overflow="visible" xml:space="preserve">
+<g>
+	<path fill="none" stroke="#000000" stroke-width="1.4205" stroke-miterlimit="10" d="M17.7,3.8H6.3c-1.2,0-2.2,1-2.2,2.2v5.2h5.7
+		c1.2,0,2.2,1,2.2,2.2v6.3h7.8v-2.3v-4.6V6C19.8,4.8,18.9,3.8,17.7,3.8z"/>
+	<line fill="none" stroke="#000000" stroke-width="1.4205" stroke-miterlimit="10" x1="4.4" y1="12.9" x2="4.4" y2="20.2"/>
+	<line fill="none" stroke="#000000" stroke-width="1.4205" stroke-miterlimit="10" x1="6.7" y1="12.9" x2="6.7" y2="20.2"/>
+	<line fill="none" stroke="#000000" stroke-width="1.4205" stroke-miterlimit="10" x1="9.1" y1="14.6" x2="9.1" y2="20.2"/>
+</g>
+</svg>

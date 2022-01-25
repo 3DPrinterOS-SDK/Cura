@@ -190,9 +190,9 @@
 
         "primary_button": [61, 61, 61, 255],
         "primary_button_shadow": [27, 95, 202, 255],
-        "primary_button_hover": [16, 70, 156, 255],
+        "primary_button_hover": [229, 229, 229, 255],
         "primary_button_text": [255, 255, 255, 255],
-
+        "primary_button_text_hover": [61, 61, 61, 255],
         "secondary_button": [255, 255, 255, 255],
         "secondary_button_shadow": [216, 216, 216, 255],
         "secondary_button_hover": [229, 229, 229, 255],

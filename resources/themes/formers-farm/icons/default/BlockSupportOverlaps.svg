@@ -1,1 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.68 39.96"><defs><style>.cls-1,.cls-3{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#231916;stroke-width:3.4px;}.cls-2{fill:#231916;}.cls-3{stroke:#fff;stroke-width:2.31px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="레이어_1" data-name="레이어 1"><line class="cls-1" x1="2.53" y1="27.35" x2="2.53" y2="39.65"/><line class="cls-1" x1="8.54" y1="29.76" x2="8.54" y2="39.51"/><line class="cls-1" x1="14.27" y1="32.15" x2="14.27" y2="39.55"/><path class="cls-1" d="M32.21,11.78,30.12,9.69,27,6.62a1.41,1.41,0,0,0-2,0L21.88,9.8,19.63,7.55,14.47,2.39a2.37,2.37,0,0,0-3.35,0L2.4,11.12a2.37,2.37,0,0,0,0,3.35l5.16,5.16,3.52,3.52,1.78,1.78,9.07-9.06,1,1L25,19,26.08,20l7.19-7.19Z"/><path class="cls-2" d="M22.09,40H33.25a2.11,2.11,0,0,0,2.15-2.07v-13H20v13A2.11,2.11,0,0,0,22.09,40Z"/><line class="cls-3" x1="23.72" y1="29.04" x2="31.75" y2="37.08"/><line class="cls-3" x1="31.61" y1="28.9" x2="23.57" y2="36.93"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.2" baseProfile="tiny" id="레이어_1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"
+	 overflow="visible" xml:space="preserve">
+<g>
+	<line fill="none" stroke="#000000" stroke-width="1.5872" stroke-miterlimit="10" x1="4.5" y1="15" x2="4.5" y2="20.8"/>
+	<line fill="none" stroke="#000000" stroke-width="1.5872" stroke-miterlimit="10" x1="7.3" y1="16.2" x2="7.3" y2="20.7"/>
+	<line fill="none" stroke="#000000" stroke-width="1.5872" stroke-miterlimit="10" x1="10" y1="17.3" x2="10" y2="20.7"/>
+	<path fill="none" stroke="#000000" stroke-width="1.5872" stroke-miterlimit="10" d="M18.4,7.8l-1-1L16,5.4c-0.3-0.3-0.7-0.3-0.9,0
+		l-1.5,1.5l-1-1l-2.4-2.4C9.7,3,9,3,8.5,3.4l-4,4.1C4,7.9,4,8.6,4.5,9l2.4,2.4L8.5,13l0.8,0.8l4.2-4.2l0.5,0.5l1,1l0.5,0.5l3.4-3.4
+		L18.4,7.8z"/>
+	<path d="M12.8,13.9v1v2v3c0,0.6,0.4,1,1,1H19c0.6,0,1-0.4,1-1v-3v-2v-1H12.8z M18.6,18.9l-0.8,0.8l-1.5-1.5l-1.5,1.5l-0.8-0.8
+		l1.5-1.5l-1.5-1.5l0.8-0.8l1.5,1.5l1.5-1.5l0.8,0.8l-1.5,1.5L18.6,18.9z"/>
+</g>
+</svg>
