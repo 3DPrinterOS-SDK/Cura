@@ -229,6 +229,13 @@ Item
                         {
                             setDestroyed(true)
                         }
+
+                        Component.onCompleted:
+                        {
+                            addedSettingsModel.setVisible("wall_thickness", true);
+                            addedSettingsModel.setVisible("infill_sparse_density", true);
+                            UM.ActiveTool.forceUpdate();
+                        }
                     }
 
                     delegate: Row

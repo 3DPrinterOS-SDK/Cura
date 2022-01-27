@@ -113,6 +113,9 @@ class PerObjectSettingsTool(Tool):
             "wall_thickness": 0,
             "wall_line_count": "=max(1, round((wall_thickness - wall_line_width_0) / wall_line_width_x) + 1) if wall_thickness != 0 else 0"
         }
+
+
+
         for property_key in specialized_settings:
             if mesh_type == "infill_mesh":
                 if settings.getInstance(property_key) is None:
@@ -124,8 +127,9 @@ class PerObjectSettingsTool(Tool):
                     settings_visibility_changed = True
 
             elif old_mesh_type == "infill_mesh" and settings.getInstance(property_key) and property_key in specialized_settings:
-                settings.removeInstance(property_key)
-                settings_visibility_changed = True
+                if property_key not in ["wall_thickness", "infill_sparse_density"]:
+                    settings.removeInstance(property_key)
+                    settings_visibility_changed = True
 
         if settings_visibility_changed:
             self.visibility_handler.forceVisibilityChanged()
