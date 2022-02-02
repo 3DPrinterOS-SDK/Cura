@@ -90,6 +90,7 @@ class PerObjectSettingsTool(Tool):
             stack = selected_object.callDecoration("getStack")
 
         settings_visibility_changed = False
+        print("mesh_type: " + mesh_type)
         settings = stack.getTop()
         for property_key in ["infill_mesh", "cutting_mesh", "support_mesh", "anti_overhang_mesh"]:
             if property_key != mesh_type:
@@ -114,8 +115,6 @@ class PerObjectSettingsTool(Tool):
             "wall_line_count": "=max(1, round((wall_thickness - wall_line_width_0) / wall_line_width_x) + 1) if wall_thickness != 0 else 0"
         }
 
-
-
         for property_key in specialized_settings:
             if mesh_type == "infill_mesh":
                 if settings.getInstance(property_key) is None:
@@ -131,8 +130,29 @@ class PerObjectSettingsTool(Tool):
                     settings.removeInstance(property_key)
                     settings_visibility_changed = True
 
+        # normal_mesh_visible_setting = {
+        #     "wall_thickness": 0,
+        #     "infill_sparse_density": 0
+        # }
+        #
+        # for property_key in normal_mesh_visible_setting:
+        #     if mesh_type == "":
+        #         print("mesh_type is empty")
+        #         if settings.getInstance(property_key) is None:
+        #             definition = stack.getSettingDefinition(property_key)
+        #             new_instance = SettingInstance(definition, settings)
+        #             new_instance.setProperty("value", normal_mesh_visible_setting[property_key])
+        #             new_instance.resetState()  # Ensure that the state is not seen as a user state.
+        #             settings.addInstance(new_instance)
+        #             settings_visibility_changed = True
+        #     elif old_mesh_type is "" and settings.getInstance(property_key) and property_key in normal_mesh_visible_setting:
+        #         if property_key not in specialized_settings:
+        #             settings.removeInstance(property_key)
+        #             settings_visibility_changed = True
+
         if settings_visibility_changed:
             self.visibility_handler.forceVisibilityChanged()
+
 
         self.propertyChanged.emit()
         return True
