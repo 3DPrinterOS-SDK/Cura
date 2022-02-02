@@ -157,11 +157,4 @@ Menu
     {
         action: Cura.Actions.manageMaterials
     }
-
-    MenuSeparator {}
-
-    MenuItem
-    {
-        action: Cura.Actions.marketplaceMaterials
-    }
 }
