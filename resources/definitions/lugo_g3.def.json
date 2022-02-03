@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "name": "Lugo G3",
+  "inherits": "fdmprinter",
+  "metadata": {
+    "visible": true,
+    "author": "VBetz",
+    "manufacturer": "Former's Farm",
+    "file_formats": "text/x-gcode",
+    "has_variants": true,
+    "machine_extruder_trains":
+    {
+      "0": "lugo_g3_extruder_0",
+      "1": "lugo_g3_extruder_1"
+    }
+  },
+
+  "overrides": {
+    "machine_name": { "default_value": "Lugo G3" },
+    "machine_start_gcode": {
+     "default_value": ";Printer start\nT0\nG21\nM107\nG28 X0 Y0 Z0\nG91\nG1 Z-10 F1000\nG90\nG28 Z F10\nG1 X10 Y5 F4000\nG1 Z1 F1300\nG92 E0\nG1 X40 F100 E30 F50\nG1 E24 F1000\nG92 E0\nT1\nG1 X10\nF5000\nG1 X0 F1000\nG4 S4\nG1 X48 F5000\nG92 E0\nG1 X18 F100 E32 F50\nG92 E0"
+    },
+    "machine_end_gcode": {
+      "default_value": ";Printer end\nM104 S0\nM140 S0\nG92 E0\nG1 E-4 F2000\nG92 X0 Y0\nG1 X5 Y5\nG28 Z\nG28 X Y\nM84"
+    },
+    "machine_heated_bed": {
+      "default_value": true
+    },
+    "machine_width": {
+      "default_value": 190
+    },
+    "machine_height": {
+      "default_value": 180
+    },
+    "machine_depth": {
+      "default_value": 170
+    },
+    "machine_gcode_flavor": {
+      "default_value": "RepRap (Marlin/Sprinter)"
+    },
+    "machine_nozzle_size": {
+      "default_value": 0.4
+    },
+    "machine_extruder_count": { "default_value": 2 }
+  }
+}

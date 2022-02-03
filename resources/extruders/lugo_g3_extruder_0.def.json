@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "name": "Extruder 1",
+    "inherits": "fdmextruder",
+    "metadata": {
+        "machine": "lugo_g3",
+        "position": "0"
+    },
+
+    "overrides": {
+        "extruder_nr": { "default_value": 0 },
+        "material_diameter": { "default_value": 1.75 },
+        "machine_nozzle_size": { "default_value": 0.4 },
+        "machine_extruder_end_code": { "default_value": ";ex1 end\nG1 E-4 F200\nG92 E0"}
+    }
+}

@@ -87,7 +87,7 @@ Item
         anchors.right: parent.right
         anchors.topMargin: UM.Theme.getSize("default_margin").height
 
-        title: catalog.i18nc("@label", "Add local printer")
+        title: catalog.i18nc("@label", "Add a local printer")
         contentShown: true 
         //onClicked:
         //{
