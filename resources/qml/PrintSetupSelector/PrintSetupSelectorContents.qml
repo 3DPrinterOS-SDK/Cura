@@ -144,7 +144,10 @@ Item
             text: catalog.i18nc("@button", "Recommended")
             iconSource: UM.Theme.getIcon("ChevronSingleLeft")
             visible: currentModeIndex == PrintSetupSelectorContents.Mode.Custom
-            onClicked: currentModeIndex = PrintSetupSelectorContents.Mode.Recommended
+            onClicked: {
+                Cura.MachineManager.showDiscardOrKeepProfileChange()
+                currentModeIndex = PrintSetupSelectorContents.Mode.Recommended
+            }
         }
 
         Cura.SecondaryButton

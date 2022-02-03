@@ -1704,6 +1704,13 @@ class MachineManager(QObject):
             self._application.discardOrKeepProfileChanges()
 
     @pyqtSlot()
+    def showDiscardOrKeepProfileChange(self):
+        # See if we need to show the Discard or Keep changes screen
+        if self.hasUserSettings and self._application.getPreferences().getValue(
+                "cura/active_mode") == 1:
+            self._application.discardOrKeepProfileChanges()
+
+    @pyqtSlot()
     def resetToUseDefaultQuality(self) -> None:
         if self._global_container_stack is None:
             return
