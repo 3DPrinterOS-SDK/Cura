@@ -62,11 +62,11 @@ Item
             var material = genericMaterialsModel.getItem(material_idx)
             if (material.root_material_id == search_root_id)
             {
-                if (materialList.expandedBrands.indexOf("Generic") == -1)
+                if (materialList.expandedBrands.indexOf("Lugo labs") == -1)
                 {
-                    materialList.expandedBrands.push("Generic")
+                    materialList.expandedBrands.push("Lugo labs")
                 }
-                materialList.currentBrand = "Generic"
+                materialList.currentBrand = "Lugo labs"
                 base.currentItem = material
                 persistExpandedCategories()
                 return true
@@ -149,7 +149,7 @@ Item
         MaterialsBrandSection
         {
             id: genericSection
-            sectionName: "Generic"
+            sectionName: "Lugo labs"
             elementsModel: genericMaterialsModel
             hasMaterialTypes: false
         }
