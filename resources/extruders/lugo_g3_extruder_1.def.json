@@ -12,7 +12,7 @@
         "material_diameter": { "default_value": 1.75 },
         "machine_nozzle_size": { "default_value": 0.4 },
         "machine_nozzle_offset_x": { "default_value": 22.2 },
-        "machine_extruder_start_code": { "default_value": ";ex2 start\nG1 X10 F9000\nG1 X0 F800\nG1 Y168 F9000\nG1 X10.2 F9000\nG1 X10.2 Y175 F2000\nG92 E-4.5\nG1 E0 F1000\nG1 E3 F60\nG1 E2 F2000\nG1 X20 Y175 F3000\nG4 S3\nG1 X20 Y168 F9000\nG92\nE15" },
-        "machine_extruder_end_code": { "default_value": ";ex1 end\nG1 E-4 F200\nG92 E0" }
+        "machine_extruder_start_code": { "default_value": ";ex2 start\nT1\nG1 X10 F9000\nG1 X0 F1500\nG1 X10 F300\nG1 Y168 F9000\nG1 Y175 F1500\nG1 E5.5 F500\nG1 E8.7 F30\nG1 X18 E3.2 F2000\nG92 E0.03\nG1 X19 F1\nG1 X26 F7000\nG1 Y168 F7000\nG1 Y175 F7000\nG1 X36 F7000" },
+        "machine_extruder_cooling_fan_number": { "default_value": 1 }
     }
 }
