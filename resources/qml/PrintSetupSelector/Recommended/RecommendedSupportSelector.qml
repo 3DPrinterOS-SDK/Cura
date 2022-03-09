@@ -310,7 +310,58 @@ Item
         }
     }
 
+    Item
+    {
+        id: solubleSupportContainer
+        anchors {
+            left: enableSupportContainer.left
+            right: parent.right
+            top: enableSupportContainer.bottom
+            topMargin: enableSupportContainer.height
+        }
+
+        visible: solubleSupportEnabled.properties.enabled == "True"
+
+        CheckBox
+        {
+            id: solubleSupportEnabledCheck
+            anchors.verticalCenter: parent.verticalCenter
+
+            property alias _hovered: solubleEnableSupportMouseArea.containsMouse
+
+            style: UM.Theme.styles.checkbox
+            enabled: recommendedPrintSetup.settingsEnabled
+
+
+            checked: solubleSupportEnabled.properties.value == "True"
+
+            MouseArea
+            {
+                id: solubleEnableSupportMouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+
+                onClicked: solubleSupportEnabled.setPropertyValue("value", solubleSupportEnabled.properties.value != "True")
+            }
+        }
+
+        Text
+        {
+            anchors
+            {
+                left: solubleSupportEnabledCheck.right
+                right: parent.right
+                leftMargin: UM.Theme.getSize("thick_margin").width
+                rightMargin: UM.Theme.getSize("thick_margin").width
+                verticalCenter: parent.verticalCenter
+            }
+
+            text: "Soluble support"
+        }
+    }
+
     property var extruderModel: CuraApplication.getExtrudersModel()
+
 
 
     UM.SettingPropertyProvider
@@ -337,6 +388,15 @@ Item
         containerStack: Cura.MachineManager.activeMachine
         key: "machine_extruder_count"
         watchedProperties: ["value"]
+        storeIndex: 0
+    }
+
+    UM.SettingPropertyProvider
+    {
+        id: solubleSupportEnabled
+        containerStack: Cura.MachineManager.activeMachine
+        key: "support_interface_enable"
+        watchedProperties: [ "value", "enabled", "description" ]
         storeIndex: 0
     }
 }

@@ -183,61 +183,6 @@ Item
         }
     }
 
-    //  Gradual Support Infill Checkbox
-    CheckBox
-    {
-        id: enableGradualInfillCheckBox
-        property alias _hovered: enableGradualInfillMouseArea.containsMouse
-
-        anchors.top: infillSliderContainer.bottom
-        anchors.topMargin: UM.Theme.getSize("wide_margin").height
-        anchors.left: infillSliderContainer.left
-
-        text: catalog.i18nc("@label", "Gradual infill")
-        style: UM.Theme.styles.checkbox
-        enabled: recommendedPrintSetup.settingsEnabled
-        visible: infillSteps.properties.enabled == "True"
-        checked: parseInt(infillSteps.properties.value) > 0
-
-        MouseArea
-        {
-            id: enableGradualInfillMouseArea
-
-            anchors.fill: parent
-            hoverEnabled: true
-            enabled: true
-
-            property var previousInfillDensity: parseInt(infillDensity.properties.value)
-
-            onClicked:
-            {
-                // Set to 90% only when enabling gradual infill
-                var newInfillDensity;
-                if (parseInt(infillSteps.properties.value) == 0)
-                {
-                    previousInfillDensity = parseInt(infillDensity.properties.value)
-                    newInfillDensity = 90
-                } else {
-                    newInfillDensity = previousInfillDensity
-                }
-                Cura.MachineManager.setSettingForAllExtruders("infill_sparse_density", "value", String(newInfillDensity))
-
-                var infill_steps_value = 0
-                if (parseInt(infillSteps.properties.value) == 0)
-                {
-                    infill_steps_value = 5
-                }
-
-                Cura.MachineManager.setSettingForAllExtruders("gradual_infill_steps", "value", infill_steps_value)
-            }
-
-            onEntered: base.showTooltip(enableGradualInfillCheckBox, Qt.point(-infillSliderContainer.x - UM.Theme.getSize("thick_margin").width, 0),
-                    catalog.i18nc("@label", "Gradual infill will gradually increase the amount of infill towards the top."))
-
-            onExited: base.hideTooltip()
-        }
-    }
-
     UM.SettingPropertyProvider
     {
         id: infillDensity
