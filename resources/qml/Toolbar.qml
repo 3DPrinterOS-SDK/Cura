@@ -123,7 +123,7 @@ Item
                         width: controlerTbBtn.width
                         wrapMode: Text.WordWrap
                         horizontalAlignment: Text.AlignHCenter
-                        font.pixelSize: tbBtn.height * 0.2
+                        font.pixelSize: tbBtn.height * 0.17
                         text: model.name
                     }
 

@@ -23,8 +23,8 @@ Button
 
     background: Rectangle
     {
-        implicitWidth: UM.Theme.getSize("button").width * 0.6
-        implicitHeight: UM.Theme.getSize("button").height * 0.6
+        implicitWidth: UM.Theme.getSize("button").width
+        implicitHeight: UM.Theme.getSize("button").height
         color: UM.Theme.getColor("toolbar_background")
         radius: UM.Theme.getSize("default_radius").width
 
@@ -72,8 +72,8 @@ Button
     contentItem: Rectangle
     {
         opacity: parent.enabled ? 1.0 : 0.2
-        implicitWidth: Math.round(UM.Theme.getSize("button").width * 0.6)
-        implicitHeight: Math.round(UM.Theme.getSize("button").height * 0.6)
+        implicitWidth: Math.round(UM.Theme.getSize("button").width * 0.75)
+        implicitHeight: Math.round(UM.Theme.getSize("button").height * 0.75)
         radius: Math.round(width * 0.5)
 
         color:
@@ -96,8 +96,8 @@ Button
         {
             id: contentItemLoader
             anchors.centerIn: parent
-            width: Math.round(UM.Theme.getSize("button").width * 0.6)
-            height: Math.round(UM.Theme.getSize("button").height * 0.6)
+            width: Math.round(UM.Theme.getSize("button").width * 0.5)
+            height: Math.round(UM.Theme.getSize("button").height * 0.5)
         }
 
     }
