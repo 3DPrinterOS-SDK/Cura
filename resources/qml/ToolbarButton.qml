@@ -18,13 +18,13 @@ Button
     // both properties have to be set to true. This is used to create a rounded corner.
     property bool isTopElement: false
     property bool isBottomElement: false
-
+    property bool showBottomText: false
     hoverEnabled: true
 
     background: Rectangle
     {
-        implicitWidth: UM.Theme.getSize("button").width
-        implicitHeight: UM.Theme.getSize("button").height
+        implicitWidth: UM.Theme.getSize("button").width * 0.6
+        implicitHeight: UM.Theme.getSize("button").height * 0.6
         color: UM.Theme.getColor("toolbar_background")
         radius: UM.Theme.getSize("default_radius").width
 
@@ -72,8 +72,8 @@ Button
     contentItem: Rectangle
     {
         opacity: parent.enabled ? 1.0 : 0.2
-        implicitWidth: Math.round(UM.Theme.getSize("button").width * 0.75)
-        implicitHeight: Math.round(UM.Theme.getSize("button").height * 0.75)
+        implicitWidth: Math.round(UM.Theme.getSize("button").width * 0.6)
+        implicitHeight: Math.round(UM.Theme.getSize("button").height * 0.6)
         radius: Math.round(width * 0.5)
 
         color:
@@ -96,9 +96,10 @@ Button
         {
             id: contentItemLoader
             anchors.centerIn: parent
-            width: Math.round(UM.Theme.getSize("button").width / 2)
-            height: Math.round(UM.Theme.getSize("button").height / 2)
+            width: Math.round(UM.Theme.getSize("button").width * 0.6)
+            height: Math.round(UM.Theme.getSize("button").height * 0.6)
         }
+
     }
 
     Cura.ToolTip

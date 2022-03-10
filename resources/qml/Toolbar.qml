@@ -35,7 +35,11 @@ Item
                 bottomMargin: -border.width
             }
             radius: UM.Theme.getSize("default_radius").width
-            color: UM.Theme.getColor("lining")
+            border {
+                color: UM.Theme.getColor("lining")
+                width: 1
+            }
+            color: "white"
         }
 
         Column
@@ -53,57 +57,76 @@ Item
                 width: childrenRect.width
                 height: childrenRect.height
 
-                delegate: ToolbarButton
-                {
-                    text: model.name + (model.shortcut ? (" (" + model.shortcut + ")") : "")
-                    checkable: true
-                    checked: model.active
-                    enabled: model.enabled && UM.Selection.hasSelection && UM.Controller.toolsEnabled
+                Column {
+                    id: controlerTbBtn
 
-                    isTopElement: toolsModel.getItem(0).id == model.id
-                    isBottomElement: toolsModel.getItem(toolsModel.count - 1).id == model.id
+                    width: tbBtn.width
+                    height: tbBtn.height + btnText.contentHeight
 
-                    toolItem: UM.RecolorImage
+                    ToolbarButton
                     {
-                        source: UM.Theme.getIcon(model.icon) != "" ? UM.Theme.getIcon(model.icon) : "file:///" + model.location + "/" + model.icon
-                        color: UM.Theme.getColor("icon")
+                        id: tbBtn
+                        text: model.name + (model.shortcut ? (" (" + model.shortcut + ")") : "")
+                        checkable: true
+                        showBottomText: true
+                        checked: model.active
+                        enabled: model.enabled && UM.Selection.hasSelection && UM.Controller.toolsEnabled
 
-                        sourceSize.height: Math.round(UM.Theme.getSize("button").height / 2)
-                        sourceSize.width: Math.round(UM.Theme.getSize("button").width / 2)
-                    }
+                        isTopElement: toolsModel.getItem(0).id == model.id
+                        isBottomElement: toolsModel.getItem(toolsModel.count - 1).id == model.id
 
-                    onCheckedChanged:
-                    {
-                        if (checked)
+                        toolItem: UM.RecolorImage
                         {
-                            base.activeY = y;
-                        }
-                        //Clear focus when tools change. This prevents the tool grabbing focus when activated.
-                        //Grabbing focus prevents items from being deleted.
-                        //Apparently this was only a problem on MacOS.
-                        forceActiveFocus();
-                    }
+                            source: UM.Theme.getIcon(model.icon) != "" ? UM.Theme.getIcon(model.icon) : "file:///" + model.location + "/" + model.icon
+                            color: UM.Theme.getColor("icon")
 
-                    //Workaround since using ToolButton's onClicked would break the binding of the checked property, instead
-                    //just catch the click so we do not trigger that behaviour.
-                    MouseArea
-                    {
-                        anchors.fill: parent;
-                        onClicked:
+                            sourceSize.height: Math.round(UM.Theme.getSize("button").height / 2)
+                            sourceSize.width: Math.round(UM.Theme.getSize("button").width / 2)
+                        }
+
+                        onCheckedChanged:
                         {
-                            forceActiveFocus() //First grab focus, so all the text fields are updated
-                            if(parent.checked)
+                            if (checked)
                             {
-                                UM.Controller.setActiveTool(null);
+                                base.activeY = controlerTbBtn.y;
                             }
-                            else
-                            {
-                                UM.Controller.setActiveTool(model.id);
-                            }
+                            //Clear focus when tools change. This prevents the tool grabbing focus when activated.
+                            //Grabbing focus prevents items from being deleted.
+                            //Apparently this was only a problem on MacOS.
+                            forceActiveFocus();
+                        }
 
-                            base.state = (index < toolsModel.count/2) ? "anchorAtTop" : "anchorAtBottom";
+                        //Workaround since using ToolButton's onClicked would break the binding of the checked property, instead
+                        //just catch the click so we do not trigger that behaviour.
+                        MouseArea
+                        {
+                            anchors.fill: parent;
+                            onClicked:
+                            {
+                                forceActiveFocus() //First grab focus, so all the text fields are updated
+                                if(parent.checked)
+                                {
+                                    UM.Controller.setActiveTool(null);
+                                }
+                                else
+                                {
+                                    UM.Controller.setActiveTool(model.id);
+                                }
+
+                                base.state = (index < toolsModel.count/2) ? "anchorAtTop" : "anchorAtBottom";
+                            }
                         }
                     }
+
+                    Text {
+                        id: btnText
+                        width: controlerTbBtn.width
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: tbBtn.height * 0.2
+                        text: model.name
+                    }
+
                 }
             }
         }
