@@ -29,66 +29,45 @@ Popup
             model:
             [
                 {
-                    displayName: catalog.i18nc("@label:button", "My printers"),
-                    thumbnail: UM.Theme.getIcon("PrinterTriple", "high"),
-                    description: catalog.i18nc("@tooltip:button", "Monitor printers in Ultimaker Digital Factory."),
-                    link: "https://digitalfactory.ultimaker.com/app/printers?utm_source=cura&utm_medium=software&utm_campaign=switcher-digital-factory-printers",
-                    DFAccessRequired: true
-                },
-                {
-                    displayName: "Digital Library", //Not translated, since it's a brand name.
-                    thumbnail: UM.Theme.getIcon("Library", "high"),
-                    description: catalog.i18nc("@tooltip:button", "Create print projects in Digital Library."),
-                    link: "https://digitalfactory.ultimaker.com/app/library?utm_source=cura&utm_medium=software&utm_campaign=switcher-library",
-                    DFAccessRequired: true
-                },
-                {
-                    displayName: catalog.i18nc("@label:button", "Print jobs"),
-                    thumbnail: UM.Theme.getIcon("FoodBeverages"),
-                    description: catalog.i18nc("@tooltip:button", "Monitor print jobs and reprint from your print history."),
-                    link: "https://digitalfactory.ultimaker.com/app/print-jobs?utm_source=cura&utm_medium=software&utm_campaign=switcher-digital-factory-printjobs",
-                    DFAccessRequired: true
-                },
-                {
-                    displayName: "Ultimaker Marketplace", //Not translated, since it's a brand name.
+                    displayName: "Material Lab", //Not translated, since it's a brand name.
                     thumbnail: UM.Theme.getIcon("Shop", "high"),
-                    description: catalog.i18nc("@tooltip:button", "Extend Ultimaker Cura with plugins and material profiles."),
-                    link: "https://marketplace.ultimaker.com/?utm_source=cura&utm_medium=software&utm_campaign=switcher-marketplace-materials",
+                    description: catalog.i18nc("@tooltip:button", "Material lab."),
+                    link: "https://www.lugolabs.xyz/material_lab",
                     DFAccessRequired: false
                 },
                 {
-                    displayName: "Ultimaker Academy", //Not translated, since it's a brand name.
+                    displayName: "Modeling Lab", //Not translated, since it's a brand name.
                     thumbnail: UM.Theme.getIcon("Knowledge"),
-                    description: catalog.i18nc("@tooltip:button", "Become a 3D printing expert with Ultimaker e-learning."),
-                    link: "https://academy.ultimaker.com/?utm_source=cura&utm_medium=software&utm_campaign=switcher-academy",
+                    description: catalog.i18nc("@tooltip:button", "Modeling lab."),
+                    link: "https://www.lugolabs.xyz/modeling_lab",
                     DFAccessRequired: false
                 },
                 {
-                    displayName: catalog.i18nc("@label:button", "Ultimaker support"),
+                    displayName: catalog.i18nc("@label:button", "Printing Tips"),
                     thumbnail: UM.Theme.getIcon("Help", "high"),
-                    description: catalog.i18nc("@tooltip:button", "Learn how to get started with Ultimaker Cura."),
-                    link: "https://support.ultimaker.com/?utm_source=cura&utm_medium=software&utm_campaign=switcher-support",
+                    description: catalog.i18nc("@tooltip:button", "Printing tips."),
+                    link: "https://www.lugolabs.xyz/printing_tips",
                     DFAccessRequired: false
                 },
                 {
-                    displayName: catalog.i18nc("@label:button", "Ask a question"),
+                    displayName: catalog.i18nc("@label:button", "User Support"),
                     thumbnail: UM.Theme.getIcon("Speak", "high"),
-                    description: catalog.i18nc("@tooltip:button", "Consult the Ultimaker Community."),
-                    link: "https://community.ultimaker.com/?utm_source=cura&utm_medium=software&utm_campaign=switcher-community",
+                    description: catalog.i18nc("@tooltip:button", "User support."),
+                    link: "https://www.lugolabs.xyz/user_support",
                     DFAccessRequired: false
                 },
                 {
-                    displayName: catalog.i18nc("@label:button", "Report a bug"),
+                    displayName: catalog.i18nc("@label:button", "Maintenance"),
                     thumbnail: UM.Theme.getIcon("Bug", "high"),
-                    description: catalog.i18nc("@tooltip:button", "Let developers know that something is going wrong."),
-                    link: "https://github.com/Ultimaker/Cura/issues/new/choose",
+                    description: catalog.i18nc("@tooltip:button", "Maintenance."),
+                    link: "https://www.lugolabs.xyz/maintenance",
                     DFAccessRequired: false
                 },
                 {
-                    displayName: "Ultimaker.com", //Not translated, since it's a URL.
+                    displayName: "LUGOlabs Online", //Not translated, since it's a URL.
                     thumbnail: UM.Theme.getIcon("Browser"),
-                    description: catalog.i18nc("@tooltip:button", "Visit the Ultimaker website."),
-                    link: "https://ultimaker.com/?utm_source=cura&utm_medium=software&utm_campaign=switcher-umwebsite",
+                    description: catalog.i18nc("@tooltip:button", "LUGOlabs Online."),
+                    link: "https://www.lugolabs.xyz/online",
                     DFAccessRequired: false
                 }
             ]

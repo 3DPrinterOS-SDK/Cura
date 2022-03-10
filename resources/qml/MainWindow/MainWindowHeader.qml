@@ -82,4 +82,15 @@ Item
 
         ExclusiveGroup { id: mainWindowHeaderMenuGroup }
     }
+
+    ApplicationSwitcher
+    {
+        id: applicationSwitcher
+        anchors
+        {
+            verticalCenter: parent.verticalCenter
+            right: parent.right
+            rightMargin: UM.Theme.getSize("default_margin").width
+        }
+    }
 }
