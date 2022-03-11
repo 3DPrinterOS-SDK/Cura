@@ -90,7 +90,6 @@ class PerObjectSettingsTool(Tool):
             stack = selected_object.callDecoration("getStack")
 
         settings_visibility_changed = False
-        print("mesh_type: " + mesh_type)
         settings = stack.getTop()
         for property_key in ["infill_mesh", "cutting_mesh", "support_mesh", "anti_overhang_mesh"]:
             if property_key != mesh_type:
@@ -126,7 +125,7 @@ class PerObjectSettingsTool(Tool):
                     settings_visibility_changed = True
 
             elif old_mesh_type == "infill_mesh" and settings.getInstance(property_key) and property_key in specialized_settings:
-                if property_key not in ["wall_thickness", "infill_sparse_density"]:
+                if property_key not in ["wall_thickness", "infill_sparse_density", "top_bottom_thickness"]:
                     settings.removeInstance(property_key)
                     settings_visibility_changed = True
 

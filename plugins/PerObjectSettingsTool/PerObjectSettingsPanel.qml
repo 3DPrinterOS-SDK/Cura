@@ -233,7 +233,11 @@ Item
                         Component.onCompleted:
                         {
                             addedSettingsModel.setVisible("wall_thickness", true);
+                            addedSettingsModel.setVisible("top_bottom_thickness", true);
+                            addedSettingsModel.setVisible("ironing_enabled", true);
                             addedSettingsModel.setVisible("infill_sparse_density", true);
+                            addedSettingsModel.setVisible("infill_pattern", true);
+                            addedSettingsModel.setVisible("support_enable", true);
                             UM.ActiveTool.forceUpdate();
                         }
                     }
