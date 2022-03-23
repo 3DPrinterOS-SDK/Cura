@@ -166,10 +166,20 @@ Item
                 // Create a local printer
                 const localPrinterItem = addLocalPrinterDropDown.contentItem.currentItem
                 const printerName = addLocalPrinterDropDown.contentItem.printerName
-                if(Cura.MachineManager.addMachine(localPrinterItem.id, printerName))
-                {
-                    base.showNextPage()
+                if (localPrinterItem.id === "lugo_g3") {
+                    if (Cura.MachineManager.addMachine("lugo_g3", printerName + " (Dual printing)")
+                     && Cura.MachineManager.addMachine("lugo_g3_single", printerName + " (Single printing)")) {
+                        base.showNextPage()
+                    }
+
+                } else {
+                    if(Cura.MachineManager.addMachine(localPrinterItem.id, printerName))
+                    {
+
+                        base.showNextPage()
+                    }
                 }
+
             //}
         }
     }
