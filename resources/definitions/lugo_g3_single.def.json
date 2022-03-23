@@ -3,7 +3,7 @@
   "name": "Lugo G3",
   "inherits": "lugo_base",
   "metadata": {
-    "visible": true,
+    "visible": false,
     "author": "VBetz",
     "manufacturer": "Former's Farm",
     "quality_definition": "lugo_base",
@@ -11,17 +11,16 @@
     "platform": "LUGO_platform.stl",
     "machine_extruder_trains":
     {
-      "0": "lugo_g3_extruder_0",
-      "1": "lugo_g3_extruder_1"
+      "0": "lugo_extruder"
     }
   },
   "overrides": {
     "machine_name": { "default_value": "Lugo G3" },
     "machine_start_gcode": {
-     "default_value": ";Printer start\nT0\nG21\nM107\nG28 X0 Y0 Z0\nG91\nG1 Z-10 F1000\nG90\nG28 Z F10\nG1 Y165 F3000\nG1 Z10 F2000\nG92 E0"
+     "default_value": ";start\nT0\nG21\nM107\nG28 X0 Y0 Z0\nG91\nG1 Z-10 F1000\nG90\nG28 Z F10\nG1 X10 Y5 F4000\nG1 Z1 F1300\nG92 E0\nG1 Y35 F100 E30 F50\nG92 E0\nG1 F900"
     },
     "machine_end_gcode": {
-      "default_value": ";end code\nM104 S0\nM140 S0\nM107\nG92 E0\nG1 E-4 F2000\nG92 Z0\nG1 Z3 F2000\nG28\nM84"
+      "default_value": ";end\nM104 S0\nM140 S0\nG92 E0\nM83\nG1 X+4 E-3 F2000\nG1 Z+3 F2000\nM82\nG28\nT0\nM84"
     },
     "machine_heated_bed": {
       "default_value": true
@@ -48,6 +47,6 @@
       "default_value": 70.0,
       "value": 70
     },
-    "machine_extruder_count": { "default_value": 2 }
+    "machine_extruder_count": { "default_value": 1 }
   }
 }

@@ -1,0 +1,175 @@
+{
+  "version": 2,
+  "name": "Lugo base",
+  "inherits": "fdmprinter",
+  "metadata": {
+    "visible": false,
+    "author": "VBetz",
+    "manufacturer": "Former's Farm",
+    "has_variants": true,
+    "has_machine_quality":  true,
+    "has_materials": true,
+    "preferred_material": "lugofill_tpu",
+    "file_formats": "text/x-gcode"
+  },
+
+  "overrides": {
+    "machine_start_gcode": {
+     "default_value": ";start\nT0\nG21\nM107\nG28 X0 Y0 Z0\nG91\nG1 Z-10 F1000\nG90\nG28 Z F10\nG1 X10 Y5 F4000\nG1 Z1 F1300\nG92 E0\nG1 Y35 F100 E30 F50\nG92 E0\nG1 F900"
+    },
+    "machine_end_gcode": {
+      "default_value": ";end\nM104 S0\nM140 S0\nG92 E0\nM83\nG1 X+4 E-3 F2000\nG1 Z+3 F2000\nM82\nG28\nT0\nM84"
+    },
+    "machine_heated_bed": {
+      "default_value": true
+    },
+    "machine_gcode_flavor": {
+      "default_value": "RepRap (Marlin/Sprinter)"
+    },
+    "machine_nozzle_size": {
+      "default_value": 0.4
+    },
+    "machine_head_with_fans_polygon":{
+      "default_value":[[0, 0], [0, 0], [0, 0], [0, 0]]
+    },
+    "support_z_distance": {
+      "value": "0 if support_interface_enable else 0.1"
+    },
+    "acceleration_enabled": {
+      "default_value": true
+    },
+    "adhesion_type": {
+      "default_value": "skirt"
+    },
+    "bridge_settings_enabled": {
+      "default_value": true
+    },
+    "jerk_enabled": {
+      "default_value": true
+    },
+    "prime_tower_enable": {
+      "default_value": false
+    },
+    "retraction_combing": {
+      "default_value": "noskin"
+    },
+    "support_enable": {
+      "default_value": false
+    },
+    "acceleration_print": {
+      "default_value": 1000
+    },
+    "acceleration_travel": {
+      "default_value": 1200
+    },
+    "fill_outline_gaps": {
+      "default_value": true
+    },
+    "infill_before_walls": {
+      "default_value": false
+    },
+    "infill_wipe_dist": {
+      "default_value": 0.1
+    },
+    "initial_layer_line_width_factor": {
+      "default_value": 150
+    },
+    "jerk_print": {
+      "default_value": 15
+    },
+    "jerk_travel": {
+      "default_value": 10
+    },
+    "min_infill_area": {
+      "default_value": 10
+    },
+    "optimize_wall_printing_order": {
+      "default_value": true
+
+    },
+    "retraction_combing_max_distance": {
+      "default_value": 5
+    },
+    "retraction_hop": {
+      "default_value": 0
+    },
+    "retraction_hop_after_extruder_switch_height": {
+      "default_value": 3
+    },
+    "retraction_hop_enabled": {
+      "default_value": true
+    },
+    "roofing_layer_count": {
+      "default_value": 1
+    },
+    "roofing_monotonic": {
+      "default_value": true
+    },
+    "skin_outline_count": {
+      "default_value": 0
+    },
+    "skirt_brim_minimal_length": {
+      "default_value": 150
+    },
+    "skirt_gap": {
+      "default_value": 2.5
+    },
+    "skirt_line_count": {
+      "default_value": 1
+    },
+    "speed_infill": {
+      "default_value": 50
+    },
+    "speed_layer_0": {
+      "default_value": 25
+    },
+    "speed_print": {
+      "default_value": 40
+    },
+    "speed_roofing": {
+      "default_value": 40
+    },
+    "speed_topbottom": {
+      "default_value": 40
+    },
+    "speed_travel_layer_0": {
+      "default_value": 120
+    },
+    "speed_wall_x": {
+      "default_value": 25
+    },
+    "support_brim_width": {
+      "default_value": 4
+    },
+    "support_connect_zigzags": {
+      "default_value": false
+    },
+    "support_interface_enable": {
+      "default_value": false
+    },
+    "support_interface_height": {
+      "default_value": 0.6
+    },
+    "support_xy_distance": {
+      "default_value": 0.4
+    },
+    "switch_extruder_retraction_amount": {
+      "default_value": 5.5
+    },
+    "switch_extruder_retraction_speeds": {
+      "default_value": 30
+    },
+    "top_bottom_pattern": {
+      "default_value": "zigzag"
+    },
+    "wall_0_wipe_dist": {
+      "default_value": 0.1
+    },
+    "zig_zaggify_infill": {
+      "default_value": true
+    },
+    "bridge_fan_speed": {
+      "value": "min(100, (cool_fan_speed * 1.1))"
+    }
+  }
+}

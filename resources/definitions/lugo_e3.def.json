@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "name": "Lugo E3",
+  "inherits": "lugo_base",
+  "metadata": {
+    "visible": true,
+    "author": "VBetz",
+    "manufacturer": "Former's Farm",
+    "quality_definition": "lugo_base",
+    "variant_definition": "lugo_base",
+    "machine_extruder_trains":
+    {
+      "0": "lugo_extruder"
+    }
+  },
+  "overrides": {
+    "machine_name": { "default_value": "Lugo E3" },
+    "machine_heated_bed": {
+      "default_value": true
+    },
+    "machine_width": {
+      "default_value": 100
+    },
+    "machine_height": {
+      "default_value": 110
+    },
+    "machine_depth": {
+      "default_value": 110
+    },
+    "machine_gcode_flavor": {
+      "default_value": "RepRap (Marlin/Sprinter)"
+    },
+    "machine_nozzle_size": {
+      "default_value": 0.4
+    },
+    "gantry_height": {
+      "default_value": 0.0,
+      "value": 0
+    },
+    "machine_extruder_count": { "default_value": 1 }
+  }
+}
