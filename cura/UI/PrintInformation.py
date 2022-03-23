@@ -4,12 +4,13 @@
 import json
 import math
 import os
+import re
 from typing import Dict, List, Optional, TYPE_CHECKING
 
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtProperty, pyqtSlot, QTimer
 
 from UM.Logger import Logger
-from UM.Qt.Duration import Duration
+from UM.Qt.Duration import Duration, DurationFormat
 from UM.Scene.SceneNode import SceneNode
 from UM.i18n import i18nCatalog
 from UM.MimeTypeDatabase import MimeTypeDatabase, MimeTypeNotFoundError
@@ -49,6 +50,7 @@ class PrintInformation(QObject):
         self._backend = self._application.getBackend()
         if self._backend:
             self._backend.printDurationMessage.connect(self._onPrintDurationMessage)
+            # self._backend.printDurationMessage.connect(self._updateJobNameTime)
 
         self._application.getController().getScene().sceneChanged.connect(self._onSceneChangedDelayed)
 
@@ -164,12 +166,19 @@ class PrintInformation(QObject):
     def printTimes(self) -> Dict[str, Duration]:
         return self._print_times_per_feature[self._active_build_plate]
 
+    # def _updateJobNameTime(self):
+    #     if self.currentPrintTime:
+    #         self.setJobName("[" + self.currentPrintTime.getDisplayString(DurationFormat.Short) + "]" + self._job_name)
+
     def _onPrintDurationMessage(self, build_plate_number: int, print_times_per_feature: Dict[str, int], material_amounts: List[float]) -> None:
         self._updateTotalPrintTimePerFeature(build_plate_number, print_times_per_feature)
         self.currentPrintTimeChanged.emit()
-
         self._material_amounts = material_amounts
         self._calculateInformation(build_plate_number)
+        if self.currentPrintTime.valid and not self.currentPrintTime.isTotalDurationZero:
+            short_time = re.sub("\s", "", self.currentPrintTime.getDisplayString(DurationFormat.Format.Short))
+            short_time = re.sub("min", "m", short_time)
+            self.setJobName("[" + short_time + "]" + self._job_name)
 
     def _updateTotalPrintTimePerFeature(self, build_plate_number: int, print_times_per_feature: Dict[str, int]) -> None:
         total_estimated_time = 0
@@ -446,6 +455,8 @@ class PrintInformation(QObject):
     def _onOutputStart(self, output_device: OutputDevice) -> None:
         """If this is the sort of output 'device' (like local or online file storage, rather than a printer),
            the user could have altered the file-name, and thus the project name should be altered as well."""
+      #  print("output start")
+      #  self.setJobName("[" + self.currentPrintTime.getDisplayString(UM.DurationFormat.Short) + "]" + self._job_name)
         if isinstance(output_device, ProjectOutputDevice):
             new_name = output_device.getLastOutputName()
             if new_name is not None:

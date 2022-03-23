@@ -85,7 +85,6 @@
     },
     "optimize_wall_printing_order": {
       "default_value": true
-
     },
     "retraction_combing_max_distance": {
       "default_value": 5

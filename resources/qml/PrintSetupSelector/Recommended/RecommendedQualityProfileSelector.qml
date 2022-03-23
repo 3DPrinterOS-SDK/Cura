@@ -113,6 +113,8 @@ Item
                 }
                 height: intentCategoryLabel.height
 
+                //visible: model.name !== "Default"
+
                 Label
                 {
                     id: intentCategoryLabel
