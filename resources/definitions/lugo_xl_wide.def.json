@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "Lugo XL wide",
+  "name": "Lugo XL wide (bowden)",
   "inherits": "lugo_base",
   "metadata": {
     "visible": true,

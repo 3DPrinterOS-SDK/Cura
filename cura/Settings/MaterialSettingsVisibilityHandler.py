@@ -11,13 +11,14 @@ class MaterialSettingsVisibilityHandler(UM.Settings.Models.SettingVisibilityHand
         material_settings = {
             "default_material_print_temperature",
             "default_material_bed_temperature",
-            #"material_standby_temperature",
+            "material_standby_temperature",
             #"material_flow_temp_graph",
             "cool_fan_speed",
             "retraction_amount",
             "retraction_speed",
             "material_flow",
-            "material_bed_temperature_layer_0"
+            "material_bed_temperature_layer_0",
+            "speed_print"
         }
 
         self.setVisible(material_settings)

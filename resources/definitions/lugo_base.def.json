@@ -119,24 +119,6 @@
     "speed_infill": {
       "default_value": 50
     },
-    "speed_layer_0": {
-      "default_value": 25
-    },
-    "speed_print": {
-      "default_value": 40
-    },
-    "speed_roofing": {
-      "default_value": 40
-    },
-    "speed_topbottom": {
-      "default_value": 40
-    },
-    "speed_travel_layer_0": {
-      "default_value": 120
-    },
-    "speed_wall_x": {
-      "default_value": 25
-    },
     "support_brim_width": {
       "default_value": 4
     },
@@ -169,6 +151,46 @@
     },
     "bridge_fan_speed": {
       "value": "min(100, (cool_fan_speed * 1.1))"
+    },
+    "speed_wall_x": {
+      "value": "speed_print * 0.5"
+    },
+    "speed_roofing": {
+      "value": "speed_print * 0.8"
+    },
+    "speed_topbottom": {
+      "value": "speed_print * 0.8"
+    },
+    "speed_support": {
+      "value": "speed_print * 0.8"
+    },
+    "speed_support_interface": {
+      "value": "speed_print * 0.7"
+    },
+    "speed_support_bottom": {
+      "value": "extruderValue(support_bottom_extruder_nr, 'speed_print * 0.4')"
+    },
+    "speed_layer_0": {
+      "value": "speed_print * 0.4"
+    },
+    "speed_travel_layer_0": {
+      "value": "speed_travel * 0.8"
+    },
+    "skirt_brim_speed": {
+      "value": "speed_print * 0.5"
+    },
+    "bridge_wall_speed": {
+      "value": "speed_print * 0.5"
+    },
+    "bridge_wall_material_flow": {
+      "default_value": 100
+    },
+    "bridge_skin_material_flow": {
+      "default_value": 100
+    },
+    "bridge_skin_material_flow_3": {
+      "default_value": 103
     }
+
   }
 }
