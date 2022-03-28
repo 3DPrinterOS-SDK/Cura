@@ -190,7 +190,12 @@
     },
     "bridge_skin_material_flow_3": {
       "default_value": 103
+    },
+    "material_initial_print_temperature": {
+      "value": "material_print_temperature"
+    },
+    "material_final_print_temperature": {
+      "value": "material_standby_temperature"
     }
-
   }
 }
