@@ -18,6 +18,8 @@ Item
     property real labelColumnWidth: Math.round(width / 3)
     property real settingsColumnWidth: width - labelColumnWidth
 
+    property var intentModel: Cura.IntentCategoryModel {}
+
     // Here are the elements that are shown in the left column
 
     Column
@@ -103,7 +105,7 @@ Item
 
         Repeater
         {
-            model: Cura.IntentCategoryModel {}
+            model: intentModel
             Item
             {
                 anchors
@@ -113,7 +115,7 @@ Item
                 }
                 height: intentCategoryLabel.height
 
-                //visible: model.name !== "Default"
+                visible: !(model.name == "Default" && intentModel.count !== 1)
 
                 Label
                 {
