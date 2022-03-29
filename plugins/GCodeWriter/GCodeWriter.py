@@ -80,8 +80,8 @@ class GCodeWriter(MeshWriter):
             self.setInformation(catalog.i18nc("@warning:status", "Please prepare G-code before exporting."))
             return False
 
-        # WORKAROUND: comment first T0 command from gcode for Hercules Strong Duo
-        post_process_p1 = Application.getInstance().getGlobalContainerStack().getProperty("machine_name", "value") == "Lugo G3"
+        # WORKAROUND: comment first T0 command from gcode for Lugo printers
+        post_process_p1 = re.search("Lugo", Application.getInstance().getGlobalContainerStack().getProperty("machine_name", "value"))
         search_pattern = r"(M106)\s(S([+-]?([0-9]*)(\.([0-9]+))?))\sP1"
 
         gcode_dict = getattr(scene, "gcode_dict")
