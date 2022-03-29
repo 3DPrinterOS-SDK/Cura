@@ -83,6 +83,9 @@
     "min_infill_area": {
       "default_value": 10
     },
+    "multiple_mesh_overlap": {
+      "default_value": 0.05
+    }
     "optimize_wall_printing_order": {
       "default_value": true
     },
@@ -96,6 +99,9 @@
       "value": 3
     },
     "retraction_hop_enabled": {
+      "default_value": true
+    },
+    "retraction_hop_only_when_collides": {
       "default_value": true
     },
     "roofing_layer_count": {
@@ -115,9 +121,6 @@
     },
     "skirt_line_count": {
       "default_value": 1
-    },
-    "speed_infill": {
-      "default_value": 50
     },
     "support_brim_width": {
       "default_value": 4
