@@ -69,7 +69,7 @@
       "default_value": false
     },
     "infill_wipe_dist": {
-      "default_value": 0.1
+      "value": 0.1
     },
     "initial_layer_line_width_factor": {
       "default_value": 150
@@ -78,7 +78,7 @@
       "default_value": 15
     },
     "jerk_travel": {
-      "default_value": 10
+      "value": 10
     },
     "min_infill_area": {
       "default_value": 10
@@ -93,16 +93,16 @@
       "default_value": 0
     },
     "retraction_hop_after_extruder_switch_height": {
-      "default_value": 3
+      "value": 3
     },
     "retraction_hop_enabled": {
       "default_value": true
     },
     "roofing_layer_count": {
-      "default_value": 1
+      "value": 1
     },
     "roofing_monotonic": {
-      "default_value": true
+      "value": true
     },
     "skin_outline_count": {
       "default_value": 0
@@ -135,7 +135,7 @@
       "default_value": 0.4
     },
     "switch_extruder_retraction_amount": {
-      "default_value": 5.5
+      "value": 5.5
     },
     "switch_extruder_retraction_speeds": {
       "default_value": 30
