@@ -79,6 +79,11 @@ class GCodeWriter(MeshWriter):
         if not hasattr(scene, "gcode_dict"):
             self.setInformation(catalog.i18nc("@warning:status", "Please prepare G-code before exporting."))
             return False
+
+        # WORKAROUND: comment first T0 command from gcode for Hercules Strong Duo
+        post_process_p1 = Application.getInstance().getGlobalContainerStack().getProperty("machine_name", "value") == "Lugo G3"
+        search_pattern = r"(M106)\s(S([+-]?([0-9]*)(\.([0-9]+))?))\sP1"
+
         gcode_dict = getattr(scene, "gcode_dict")
         gcode_list = gcode_dict.get(active_build_plate, None)
         if gcode_list is not None:
@@ -86,6 +91,9 @@ class GCodeWriter(MeshWriter):
             for gcode in gcode_list:
                 if gcode[:len(self._setting_keyword)] == self._setting_keyword:
                     has_settings = True
+                if post_process_p1:
+                    if re.search(search_pattern, gcode):
+                        gcode = re.sub(search_pattern, r'\1 \2', gcode)
                 stream.write(gcode)
             # Serialise the current container stack and put it at the end of the file.
             if not has_settings:
