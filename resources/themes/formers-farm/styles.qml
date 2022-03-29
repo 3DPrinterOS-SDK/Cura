@@ -108,8 +108,11 @@ QtObject
                 id: backgroundRectangle
                 implicitHeight: control.height
                 implicitWidth: buttonWidth
-                radius: UM.Theme.getSize("action_button_radius").width
-
+                //radius: UM.Theme.getSize("action_button_radius").width
+                border {
+                    width: 1
+                    color: control.checked ? "#d0d0d0" : "#ffffff"
+                }
                 color:
                 {
                     if (control.checked)
