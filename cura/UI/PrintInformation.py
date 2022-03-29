@@ -182,6 +182,8 @@ class PrintInformation(QObject):
                 self.setJobName(re.sub("^\[.+\]", "[" + short_time + "]", self._job_name))
             else:
                 self.setJobName("[" + short_time + "]" + self._job_name)
+        else:
+            self.setJobName(re.sub("\[.+\]", "", self._job_name))
 
     def _updateTotalPrintTimePerFeature(self, build_plate_number: int, print_times_per_feature: Dict[str, int]) -> None:
         total_estimated_time = 0
