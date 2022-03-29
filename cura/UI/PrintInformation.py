@@ -178,7 +178,10 @@ class PrintInformation(QObject):
         if self.currentPrintTime.valid and not self.currentPrintTime.isTotalDurationZero:
             short_time = re.sub("\s", "", self.currentPrintTime.getDisplayString(DurationFormat.Format.Short))
             short_time = re.sub("min", "m", short_time)
-            self.setJobName("[" + short_time + "]" + self._job_name)
+            if re.search(r"^\[.+\]", self._job_name):
+                self.setJobName(re.sub("^\[.+\]", "[" + short_time + "]", self._job_name))
+            else:
+                self.setJobName("[" + short_time + "]" + self._job_name)
 
     def _updateTotalPrintTimePerFeature(self, build_plate_number: int, print_times_per_feature: Dict[str, int]) -> None:
         total_estimated_time = 0
