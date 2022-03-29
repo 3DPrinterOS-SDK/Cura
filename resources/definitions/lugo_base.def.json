@@ -85,7 +85,7 @@
     },
     "multiple_mesh_overlap": {
       "default_value": 0.05
-    }
+    },
     "optimize_wall_printing_order": {
       "default_value": true
     },
