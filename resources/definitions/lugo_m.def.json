@@ -4,8 +4,8 @@
   "inherits": "lugo_base",
   "metadata": {
     "visible": true,
-    "author": "VBetz",
-    "manufacturer": "Former's Farm",
+    "author": "LUGOLABS",
+    "manufacturer": "LUGOLABS",
     "quality_definition": "lugo_base",
     "machine_extruder_trains":
     {
