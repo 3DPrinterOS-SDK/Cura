@@ -17,10 +17,10 @@
   "overrides": {
     "machine_name": { "default_value": "Lugo G3" },
     "machine_start_gcode": {
-     "default_value": ";Printer start\nT0\nG21\nM107\nG28 X0 Y0 Z0\nG91\nG1 Z-10 F1000\nG90\nG28 Z F10\nG1 Y165 F3000\nG1 Z10 F2000\nG92 E0"
+     "default_value": ";start\nT0\nG21\nM107\nG28 X0 Y0 Z0\nG91\nG1 Z-10 F1000\nG90\nG28 Z F10\nG1 X10 Y0 F4000\nG1 Z1 F1300\nG92 E0\nG1 X40 F100 E30 F50\nG1 E24 F1000\nG92 E0\nT1\nG1 X10 F5000\nG1 X0 F1000\nG4 S4\nG1 X48 F5000\nG92 E0\nG1 X18 F100 E32 F50\nG92 E0"
     },
     "machine_end_gcode": {
-      "default_value": ";end code\nM104 S0\nM140 S0\nM107\nG92 E0\nG1 E-4 F2000\nG92 Z0\nG1 Z3 F2000\nG28\nM84"
+      "default_value": ";end\nM104 S0\nM140 S0\nM107\nG92 X0 E0\nG1 X+4 E-3 F2000\nG28\nT0"
     },
     "machine_width": {
       "default_value": 201

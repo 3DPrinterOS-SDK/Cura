@@ -7,6 +7,8 @@
         "author": "LUGOLABS",
         "manufacturer": "Custom",
         "file_formats": "text/x-gcode",
+        "has_variants": false,
+        "has_machine_quality":  true,
         "has_materials": true,
         "quality_definition": "lugo_base",
         "machine_extruder_trains":
