@@ -96,10 +96,9 @@ Button
         {
             id: contentItemLoader
             anchors.centerIn: parent
-            width: Math.round(UM.Theme.getSize("button").width * 0.5)
-            height: Math.round(UM.Theme.getSize("button").height * 0.5)
+            width: Math.round(UM.Theme.getSize("button").width * 0.6)
+            height: Math.round(UM.Theme.getSize("button").height * 0.6)
         }
-
     }
 
     Cura.ToolTip

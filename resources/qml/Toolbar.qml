@@ -68,7 +68,6 @@ Item
                         id: tbBtn
                         text: model.name + (model.shortcut ? (" (" + model.shortcut + ")") : "")
                         checkable: true
-                        showBottomText: true
                         checked: model.active
                         enabled: model.enabled && UM.Selection.hasSelection && UM.Controller.toolsEnabled
 
@@ -123,10 +122,9 @@ Item
                         width: controlerTbBtn.width
                         wrapMode: Text.WordWrap
                         horizontalAlignment: Text.AlignHCenter
-                        font.pixelSize: tbBtn.height * 0.17
+                        font.pixelSize: tbBtn.height * 0.2
                         text: model.name
                     }
-
                 }
             }
         }
