@@ -11,8 +11,8 @@ intent_translations["default"] = {
     "name": catalog.i18nc("@label", "Default")
 }
 intent_translations["visual"] = {
-    "name": catalog.i18nc("@label", "Visual"),
-    "description": catalog.i18nc("@text", "The visual profile is designed to print visual prototypes and models with the intent of high visual and surface quality.")
+    "name": catalog.i18nc("@label", "Figure"),
+    "description": catalog.i18nc("@text", "The figure profile is designed to print visual prototypes and models with the intent of high visual and surface quality.")
 }
 intent_translations["engineering"] = {
     "name": catalog.i18nc("@label", "Engineering"),
