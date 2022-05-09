@@ -39,7 +39,7 @@
       "value": 70
     },
     "retraction_hop": {
-      "default_value": 1
+      "default_value": 1.0
     },
     "machine_extruder_count": { "default_value": 2 }
   }

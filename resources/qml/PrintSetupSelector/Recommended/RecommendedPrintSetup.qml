@@ -69,7 +69,6 @@ Item
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.leftMargin: UM.Theme.getSize("default_margin").width * 2.5
-                visible: enableSupportCheckBox.visible
                 text: catalog.i18nc("@label", "Z Hop Height")
                 font: UM.Theme.getFont("medium")
                 width: labelColumnWidth
