@@ -152,6 +152,7 @@ Item
             sectionName: "Lugo labs"
             elementsModel: genericMaterialsModel
             hasMaterialTypes: false
+            visible: false
         }
 
         Repeater
