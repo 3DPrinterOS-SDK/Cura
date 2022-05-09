@@ -286,6 +286,10 @@ class MaterialManagementModel(QObject):
         new_metadata = {"name": catalog.i18nc("@label", "Custom Material"),
                         "brand": catalog.i18nc("@label", "Custom"),
                         "GUID": str(uuid.uuid4()),
+                        "material": "Custom",
+                        "label": "Custom",
+                        "adhesion_info": "",
+                        "description": ""
                         }
 
         self.duplicateMaterial(preferred_material_node, new_base_id = new_id, new_metadata = new_metadata)
