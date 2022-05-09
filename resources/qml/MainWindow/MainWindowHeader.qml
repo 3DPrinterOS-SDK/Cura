@@ -59,7 +59,7 @@ Item
                 text: model.name.toUpperCase()
                 checkable: true
                 checked: UM.Controller.activeStage !== null && model.id == UM.Controller.activeStage.stageId
-
+                visible: stageSelectorButton.text !== "MONITOR"
                 anchors.verticalCenter: parent.verticalCenter
                 exclusiveGroup: mainWindowHeaderMenuGroup
                 style: UM.Theme.styles.main_window_header_tab
