@@ -55,12 +55,65 @@ Item
             labelColumnWidth: parent.firstColumnWidth
         }
 
+        Item
+        {
+            id: zHopHeightRow
+            height: childrenRect.height
+            width: parent.width
+            visible: extrudersEnabledCount.properties.value == 2
+            property real labelColumnWidth: parent.firstColumnWidth
+
+            Label
+            {
+                id: zHopHeightRowTitle
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.leftMargin: UM.Theme.getSize("default_margin").width * 2.5
+                visible: enableSupportCheckBox.visible
+                text: catalog.i18nc("@label", "Z Hop Height")
+                font: UM.Theme.getFont("medium")
+                width: labelColumnWidth
+            }
+
+            Item {
+                id: zHopHeightTextEdit
+                anchors {
+                    left: zHopHeightRowTitle.right
+                    right: parent.right
+                    leftMargin: UM.Theme.getSize("default_margin").width * 3.4
+                    rightMargin: UM.Theme.getSize("default_margin").width * 3.4
+                    verticalCenter: parent.verticalCenter
+                }
+                TextField
+                {
+                    id: zHopHeightTextField
+                    anchors {
+                        left: parent.left
+                        verticalCenter: parent.verticalCenter
+                    }
+                    style: UM.Theme.styles.text_field
+                    validator : RegExpValidator { regExp : /[0-9]+\.[0-9]+/ }
+                    text: zHopHeightValue.properties.value
+                    onTextChanged: zHopHeightTextField.setPropertyValue("value", zHopHeightTextField.text)
+                }
+            }
+        }
+
         RecommendedAdhesionSelector
         {
             width: parent.width
             // TODO Create a reusable component with these properties to not define them separately for each component
             labelColumnWidth: parent.firstColumnWidth
         }
+    }
+
+    UM.SettingPropertyProvider
+    {
+        id: zHopHeightValue
+        containerStack: Cura.MachineManager.activeMachine
+        key: "retraction_hop"
+        watchedProperties: [ "value", "enabled", "description" ]
+        storeIndex: 0
     }
 
     UM.SettingPropertyProvider
