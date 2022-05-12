@@ -172,6 +172,22 @@ class PrintInformation(QObject):
 
     def _onPrintDurationMessage(self, build_plate_number: int, print_times_per_feature: Dict[str, int], material_amounts: List[float]) -> None:
         self._updateTotalPrintTimePerFeature(build_plate_number, print_times_per_feature)
+        if self.currentPrintTime.valid and not self.currentPrintTime.isTotalDurationZero:
+            layer_count = 0
+            if self._backend._scene.gcode_dict:
+                layer_count = len(self._backend._scene.gcode_dict[0])
+                if layer_count:
+                    layer_count = layer_count - 4
+                    switch_layer_time = 0
+                    machine_name = self._application.getInstance().getGlobalContainerStack().getProperty("machine_name", "value")
+                    if machine_name == "Lugo G3":
+                        switch_layer_time = layer_count * 18
+                    elif machine_name == "Lugo G3 (single)":
+                        switch_layer_time = layer_count * 2
+                    elif re.search("Lugo", machine_name):
+                        switch_layer_time = layer_count
+                    print_times_per_feature["Switch layer"] = switch_layer_time
+                    self._updateTotalPrintTimePerFeature(build_plate_number, print_times_per_feature)
         self.currentPrintTimeChanged.emit()
         self._material_amounts = material_amounts
         self._calculateInformation(build_plate_number)
