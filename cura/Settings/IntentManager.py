@@ -186,6 +186,12 @@ class IntentManager(QObject):
                 extruder_stack.intent = intent[0]
             else:
                 extruder_stack.intent = self.getDefaultIntent()
+
         application.getMachineManager().setQualityGroupByQualityType(quality_type)
+        # WORKAROUND: set support type property after selecting intent
+        if intent_category == "visual":
+            application.getGlobalContainerStack().setProperty("support_structure", "value", "tree")
+        elif intent_category == "engineering" or intent_category == "quick":
+            application.getGlobalContainerStack().setProperty("support_structure", "value", "normal")
         if old_intent_category != intent_category:
             self.intentCategoryChanged.emit()
