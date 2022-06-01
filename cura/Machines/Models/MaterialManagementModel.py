@@ -189,6 +189,7 @@ class MaterialManagementModel(QObject):
         new_root_material.getMetaData()["base_file"] = new_base_id
         if new_metadata is not None:
             new_root_material.getMetaData().update(new_metadata)
+
         new_containers = [new_root_material]
 
         # Clone all submaterials.
@@ -279,7 +280,7 @@ class MaterialManagementModel(QObject):
         if not global_container_stack:
             return ""
         machine_node = ContainerTree.getInstance().machines[global_container_stack.definition.getId()]
-        preferred_material_node = machine_node.variants[active_variant_name].preferredMaterial(approximate_diameter)
+        preferred_material_node = machine_node.variants[active_variant_name].materials["generic_custom"]
 
         # Create a new ID & new metadata for the new material.
         new_id = CuraContainerRegistry.getInstance().uniqueName("custom_material")
@@ -291,7 +292,6 @@ class MaterialManagementModel(QObject):
                         "adhesion_info": "",
                         "description": ""
                         }
-
         self.duplicateMaterial(preferred_material_node, new_base_id = new_id, new_metadata = new_metadata)
         return new_id
 
