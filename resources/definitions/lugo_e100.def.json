@@ -10,7 +10,19 @@
     "machine_extruder_trains":
     {
       "0": "lugo_extruder"
-    }
+    },
+    "exclude_materials": [
+      "lugofill_abs_asa",
+      "lugofill_abs_asa_tin",
+      "lugofill_cpe",
+      "lugofill_cpe_pink",
+      "lugofill_pa",
+      "lugofill_pc",
+      "lugofill_pp",
+      "lugofill_pva",
+      "lugofill_tpu",
+      "lugofill_tpu_yellow"
+    ]
   },
   "overrides": {
     "machine_name": { "default_value": "Lugo e100" },
