@@ -4,7 +4,7 @@
   <id>com.ultimaker.cura.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LGPL-3.0 and CC-BY-SA-4.0</project_license>
-  <name>Cura</name>
+  <name>LUGOCura</name>
   <summary>The world's most advanced 3d printer software</summary>
   <description>
     <p>
@@ -29,5 +29,5 @@
     </screenshot>
   </screenshots>
   <url type="homepage">https://ultimaker.com/software/ultimaker-cura?utm_source=cura&amp;utm_medium=software&amp;utm_campaign=cura-update-linux</url>
-  <translation type="gettext">Cura</translation>
+  <translation type="gettext">LUGOCura</translation>
 </component>

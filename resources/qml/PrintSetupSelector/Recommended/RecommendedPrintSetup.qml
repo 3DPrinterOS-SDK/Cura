@@ -80,7 +80,6 @@ Item
                     left: zHopHeightRowTitle.right
                     right: parent.right
                     leftMargin: UM.Theme.getSize("default_margin").width * 2.5
-//                    rightMargin: UM.Theme.getSize("default_margin").width * 3.4
                     verticalCenter: parent.verticalCenter
                 }
                 TextField
