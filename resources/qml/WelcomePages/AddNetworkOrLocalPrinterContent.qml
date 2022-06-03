@@ -168,7 +168,7 @@ Item
                 const printerName = addLocalPrinterDropDown.contentItem.printerName
                 if (localPrinterItem.id === "lugo_g3") {
                     if (Cura.MachineManager.addMachine("lugo_g3", printerName + " (Dual printing)")
-                     && Cura.MachineManager.addMachine("lugo_g3_single", printerName + " (Single printing)")) {
+                     && Cura.MachineManager.addMachine("lugo_g3s", printerName + " (Single printing)")) {
                         base.showNextPage()
                     }
 
