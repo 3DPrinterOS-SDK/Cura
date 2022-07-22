@@ -22,6 +22,7 @@ import re
 import base64
 import os.path
 import ipaddress
+import requests
 
 from typing import Any, Dict, List, Union, Optional, TYPE_CHECKING, Callable
 
@@ -67,6 +68,18 @@ if TYPE_CHECKING:
 class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
 
     API_KEY = "0F22A68224504305889ECA247BD762F9"
+    PRINTER_TYPES = {
+        "HG2": b"hercules",
+        "HG3": b"herculesg3",
+        "HG3D": b"herculesg3d",
+        "HG4": b"herculesg4",
+        "HG4D": b"herculesg4d",
+        "HG6": b"herculesg6",
+        "HG6D": b"herculesg6",
+        "HG9": b"herculesg9",
+        "HG9D": b"herculesg9d",
+    }
+
     def __init__(self) -> None:
         super().__init__()
         self._zero_conf = None # type: Optional[Zeroconf]
@@ -263,7 +276,20 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
 
     ##  Because the model needs to be created in the same thread as the QMLEngine, we use a signal.
     def addInstance(self, name: str, address: str, port: int, properties: Dict[bytes, bytes], createMachine: bool = True, callback: Optional[Callable[[bool, str], None]] = None) -> None:
-        properties[b"printer_type"] = b"hercules"
+        serial_prefix = name[1:4]
+        user_agent = ("%s/%s %s/%s" % (
+            CuraApplication.getInstance().getApplicationName(),
+            CuraApplication.getInstance().getVersion(),
+            "OctoPrintPlugin",
+            1.2
+        ))
+
+        response = requests.get("http://" + address + '/api/settings', headers={"X-Api-Key": self.API_KEY, "User-Agent": user_agent}, verify=False)
+        if response.status_code == 200:
+            p_type = json.loads(response.text)["plugins"]["c3dprinteros"]["printer_type"]
+            if p_type in self.PRINTER_TYPES.keys():
+                properties[b"printer_type"] = self.PRINTER_TYPES[p_type]
+
         if name in self._instances:
             Logger.log("w", "Instance %s already exist", name)
             return
@@ -324,7 +350,6 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
 
     ## Add a device to the current active machine.
     def _connectToOutputDevice(self, device: OctoPrintOutputDevice, machine: GlobalStack) -> None:
-
         machine.setName(device.name)
         machine.setMetaDataEntry("octoprint_api_key", self.API_KEY)
         machine.setMetaDataEntry("group_name", device.name)
@@ -352,12 +377,12 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
         # We do not use use MachineManager.addMachine here because we need to set the network key before activating it.
         # If we do not do this the auto-pairing with the cloud-equivalent device will not work.
         new_machine = CuraStackBuilder.createMachine(device.name, device.printerType)
+
         if not new_machine:
             Logger.log("e", "Failed creating a new machine")
             return
         new_machine.setMetaDataEntry("octoprint_api_key", self.API_KEY)
         CuraApplication.getInstance().getMachineManager().setActiveMachine(new_machine.getId())
-
         self._connectToOutputDevice(device, new_machine)
 
         if device.address == device_id:
