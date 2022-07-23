@@ -75,7 +75,7 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
         "HG4": b"herculesg4",
         "HG4D": b"herculesg4d",
         "HG6": b"herculesg6",
-        "HG6D": b"herculesg6",
+        "HG6D": b"herculesg6d",
         "HG9": b"herculesg9",
         "HG9D": b"herculesg9d",
     }
