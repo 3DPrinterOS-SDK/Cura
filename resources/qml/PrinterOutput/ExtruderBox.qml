@@ -38,7 +38,7 @@ Item
 
         Label //Extruder name.
         {
-            text: Cura.MachineManager.activeMachine.extruderList[position].name !== "" ? Cura.MachineManager.activeMachine.extruderList[position].name : catalog.i18nc("@label", "Экструдер")
+            text: catalog.i18nc("@label", "Extruder") + " " + (position + 1)
             color: UM.Theme.getColor("text")
             font: UM.Theme.getFont("default")
             anchors.left: parent.left
