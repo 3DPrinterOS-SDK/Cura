@@ -153,7 +153,16 @@ UM.PreferencesPage
                     id: definitionsModel
                     containerId: Cura.MachineManager.activeMachine != null ? Cura.MachineManager.activeMachine.definition.id: ""
                     showAll: true
-                    exclude: ["machine_settings", "command_line_settings"]
+                    exclude: ["command_line_settings", "machine_width", "machine_depth", "machine_shape", "machine_buildplate_type", "machine_height", "machine_heated_bed",
+                     "machine_heated_build_volume", "machine_center_is_zero", "machine_extruder_count", "extruders_enabled_count",
+                     "machine_nozzle_tip_outer_diameter", "machine_nozzle_head_distance", "machine_nozzle_expansion_angle", "machine_heat_zone_length",
+                     "machine_filament_park_distance", "machine_nozzle_temp_enabled", "machine_nozzle_heat_up_speed", "machine_nozzle_cool_down_speed",
+                     "machine_min_cool_heat_time_window", "machine_gcode_flavor", "machine_firmware_retract", "machine_disallowed_areas", "nozzle_disallowed_areas",
+                     "machine_head_polygon", "machine_head_with_fans_polygon", "gantry_height", "machine_nozzle_id", "machine_nozzle_size", "machine_nozzle_size",
+                     "machine_use_extruder_offset_to_offset_coords", "extruder_prime_pos_z", "extruder_prime_pos_abs", "machine_max_feedrate_x", "machine_max_feedrate_y",
+                     "machine_max_feedrate_z", "machine_max_feedrate_e", "machine_max_acceleration_x", "machine_max_acceleration_y", "machine_max_acceleration_z",
+                     "machine_max_acceleration_e", "machine_acceleration", "machine_max_jerk_xy", "machine_max_jerk_z", "machine_max_jerk_e", "machine_steps_per_mm_x",
+                     "machine_steps_per_mm_y", "machine_steps_per_mm_z", "machine_steps_per_mm_e", "machine_endstop_positive_direction_x", "machine_endstop_positive_direction_y"]
                     showAncestors: true
                     expanded: ["*"]
                     visibilityHandler: UM.SettingPreferenceVisibilityHandler {}

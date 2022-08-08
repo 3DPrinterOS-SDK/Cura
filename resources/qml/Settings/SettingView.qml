@@ -231,7 +231,20 @@ Item
                 id: definitionsModel
                 containerId: Cura.MachineManager.activeMachine !== null ? Cura.MachineManager.activeMachine.definition.id: ""
                 visibilityHandler: UM.SettingPreferenceVisibilityHandler { }
-                exclude: ["machine_settings", "command_line_settings", "infill_mesh", "infill_mesh_order", "cutting_mesh", "support_mesh", "anti_overhang_mesh"] // TODO: infill_mesh settigns are excluded hardcoded, but should be based on the fact that settable_globally, settable_per_meshgroup and settable_per_extruder are false.
+                exclude: ["machine_name", "machine_show_variants", "material_diameter", "material_bed_temp_wait", "material_print_temp_wait",
+                 "machine_width", "machine_depth", "machine_shape", "machine_buildplate_type", "machine_height", "machine_heated_bed",
+                 "machine_heated_build_volume", "machine_center_is_zero", "machine_extruder_count", "extruders_enabled_count",
+                 "machine_nozzle_tip_outer_diameter", "machine_nozzle_head_distance", "machine_nozzle_expansion_angle", "machine_heat_zone_length",
+                 "machine_filament_park_distance", "machine_nozzle_temp_enabled", "machine_nozzle_heat_up_speed", "machine_nozzle_cool_down_speed",
+                 "machine_min_cool_heat_time_window", "machine_gcode_flavor", "machine_firmware_retract", "machine_disallowed_areas", "nozzle_disallowed_areas",
+                 "machine_head_polygon", "machine_head_with_fans_polygon", "gantry_height", "machine_nozzle_id", "machine_nozzle_size", "machine_nozzle_size",
+                 "machine_use_extruder_offset_to_offset_coords", "extruder_prime_pos_z", "extruder_prime_pos_abs", "machine_max_feedrate_x", "machine_max_feedrate_y",
+                 "machine_max_feedrate_z", "machine_max_feedrate_e", "machine_max_acceleration_x", "machine_max_acceleration_y", "machine_max_acceleration_z",
+                 "machine_max_acceleration_e", "machine_acceleration", "machine_max_jerk_xy", "machine_max_jerk_z", "machine_max_jerk_e", "machine_steps_per_mm_x",
+                 "machine_steps_per_mm_y", "machine_steps_per_mm_z", "machine_steps_per_mm_e", "machine_endstop_positive_direction_x", "machine_endstop_positive_direction_y",
+                 "machine_endstop_positive_direction_z", "machine_minimum_feedrate", "machine_feeder_wheel_diameter",
+                 "material_print_temp_prepend", "material_bed_temp_prepend",
+                 "command_line_settings", "infill_mesh", "infill_mesh_order", "cutting_mesh", "support_mesh", "anti_overhang_mesh"] // TODO: infill_mesh settigns are excluded hardcoded, but should be based on the fact that settable_globally, settable_per_meshgroup and settable_per_extruder are false.
                 expanded: CuraApplication.expandedCategories
                 onExpandedChanged:
                 {
@@ -253,7 +266,10 @@ Item
                 id: delegate
 
                 width: scrollView.width
-                height: enabled ? contents.delegateHeight: 0
+                height: enabled
+                        ? (model.label == "Start G-code" || model.label == "End G-code"
+                            ? contents.delegateHeight * 4 : contents.delegateHeight)
+                        : 0
                 Behavior on height { NumberAnimation { duration: 100 } }
                 opacity: enabled ? 1 : 0
                 Behavior on opacity { NumberAnimation { duration: 100 } }
@@ -288,6 +304,9 @@ Item
                         case "bool":
                             return "SettingCheckBox.qml"
                         case "str":
+                            if (model.label == "Start G-code" || model.label == "End G-code" ) {
+                                return "SettingTextArea.qml"
+                            }
                             return "SettingTextField.qml"
                         case "category":
                             return "SettingCategory.qml"

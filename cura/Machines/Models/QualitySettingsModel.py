@@ -171,14 +171,16 @@ class QualitySettingsModel(ListModel):
             if self._i18n_catalog:
                 label = self._i18n_catalog.i18nc(definition.key + " label", label)
 
-            items.append({
-                "key": definition.key,
-                "label": label,
-                "unit": definition.unit,
-                "profile_value": "" if profile_value is None else str(profile_value),  # it is for display only
-                "profile_value_source": profile_value_source,
-                "user_value": "" if user_value is None else str(user_value),
-                "category": current_category
-            })
+            # Don't show start/end gcodes in Preference -> Profiles table
+            if definition.key != "machine_start_gcode" and definition.key != "machine_end_gcode":
+                items.append({
+                    "key": definition.key,
+                    "label": label,
+                    "unit": definition.unit,
+                    "profile_value": "" if profile_value is None else str(profile_value),  # it is for display only
+                    "profile_value_source": profile_value_source,
+                    "user_value": "" if user_value is None else str(user_value),
+                    "category": current_category
+                })
 
         self.setItems(items)

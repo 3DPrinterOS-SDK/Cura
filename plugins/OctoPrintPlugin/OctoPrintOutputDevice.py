@@ -797,6 +797,7 @@ class OctoPrintOutputDevice(NetworkedPrinterOutputDevice):
                         json_data = {}
 
                     if "temperature" in json_data:
+                        print(str(json_data))
                         if not self._number_of_extruders_set:
                             self._number_of_extruders = 0
                             while "tool%d" % self._number_of_extruders in json_data["temperature"]:

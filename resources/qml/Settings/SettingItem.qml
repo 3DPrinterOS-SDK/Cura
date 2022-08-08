@@ -14,7 +14,7 @@ Item
 {
     id: base
 
-    height: UM.Theme.getSize("section").height
+    height: baseHeight
     anchors.left: parent.left
     anchors.right: parent.right
     // To avoid overlaping with the scrollBars
@@ -22,6 +22,9 @@ Item
 
     property alias contents: controlContainer.children
     property alias hovered: mouse.containsMouse
+
+    property real baseHeight: UM.Theme.getSize("section").height
+    property real controlContainerHeight: UM.Theme.getSize("setting_control").height
 
     property bool showRevertButton: true
     property bool showInheritButton: true
@@ -340,7 +343,7 @@ Item
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
             width: UM.Theme.getSize("setting_control").width
-            height: UM.Theme.getSize("setting_control").height
+            height: controlContainerHeight
         }
     }
 }
