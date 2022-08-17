@@ -17,6 +17,8 @@ if TYPE_CHECKING:
 class PrinterOutputModel(QObject):
     bedTemperatureChanged = pyqtSignal()
     targetBedTemperatureChanged = pyqtSignal()
+    chamberTemperatureChanged = pyqtSignal()
+    targetChamberTemperatureChanged = pyqtSignal()
     isPreheatingChanged = pyqtSignal()
     stateChanged = pyqtSignal()
     activePrintJobChanged = pyqtSignal()
@@ -33,6 +35,8 @@ class PrinterOutputModel(QObject):
         super().__init__(parent)
         self._bed_temperature = -1  # type: float  # Use -1 for no heated bed.
         self._target_bed_temperature = 0 # type: float
+        self._chamber_temperature = -1  # type: float  # Use -1 for no heated chamber.
+        self._target_chamber_temperature = 0  # type: float
         self._name = ""
         self._key = ""  # Unique identifier
         self._unique_name = ""  # Unique name (used in Connect)
@@ -214,6 +218,18 @@ class PrinterOutputModel(QObject):
             self._target_bed_temperature = temperature
             self.targetBedTemperatureChanged.emit()
 
+    def updateChamberTemperature(self, temperature: float) -> None:
+        """Update the chamber temperature. This only changes it locally."""
+
+        if self._chamber_temperature != temperature:
+            self._chamber_temperature = temperature
+            self.chamberTemperatureChanged.emit()
+
+    def updateTargetChamberTemperature(self, temperature: float) -> None:
+        if self._target_chamber_temperature != temperature:
+            self._target_chamber_temperature = temperature
+            self.targetChamberTemperatureChange.emit()
+
     @pyqtSlot(float)
     def setTargetBedTemperature(self, temperature: float) -> None:
         """Set the target bed temperature. This ensures that it's actually sent to the remote."""
@@ -253,6 +269,14 @@ class PrinterOutputModel(QObject):
     @pyqtProperty(float, notify = targetBedTemperatureChanged)
     def targetBedTemperature(self) -> float:
         return self._target_bed_temperature
+
+    @pyqtProperty(float, notify=chamberTemperatureChanged)
+    def chamberTemperature(self) -> float:
+        return self._chamber_temperature
+
+    @pyqtProperty(float, notify=targetChamberTemperatureChanged)
+    def targetChamberTemperature(self) -> float:
+        return self._target_chamber_temperature
 
     # Does the printer support pre-heating the bed at all
     @pyqtProperty(bool, constant = True)

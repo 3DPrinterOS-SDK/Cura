@@ -797,7 +797,6 @@ class OctoPrintOutputDevice(NetworkedPrinterOutputDevice):
                         json_data = {}
 
                     if "temperature" in json_data:
-                        print(str(json_data))
                         if not self._number_of_extruders_set:
                             self._number_of_extruders = 0
                             while "tool%d" % self._number_of_extruders in json_data["temperature"]:
@@ -837,6 +836,18 @@ class OctoPrintOutputDevice(NetworkedPrinterOutputDevice):
                         else:
                             printer.updateBedTemperature(-1)
                             printer.updateTargetBedTemperature(0)
+
+                        if "chamber" in json_data["temperature"]:
+                            chamber_temperatures = json_data["temperature"]["chamber"]
+                            actual_temperature = chamber_temperatures["actual"] if chamber_temperatures[
+                                                                                   "actual"] is not None else -1
+                            printer.updateChamberTemperature(actual_temperature)
+                            target_temperature = chamber_temperatures["target"] if chamber_temperatures[
+                                                                                   "target"] is not None else -1
+                            printer.updateTargetChamberTemperature(target_temperature)
+                        else:
+                            printer.updateChamberTemperature(-1)
+                            printer.updateTargetChamberTemperature(0)
 
                     printer_state = "offline"
                     if "state" in json_data:

@@ -109,6 +109,19 @@ Item
             printerModel: activePrinter
         }
 
+        ChamberBox
+        {
+            visible:
+            {
+                if(activePrinter != null && activePrinter.chamberTemperature != -1)
+                {
+                    return true
+                }
+                return false
+            }
+            printerModel: activePrinter
+        }
+
         UM.SettingPropertyProvider
         {
             id: bedTemperature

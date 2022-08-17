@@ -6285,3 +6285,8 @@ msgstr ""
 msgctxt "@action:button"
 msgid "Normal"
 msgstr ""
+
+#:
+msgctxt "@label"
+msgid "Chamber"
+msgstr ""
