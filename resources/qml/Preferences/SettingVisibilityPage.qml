@@ -154,7 +154,9 @@ UM.PreferencesPage
                     containerId: Cura.MachineManager.activeMachine != null ? Cura.MachineManager.activeMachine.definition.id: ""
                     showAll: true
                     exclude: ["command_line_settings", "machine_width", "machine_depth", "machine_shape", "machine_buildplate_type", "machine_height", "machine_heated_bed",
-                     "machine_heated_build_volume", "machine_center_is_zero", "machine_extruder_count", "extruders_enabled_count",
+                     "machine_heated_build_volume", "machine_center_is_zero", "machine_extruder_count", "extruders_enabled_count", "machine_name", "machine_show_variants",
+                     "material_guid", "material_diameter", "material_bed_temp_wait", "material_print_temp_wait", "material_print_temp_prepend", "material_bed_temp_prepend",
+                     "machine_endstop_positive_direction_z", "machine_minimum_feedrate", "machine_feeder_wheel_diameter",
                      "machine_nozzle_tip_outer_diameter", "machine_nozzle_head_distance", "machine_nozzle_expansion_angle", "machine_heat_zone_length",
                      "machine_filament_park_distance", "machine_nozzle_temp_enabled", "machine_nozzle_heat_up_speed", "machine_nozzle_cool_down_speed",
                      "machine_min_cool_heat_time_window", "machine_gcode_flavor", "machine_firmware_retract", "machine_disallowed_areas", "nozzle_disallowed_areas",

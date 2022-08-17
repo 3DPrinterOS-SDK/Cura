@@ -267,7 +267,7 @@ Item
 
                 width: scrollView.width
                 height: enabled
-                        ? (model.label == "Start G-code" || model.label == "End G-code"
+                        ? (model.key == "machine_start_gcode" || model.key == "machine_end_gcode"
                             ? contents.delegateHeight * 4 : contents.delegateHeight)
                         : 0
                 Behavior on height { NumberAnimation { duration: 100 } }
@@ -304,7 +304,7 @@ Item
                         case "bool":
                             return "SettingCheckBox.qml"
                         case "str":
-                            if (model.label == "Start G-code" || model.label == "End G-code" ) {
+                            if (model.key == "machine_start_gcode" || model.key == "machine_end_gcode" ) {
                                 return "SettingTextArea.qml"
                             }
                             return "SettingTextField.qml"
