@@ -12,7 +12,8 @@ from UM.Signal import Signal, signalemitter
 from UM.Application import Application
 from UM.Logger import Logger
 from UM.Util import parseBool
-
+from UM.Message import Message
+from UM.i18n import i18nCatalog
 
 from PyQt5.QtCore import QTimer
 
@@ -25,6 +26,8 @@ import ipaddress
 import requests
 
 from typing import Any, Dict, List, Union, Optional, TYPE_CHECKING, Callable
+
+i18n_catalog = i18nCatalog("cura")
 
 if TYPE_CHECKING:
     # for MYPY, fall back to the system-installed version
@@ -284,11 +287,16 @@ class OctoPrintOutputDevicePlugin(OutputDevicePlugin):
             1.2
         ))
 
-        response = requests.get("http://" + address + '/api/settings', headers={"X-Api-Key": self.API_KEY, "User-Agent": user_agent}, verify=False)
-        if response.status_code == 200:
-            p_type = json.loads(response.text)["plugins"]["c3dprinteros"]["printer_type"]
-            if p_type in self.PRINTER_TYPES.keys():
-                properties[b"printer_type"] = self.PRINTER_TYPES[p_type]
+        try:
+            response = requests.get("http://" + address + '/api/settings', timeout=2, headers={"X-Api-Key": self.API_KEY, "User-Agent": user_agent}, verify=False)
+            if response.status_code == 200:
+                resp_json = json.loads(response.text)
+                # if "plugins" in resp_json:
+                p_type = json.loads(response.text)["plugins"]["c3dprinteros"]["printer_type"]
+                if p_type in self.PRINTER_TYPES.keys():
+                    properties[b"printer_type"] = self.PRINTER_TYPES[p_type]
+        except Exception as e:
+            Logger.log("e", "An exception occurred in network connection: %s" % str(e))
 
         if name in self._instances:
             Logger.log("w", "Instance %s already exist", name)

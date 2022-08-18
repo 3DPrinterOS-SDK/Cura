@@ -6288,5 +6288,5 @@ msgstr ""
 
 #:
 msgctxt "@label"
-msgid "Chamber"
+msgid "Heat chamber"
 msgstr ""

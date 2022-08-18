@@ -23,7 +23,7 @@ Item
 
         Label //Build plate label.
         {
-            text: catalog.i18nc("@label", "Chamber")
+            text: catalog.i18nc("@label", "Heat chamber")
             font: UM.Theme.getFont("default")
             color: UM.Theme.getColor("text")
             anchors.left: parent.left
