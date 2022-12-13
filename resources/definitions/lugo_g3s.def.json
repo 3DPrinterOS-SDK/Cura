@@ -31,7 +31,7 @@
       "default_value": 70.0,
       "value": 70
     },
-    "machine_disallowed_areas": {
+    "nozzle_disallowed_areas": {
       "value": "[[[-100.5, -87.5],[-100.5, 87.5],[-95.5, -87.5],[-95.5, 87.5]], [[-100.5, -87.5],[100.5, -87.5],[-100.5, -80.5],[100.5, -80.5]]]"
     },
     "machine_extruder_count": { "default_value": 1 },
