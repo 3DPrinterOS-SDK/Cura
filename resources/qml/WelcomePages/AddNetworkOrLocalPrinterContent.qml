@@ -171,11 +171,14 @@ Item
                      && Cura.MachineManager.addMachine("lugo_g3s", printerName + " (Single printing)")) {
                         base.showNextPage()
                     }
-
+                } else if (localPrinterItem.id === "lugo_g3_max") {
+                    if (Cura.MachineManager.addMachine("lugo_g3_max", printerName + " (Dual printing)")
+                     && Cura.MachineManager.addMachine("lugo_g3s_max", printerName + " (Single printing)")) {
+                        base.showNextPage()
+                    }
                 } else {
                     if(Cura.MachineManager.addMachine(localPrinterItem.id, printerName))
                     {
-
                         base.showNextPage()
                     }
                 }
