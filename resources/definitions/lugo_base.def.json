@@ -110,6 +110,9 @@
     "roofing_monotonic": {
       "value": false
     },
+    "skin_monotonic": {
+      "value": false
+    },
     "skin_outline_count": {
       "default_value": 0
     },
