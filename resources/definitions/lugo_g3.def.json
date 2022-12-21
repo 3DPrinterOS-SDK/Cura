@@ -48,10 +48,10 @@
       "value": "[[[-100.5, -87.5],[-100.5, 87.5],[-78.3, -87.5],[-78.3, 87.5]], [[-100.5, -87.5],[100.5, -87.5],[-100.5, -80.5],[100.5, -80.5]]]"
     },
 
-    "material_print_temperature": { "maximum_value": 395, "maximum_value_warning": 300 },
-    "material_print_temperature_layer_0": { "maximum_value": 395, "maximum_value_warning": 300 },
-    "material_initial_print_temperature": { "maximum_value": 395, "maximum_value_warning": 300 },
-    "material_final_print_temperature": { "maximum_value": 395, "maximum_value_warning": 300 },
-    "material_bed_temperature": { "maximum_value": 160 }
+    "material_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
+    "material_print_temperature_layer_0": { "maximum_value": 420, "maximum_value_warning": 300 },
+    "material_initial_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
+    "material_final_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
+    "material_bed_temperature": { "maximum_value": 170 }
   }
 }
