@@ -191,7 +191,7 @@ class IntentManager(QObject):
         # WORKAROUND: set support type property after selecting intent
         if intent_category == "visual":
             application.getGlobalContainerStack().setProperty("support_structure", "value", "tree")
-        elif intent_category == "engineering" or intent_category == "quick":
+        elif intent_category == "engineering" or intent_category == "quick" or intent_category == "hightemp":
             application.getGlobalContainerStack().setProperty("support_structure", "value", "normal")
         if old_intent_category != intent_category:
             self.intentCategoryChanged.emit()

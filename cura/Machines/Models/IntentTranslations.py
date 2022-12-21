@@ -22,3 +22,7 @@ intent_translations["quick"] = {
     "name": catalog.i18nc("@label", "Draft"),
     "description": catalog.i18nc("@text", "The draft profile is designed to print initial prototypes and concept validation with the intent of significant print time reduction.")
 }
+intent_translations["hightemp"] = {
+    "name": catalog.i18nc("@label", "High-temp"),
+    "description": catalog.i18nc("@text", "The draft profile is designed to print initial prototypes and concept validation with the intent of significant print time reduction.")
+}
