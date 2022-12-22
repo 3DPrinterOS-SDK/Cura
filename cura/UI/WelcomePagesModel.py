@@ -220,7 +220,7 @@ class WelcomePagesModel(ListModel):
 
             # Only show the what's new dialog if there's no machine and we have just upgraded
             show_complete_flow = not has_active_machine
-            show_whatsnew_only = has_active_machine and has_app_just_upgraded
+            #show_whatsnew_only = has_active_machine and has_app_just_upgraded
 
             # FIXME: This is a hack. Because of the circular dependency between MachineManager, ExtruderManager, and
             # possibly some others, setting the initial active machine is not done when the MachineManager gets initialized.

@@ -110,7 +110,7 @@
     "roofing_monotonic": {
       "value": false
     },
-    "skin_monotonic": {
+    "roofing_monotonic": {
       "value": false
     },
     "skin_outline_count": {
@@ -174,7 +174,7 @@
       "value": "speed_print * 0.7"
     },
     "speed_support_bottom": {
-      "value": "extruderValue(support_bottom_extruder_nr, 'speed_print * 0.7')"
+      "value": "speed_print * 0.7"
     },
     "speed_layer_0": {
       "value": "speed_print * 0.4"

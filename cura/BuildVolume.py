@@ -932,7 +932,7 @@ class BuildVolume(SceneNode):
         result = {}  # type: Dict[str, List[Polygon]]
         for extruder in used_extruders:
             extruder_id = extruder.getId()
-            offset_x = extruder.getProperty("machine_nozzle_offset_x", "value")
+            offset_x = -extruder.getProperty("machine_nozzle_offset_x", "value")
             if offset_x is None:
                 offset_x = 0
             offset_y = extruder.getProperty("machine_nozzle_offset_y", "value")
@@ -955,7 +955,7 @@ class BuildVolume(SceneNode):
                 # The build volume is defined as the union of the area that all extruders can reach, so we need to know
                 # the relative offset to all extruders.
                 for other_extruder in ExtruderManager.getInstance().getActiveExtruderStacks():
-                    other_offset_x = other_extruder.getProperty("machine_nozzle_offset_x", "value")
+                    other_offset_x = -other_extruder.getProperty("machine_nozzle_offset_x", "value")
                     if other_offset_x is None:
                         other_offset_x = 0
                     other_offset_y = other_extruder.getProperty("machine_nozzle_offset_y", "value")

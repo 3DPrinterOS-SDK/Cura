@@ -8,7 +8,6 @@
     "manufacturer": "LUGOLABS",
     "quality_definition": "lugo_base",
     "platform": "LUGO_platform.stl",
-    "nozzle_offsetting_for_disallowed_areas": false,
     "machine_extruder_trains":
     {
       "0": "lugo_g3_extruder_0",
@@ -45,13 +44,14 @@
     "machine_extruder_count": { "default_value": 2 },
 
     "nozzle_disallowed_areas": {
-      "value": "[[[-100.5, -87.5],[-100.5, 87.5],[-78.3, -87.5],[-78.3, 87.5]], [[-100.5, -87.5],[100.5, -87.5],[-100.5, -80.5],[100.5, -80.5]]]"
+      "value": "[[[-100.5, -87.5],[100.5, -87.5],[-100.5, -80.5],[100.5, -80.5]]]"
     },
 
     "material_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
     "material_print_temperature_layer_0": { "maximum_value": 420, "maximum_value_warning": 300 },
     "material_initial_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
     "material_final_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
-    "material_bed_temperature": { "maximum_value": 170 }
+    "material_bed_temperature": { "maximum_value": 170 },
+    "material_standby_temperature": { "maximum_value": 420, "maximum_value_warning": 300 }
   }
 }
