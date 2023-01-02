@@ -11,7 +11,7 @@
         "extruder_nr": { "default_value": 0 },
         "material_diameter": { "default_value": 1.75 },
         "machine_nozzle_size": { "default_value": 0.4 },
-        "machine_extruder_start_code": { "default_value": ";ex1 start\nT0\nG1 X331 F9000\nG1 X341 F1500\nG1 E3 F500\nG1 X22.2 Y248 F10000\nG1 Y255 F1500\nG1 E7 F500\nG1 X25.2 E9 F100\nG1 E17.5 F120\nG1 E16.5 F500\nG1 E11 F70" },
+        "machine_extruder_start_code": { "default_value": ";ex1 start\nT0\nG1 X331 F9000\nG1 X341 F1500\nG1 E3 F500\nG1 X22.2 Y248 F10000\nG1 Y255 F1500\nG1 E7 F500\nG1 X25.2 E9 F100\nG1 E17.5 F120\nG1 E16.5 F500\nG1 E11 F70\nG92 E0\nG1 X16 Y250 F10000" },
         "machine_extruder_cooling_fan_number": { "default_value": 1 }
     }
 }
