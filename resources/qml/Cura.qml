@@ -125,14 +125,6 @@ UM.MainWindow
                 welcomeDialogItem.visible = false
             }
 
-            // Reuse the welcome dialog item to show "What's New" only.
-            if (CuraApplication.shouldShowWhatsNewDialog())
-            {
-                welcomeDialogItem.model = CuraApplication.getWhatsNewPagesModel()
-                welcomeDialogItem.progressBarVisible = false
-                welcomeDialogItem.visible = true
-            }
-
             // Reuse the welcome dialog item to show the "Add printers" dialog. Triggered when there is no active
             // machine and the user is logged in.
             if (!Cura.MachineManager.activeMachine && Cura.API.account.isLoggedIn)
