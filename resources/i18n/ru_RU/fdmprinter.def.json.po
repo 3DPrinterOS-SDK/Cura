@@ -3301,13 +3301,13 @@ msgid ""
 "The speed for the initial layer. A lower value is advised to improve "
 "adhesion to the build plate."
 msgstr ""
-"Скорость печати первого слоя. Пониженное значение помогает улучшить "
+"Скорость первого слоя. Пониженное значение помогает улучшить "
 "прилипание материала к столу."
 
 #: fdmprinter.def.json
 msgctxt "speed_print_layer_0 label"
 msgid "Initial Layer Print Speed"
-msgstr "Скорость первого слоя"
+msgstr "Скорость печати первого слоя"
 
 #: fdmprinter.def.json
 msgctxt "speed_print_layer_0 description"
@@ -6416,7 +6416,7 @@ msgstr ""
 #: fdmprinter.def.json
 msgctxt "switch_extruder_retraction_speeds label"
 msgid "Nozzle Switch Retraction Speed"
-msgstr "Скорость отката при смене экструдера"
+msgstr "Скорость втягивания при смене экструдера"
 
 #: fdmprinter.def.json
 msgctxt "switch_extruder_retraction_speeds description"
