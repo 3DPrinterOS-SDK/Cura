@@ -2255,7 +2255,7 @@
             {
                 "default_material_print_temperature":
                 {
-                    "label": "Default Printing Temperature",
+                    "label": "Printing Temperature",
                     "description": "The default temperature used for printing. This should be the \"base\" temperature of a material. All other print temperatures should use offsets based on this value",
                     "unit": "°C",
                     "type": "float",
@@ -2398,7 +2398,7 @@
                 },
                 "material_bed_temperature_layer_0":
                 {
-                    "label": "Build Plate Temperature Initial Layer",
+                    "label": "Initial Bed Temperature",
                     "description": "The temperature used for the heated build plate at the first layer. If this is 0, the build plate is left unheated during the first layer.",
                     "unit": "°C",
                     "type": "float",
