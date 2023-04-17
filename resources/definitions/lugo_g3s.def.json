@@ -16,13 +16,13 @@
   "overrides": {
     "machine_name": { "default_value": "Lugo G3S" },
     "machine_width": {
-      "default_value": 201
+      "default_value": 200
     },
     "machine_height": {
       "default_value": 181
     },
     "machine_depth": {
-      "default_value": 175
+      "default_value": 165
     },
     "machine_nozzle_size": {
       "default_value": 0.4
@@ -32,7 +32,7 @@
       "value": 70
     },
     "nozzle_disallowed_areas": {
-      "value": "[[[-100.5, -87.5],[-100.5, 87.5],[-95.5, -87.5],[-95.5, 87.5]], [[-100.5, -87.5],[100.5, -87.5],[-100.5, -80.5],[100.5, -80.5]]]"
+      "value": "[[[-100.5, -87.5],[-100.5, 87.5],[-95.5, -87.5],[-95.5, 87.5]]]"
     },
     "machine_extruder_count": { "default_value": 1 },
     "material_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },

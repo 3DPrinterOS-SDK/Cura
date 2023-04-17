@@ -7,7 +7,6 @@
     "author": "LUGOLABS",
     "manufacturer": "LUGOLABS",
     "quality_definition": "lugo_base",
-    "platform": "LUGO_platform.stl",
     "machine_extruder_trains":
     {
       "0": "lugo_extruder"
@@ -30,9 +29,6 @@
     "gantry_height": {
       "default_value": 70.0,
       "value": 70
-    },
-    "nozzle_disallowed_areas": {
-      "value": "[[[-170.5, -127.5],[-170.5, 127.5],[-165.5, -127.5],[-165.5, 127.5]], [[-170.5, -127.5],[170.5, -127.5],[-170.5, -120.5],[170.5, -120.5]]]"
     },
     "machine_extruder_count": { "default_value": 1 },
     "material_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
