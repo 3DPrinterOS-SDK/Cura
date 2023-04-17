@@ -145,15 +145,15 @@ TabView
                     onEditingFinished: base.updateMaterialBrand(properties.brand, text)
                 }
 
-                Label { width: scrollView.columnWidth; height: parent.rowHeight; verticalAlignment: Qt.AlignVCenter; text: catalog.i18nc("@label", "Material Type") }
-                ReadOnlyTextField
-                {
-                    id: materialTypeField;
-                    width: scrollView.columnWidth;
-                    text: properties.material;
-                    readOnly: !base.editingEnabled;
-                    onEditingFinished: base.updateMaterialType(properties.material, text)
-                }
+//                Label { width: scrollView.columnWidth; height: parent.rowHeight; verticalAlignment: Qt.AlignVCenter; text: catalog.i18nc("@label", "Material Type") }
+//                ReadOnlyTextField
+//                {
+//                    id: materialTypeField;
+//                    width: scrollView.columnWidth;
+//                    text: properties.material;
+//                    readOnly: !base.editingEnabled;
+//                    onEditingFinished: base.updateMaterialType(properties.material, text)
+//                }
 
                 Label { width: scrollView.columnWidth; height: parent.rowHeight; verticalAlignment: Qt.AlignVCenter; text: catalog.i18nc("@label", "Color") }
                 Row
