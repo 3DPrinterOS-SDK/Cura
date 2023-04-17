@@ -23,6 +23,12 @@ Item
         extruderPosition: Cura.ExtruderManager.activeExtruderIndex
     }
 
+    Cura.MaterialBrandsNoTypeModel
+    {
+        id: materialsNoTypeModel
+        extruderPosition: Cura.ExtruderManager.activeExtruderIndex
+    }
+
     Cura.FavoriteMaterialsModel
     {
         id: favoriteMaterialsModel
@@ -149,21 +155,22 @@ Item
         MaterialsBrandSection
         {
             id: genericSection
-            sectionName: "Lugo labs"
+            sectionName: "Default"
             elementsModel: genericMaterialsModel
             hasMaterialTypes: false
             visible: false
         }
 
+
         Repeater
         {
-            model: materialsModel
+            model: materialsNoTypeModel
             delegate: MaterialsBrandSection
             {
                 id: brandSection
                 sectionName: model.name
                 elementsModel: model.material_types
-                hasMaterialTypes: true
+                hasMaterialTypes: false
             }
         }
     }

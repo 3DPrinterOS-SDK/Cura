@@ -42,7 +42,7 @@ Menu
         enabled: updateModels
     }
 
-    Cura.MaterialBrandsModel
+    Cura.MaterialBrandsNoTypeModel
     {
         id: brandModel
         extruderPosition: menu.extruderIndex
@@ -86,28 +86,14 @@ Menu
             Instantiator
             {
                 model: brandMaterials
-                delegate: Menu
+                delegate: MenuItem
                 {
-                    id: brandMaterialsMenu
-                    title: materialName
-                    property string materialName: model.name
-                    property var brandMaterialColors: model.colors
-
-                    Instantiator
-                    {
-                        model: brandMaterialColors
-                        delegate: MenuItem
-                        {
-                            text: model.name
-                            checkable: true
-                            enabled: isActiveExtruderEnabled
-                            checked: model.id === menu.activeMaterialId
-                            exclusiveGroup: group
-                            onTriggered: Cura.MachineManager.setMaterial(extruderIndex, model.container_node)
-                        }
-                        onObjectAdded: brandMaterialsMenu.insertItem(index, object)
-                        onObjectRemoved: brandMaterialsMenu.removeItem(object)
-                    }
+                    text: model.name
+                    checkable: true
+                    enabled: isActiveExtruderEnabled
+                    checked: model.id === menu.activeMaterialId
+                    exclusiveGroup: group
+                    onTriggered: Cura.MachineManager.setMaterial(extruderIndex, model.container_node)
                 }
                 onObjectAdded: brandMenu.insertItem(index, object)
                 onObjectRemoved: brandMenu.removeItem(object)
