@@ -23,7 +23,7 @@ class MaterialBrandsNoTypeModel(BaseMaterialsModel):
         brand_item_list = []
         brand_group_dict = {}
 
-        # Part 1: Generate the entire tree of brands -> material types -> specific materials
+        # Part 1: Generate the entire tree of brands -> specific materials
         for root_material_id, container_node in self._available_materials.items():
             # Do not include the materials from a to-be-removed package
             if bool(container_node.getMetaDataEntry("removed", False)):
@@ -43,9 +43,6 @@ class MaterialBrandsNoTypeModel(BaseMaterialsModel):
 
         # Part 2: Organize the tree into models
         for brand, material_list in brand_group_dict.items():
-            print(brand)
-            print(material_list)
-
             # Sort material type by name
             material_list = sorted(material_list, key = lambda x: x["name"].upper())
             brand_item = {
