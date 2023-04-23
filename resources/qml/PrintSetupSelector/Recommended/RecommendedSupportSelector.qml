@@ -36,7 +36,7 @@ Item
     Item
     {
         id: enableSupportContainer
-        height: enableSupportCheckBox.height
+        height: UM.Theme.getSize("print_setup_big_item").height
 
         anchors
         {
@@ -310,17 +310,114 @@ Item
         }
     }
 
+    Item {
+        id: supportPlacementContainer
+        anchors {
+            top: enableSupportContainer.bottom
+            topMargin: UM.Theme.getSize("narrow_margin").width * 1.5
+            left: parent.left
+            right: parent.right
+        }
+        visible: solubleSupportEnabled.properties.enabled == "True" && extrudersEnabledCount.properties.value == 2
+        height: visible ? UM.Theme.getSize("print_setup_big_item").height : 0
+
+        Text
+        {
+            id: supportPlacementText
+            anchors {
+                top: parent.top
+                left: parent.left
+                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
+            }
+
+            width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
+            font: UM.Theme.getFont("medium")
+            text: catalog.i18nc("@label", "Placement")
+        }
+
+        Controls2.ComboBox
+        {
+            id: supportTypeCombobox
+
+            height: UM.Theme.getSize("print_setup_big_item").height * 2
+            anchors
+            {
+                top: parent.top
+                left: supportPlacementText.right
+                right: parent.right
+                verticalCenter: supportPlacementText.verticalCenter
+            }
+
+            textRole: "name"  // this solves that the combobox isn't populated in the first time Cura is started
+            valueRole: "value"
+            currentIndex: supportType.properties.value == "everywhere" ? 0 : 1
+
+            property var typeModel: [{
+                value: "everywhere",
+                name: "Everywhere"
+            },{
+                value: "buildplate",
+                name: "Touching Buildplate"
+            }]
+
+            model: typeModel
+
+            onActivated:
+            {
+                supportType.setPropertyValue("value", typeModel[index].value)
+            }
+
+            indicator: UM.RecolorImage
+            {
+                id: supportTypeDownArrow
+                x: supportTypeCombobox.width - width - supportTypeCombobox.rightPadding
+                y: supportTypeCombobox.topPadding + Math.round((supportTypeCombobox.availableHeight - height) / 2)
+
+                source: UM.Theme.getIcon("ChevronSingleDown")
+                width: UM.Theme.getSize("standard_arrow").width
+                height: UM.Theme.getSize("standard_arrow").height
+                sourceSize.width: width + 5 * screenScaleFactor
+                sourceSize.height: width + 5 * screenScaleFactor
+
+                color: UM.Theme.getColor("setting_control_button")
+            }
+
+            contentItem: Controls2.Label
+            {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: UM.Theme.getSize("setting_unit_margin").width
+                anchors.right: supportTypeDownArrow.left
+                text: supportTypeCombobox.currentText
+                textFormat: Text.PlainText
+                renderType: Text.NativeRendering
+                font: UM.Theme.getFont("default")
+                color: enabled ? UM.Theme.getColor("setting_control_text") : UM.Theme.getColor("setting_control_disabled_text")
+                elide: Text.ElideLeft
+                verticalAlignment: Text.AlignVCenter
+
+            }
+
+            background: Rectangle
+            {
+                color: parent.highlighted ? UM.Theme.getColor("setting_control_highlight") : "transparent"
+                border.color: parent.highlighted ? UM.Theme.getColor("setting_control_border_highlight") : "transparent"
+            }
+        }
+    }
+
     Item
     {
         id: solubleSupportContainer
+
         anchors {
-            left: enableSupportContainer.left
-            right: parent.right
-            top: enableSupportContainer.bottom
-            topMargin: enableSupportContainer.height
+            top: supportPlacementContainer.bottom
+            topMargin: UM.Theme.getSize("narrow_margin").width
+            left: enableSupportRowTitle.right
         }
 
-        visible: solubleSupportEnabled.properties.enabled == "True"
+        visible: solubleSupportEnabled.properties.enabled == "True" && extrudersEnabledCount.properties.value == 2
+        height: visible ? solubleSupportEnabledCheck.height : 0
 
         CheckBox
         {
@@ -390,6 +487,15 @@ Item
         containerStack: Cura.MachineManager.activeMachine
         key: "machine_extruder_count"
         watchedProperties: ["value"]
+        storeIndex: 0
+    }
+
+    UM.SettingPropertyProvider
+    {
+        id: supportType
+        containerStack: Cura.MachineManager.activeMachine
+        key: "support_type"
+        watchedProperties: [ "value", "enabled", "description", "options" ]
         storeIndex: 0
     }
 
