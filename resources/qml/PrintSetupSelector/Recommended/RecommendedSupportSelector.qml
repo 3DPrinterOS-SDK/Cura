@@ -318,7 +318,7 @@ Item
             left: parent.left
             right: parent.right
         }
-        visible: solubleSupportEnabled.properties.enabled == "True" && extrudersEnabledCount.properties.value == 2
+        visible: solubleSupportEnabled.properties.enabled == "True"
         height: visible ? UM.Theme.getSize("print_setup_big_item").height : 0
 
         Text

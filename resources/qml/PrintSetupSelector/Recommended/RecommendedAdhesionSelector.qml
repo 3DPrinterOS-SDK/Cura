@@ -76,6 +76,18 @@ Item
                 onExited: base.hideTooltip()
             }
         }
+
+        Text {
+            id: adhDesc
+            anchors {
+                top: parent.top
+                left: enableAdhesionCheckBox.right
+                leftMargin: UM.Theme.getSize("narrow_margin").width
+            }
+//                width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
+            font: UM.Theme.getFont("medium")
+            text: catalog.i18nc("@label", "Stronger bed adhesion")
+        }
     }
 
     Item
@@ -136,23 +148,23 @@ Item
                     onEntered:
                     {
                         base.showTooltip(enableFuzzySkinCheckBox, Qt.point(-enableFuzzySkinCheckBox.x - UM.Theme.getSize("thick_margin").width, 0),
-                            catalog.i18nc("@label", "Rough Surface"))
+                            catalog.i18nc("@label", fuzzySkinValue.properties.description))
                     }
                     onExited: base.hideTooltip()
                 }
             }
 
-//            Text {
-//                id: primeTowerDesc
-//                anchors {
-//                    top: parent.top
-//                    left: enablePrimeTowerCheckBox.right
-//                    leftMargin: UM.Theme.getSize("narrow_margin").width
-//                }
-////                width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
-//                font: UM.Theme.getFont("medium")
-//                text: catalog.i18nc("@label", "Use when filaments not fully dry")
-//            }
+            Text {
+                id: fuzzyDesc
+                anchors {
+                    top: parent.top
+                    left: enableFuzzySkinCheckBox.right
+                    leftMargin: UM.Theme.getSize("narrow_margin").width
+                }
+//                width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
+                font: UM.Theme.getFont("medium")
+                text: catalog.i18nc("@label", "Rough surface")
+            }
         }
     }
 
@@ -172,7 +184,7 @@ Item
         containerStack: Cura.MachineManager.activeMachine
         removeUnusedValue: false //Doesn't work with settings that are resolved.
         key: "magic_fuzzy_skin_enabled"
-        watchedProperties: [ "value", "desctiption", "enabled" ]
+        watchedProperties: [ "value", "description", "enabled" ]
         storeIndex: 0
     }
 }
