@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "Lugo XXL",
+  "name": "Lugo pro XXL",
   "inherits": "lugo_base",
   "metadata": {
     "visible": true,
@@ -25,7 +25,7 @@
     ]
   },
   "overrides": {
-    "machine_name": { "default_value": "Lugo XXL" },
+    "machine_name": { "default_value": "Lugo pro XXL" },
     "machine_width": {
       "default_value": 315
     },

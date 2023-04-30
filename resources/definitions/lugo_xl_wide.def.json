@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "Lugo XL wide (bowden)",
+  "name": "Lugo XL wide",
   "inherits": "lugo_base",
   "metadata": {
     "visible": true,
@@ -25,7 +25,7 @@
     ]
   },
   "overrides": {
-    "machine_name": { "default_value": "Lugo XL wide (bowden)" },
+    "machine_name": { "default_value": "Lugo XL wide" },
     "machine_width": {
       "default_value": 375
     },
