@@ -46,18 +46,25 @@ class IntentCategoryModel(ListModel):
                 "description": catalog.i18nc("@text",
                                              "The draft profile is designed to print initial prototypes and concept validation with the intent of significant print time reduction.")
             }
+            cls._translations["engineering"] = {
+                "name": catalog.i18nc("@label", "Engineering"),
+                "description": catalog.i18nc("@text",
+                                             "The engineering profile is designed to print functional prototypes and end-use parts with the intent of better accuracy and for closer tolerances.")
+            }
             cls._translations["visual"] = {
                 "name": catalog.i18nc("@label", "Figure"),
                 "description": catalog.i18nc("@text", "The figure profile is designed to print visual prototypes and models with the intent of high visual and surface quality.")
             }
-            cls._translations["engineering"] = {
-                "name": catalog.i18nc("@label", "Engineering"),
-                "description": catalog.i18nc("@text", "The engineering profile is designed to print functional prototypes and end-use parts with the intent of better accuracy and for closer tolerances.")
-            }
+
             cls._translations["hightemp"] = {
                 "name": catalog.i18nc("@label", "High-temp"),
                 "description": catalog.i18nc("@text",
                                              "The high-temp profile is designed to print functional prototypes and end-use parts with the intent of better accuracy, high temperatures, and for closer tolerances.")
+            }
+            cls._translations["tricky"] = {
+                "name": catalog.i18nc("@label", "Tricky"),
+                "description": catalog.i18nc("@text",
+                                             "The tricky profile is designed to print functional prototypes and end-use parts with the intent of better accuracy and for closer tolerances.")
             }
 
         return cls._translations
