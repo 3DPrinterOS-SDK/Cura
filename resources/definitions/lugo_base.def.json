@@ -202,6 +202,9 @@
     },
     "material_final_print_temperature": {
       "value": "material_standby_temperature"
+    },
+    "support_type": {
+      "enabled": true
     }
 
   }

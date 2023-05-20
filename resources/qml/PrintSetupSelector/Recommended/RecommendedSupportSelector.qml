@@ -318,7 +318,7 @@ Item
             left: parent.left
             right: parent.right
         }
-        visible: solubleSupportEnabled.properties.enabled == "True"
+        visible: supportType.properties.enabled == "True"
         height: visible ? UM.Theme.getSize("print_setup_big_item").height : 0
 
         Text
@@ -448,20 +448,15 @@ Item
             {
                 left: solubleSupportEnabledCheck.right
                 right: parent.right
-                leftMargin: UM.Theme.getSize("thick_margin").width
-                rightMargin: UM.Theme.getSize("thick_margin").width
+                leftMargin: UM.Theme.getSize("narrow_margin").width
                 verticalCenter: parent.verticalCenter
             }
-
+            font: UM.Theme.getFont("small")
             text: "Soluble support"
         }
     }
 
-
-
     property var extruderModel: CuraApplication.getExtrudersModel()
-
-
 
     UM.SettingPropertyProvider
     {

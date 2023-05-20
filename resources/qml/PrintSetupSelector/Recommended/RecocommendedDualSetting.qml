@@ -40,6 +40,7 @@ Item
         height: enablePrimeTower.height
         anchors {
             top: dualSettingsRowTitle.bottom
+            topMargin: UM.Theme.getSize("narrow_margin").width
             left: parent.left
         }
 
@@ -100,12 +101,12 @@ Item
             Text {
                 id: primeTowerDesc
                 anchors {
-                    top: parent.top
+                    verticalCenter: parent.verticalCenter
                     left: enablePrimeTowerCheckBox.right
                     leftMargin: UM.Theme.getSize("narrow_margin").width
                 }
 //                width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
-                font: UM.Theme.getFont("medium")
+                font: UM.Theme.getFont("small")
                 text: catalog.i18nc("@label", "Use when filaments not fully dry")
             }
         }
@@ -117,7 +118,7 @@ Item
 
         anchors {
             top: primeTowerItem.bottom
-            topMargin: UM.Theme.getSize("narrow_margin").width
+            topMargin: UM.Theme.getSize("narrow_margin").width * 1.25
             left: parent.left
         }
 
@@ -137,7 +138,7 @@ Item
 
         Item {
             id: zHopHeightTextEdit
-            height: zHopHeightTextField.height
+            height: parent.height
             anchors
             {
                 left: zHopHeightText.right

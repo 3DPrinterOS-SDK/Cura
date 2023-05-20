@@ -51,7 +51,7 @@ Item
             {
                 id: profileLabel
                 source: UM.Theme.getIcon("PrintQuality")
-                text: catalog.i18nc("@label", "Profiles")
+                text: catalog.i18nc("@label", "Layer height")
                 font: UM.Theme.getFont("medium")
                 width: labelColumnWidth
                 iconSize: UM.Theme.getSize("medium_button_icon").width
@@ -101,7 +101,6 @@ Item
                 modelKey: "layer_height"
             }
         }
-
 
         Repeater
         {
@@ -196,10 +195,7 @@ Item
                     height: width
                     visible: Cura.MachineManager.activeIntentCategory == model.intent_category && affected_extruders.length
                 }
-
-
             }
-
         }
     }
 }

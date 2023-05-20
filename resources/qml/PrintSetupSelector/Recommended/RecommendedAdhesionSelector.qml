@@ -34,7 +34,7 @@ Item
     Item
     {
         id: enableAdhesionContainer
-        height: enableAdhesionCheckBox.height
+        height: enableAdhesionRowTitle.height
 
         anchors
         {
@@ -80,12 +80,12 @@ Item
         Text {
             id: adhDesc
             anchors {
-                top: parent.top
                 left: enableAdhesionCheckBox.right
                 leftMargin: UM.Theme.getSize("narrow_margin").width
+                verticalCenter: parent.verticalCenter
             }
 //                width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
-            font: UM.Theme.getFont("medium")
+            font: UM.Theme.getFont("small")
             text: catalog.i18nc("@label", "Stronger bed adhesion")
         }
     }
@@ -107,6 +107,7 @@ Item
                 top: parent.top
                 left: parent.left
                 leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
+                verticalCenter: parent.verticalCenter
             }
             width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
             font: UM.Theme.getFont("medium")
@@ -122,7 +123,7 @@ Item
             {
                 left: enableFuzzySkinText.right
                 right: parent.right
-                verticalCenter: enableFuzzySkinText.verticalCenter
+                verticalCenter: fuzzySkinContainer.verticalCenter
             }
 
             CheckBox
@@ -157,12 +158,12 @@ Item
             Text {
                 id: fuzzyDesc
                 anchors {
-                    top: parent.top
                     left: enableFuzzySkinCheckBox.right
                     leftMargin: UM.Theme.getSize("narrow_margin").width
+                    verticalCenter: parent.verticalCenter
                 }
 //                width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
-                font: UM.Theme.getFont("medium")
+                font: UM.Theme.getFont("small")
                 text: catalog.i18nc("@label", "Rough surface")
             }
         }
