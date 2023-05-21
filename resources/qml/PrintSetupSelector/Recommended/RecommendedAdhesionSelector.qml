@@ -182,7 +182,7 @@ Item
     UM.SettingPropertyProvider
     {
         id: fuzzySkinValue
-        containerStack: Cura.MachineManager.activeMachine
+        containerStack: Cura.MachineManager.activeStack
         removeUnusedValue: false //Doesn't work with settings that are resolved.
         key: "magic_fuzzy_skin_enabled"
         watchedProperties: [ "value", "description", "enabled" ]
