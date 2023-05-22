@@ -20,7 +20,7 @@
      "default_value": ";start\nT0\nG21\nM107\nG28 X0 Y0 Z0\nG1 X20 Y0 F4000\nG1 Z1 F1300\nG92 E0\nG1 X29.5 F100 E15 F50\nG1 E9 F1500\nG1 Y4 F800\nG92 E0\nT1\nG1 X10 F5000\nG1 X0 F1000\nG4 S4\nG1 X18 F5000\nG1 Y0 F800\nG92 E0\nG1 X8.5 F100 E14 F50\nG1 E8 F1500\nG1 Y3 F500\nG92 E0"
     },
     "machine_end_gcode": {
-      "default_value": ";end\nM104 S0\nM140 S0\nM107\nG92 X0 E0\nG1 X+4 E-3 F2000\nG28\nT0"
+      "default_value": ";end\nM104 S0\nM140 S0\nM107\nG92 X0 E0\nG1 X+4 E-3 F2000\nG28\nT1\nM104 S0\nT0\nM104 S0"
     },
     "machine_width": {
       "default_value": 200
@@ -39,7 +39,8 @@
       "value": 70
     },
     "retraction_hop": {
-      "default_value": 1.0
+      "default_value": 0.3,
+      "enabled": true
     },
     "machine_extruder_count": { "default_value": 2 },
 
@@ -52,6 +53,7 @@
     "material_initial_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
     "material_final_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
     "material_bed_temperature": { "maximum_value": 170 },
-    "material_standby_temperature": { "maximum_value": 420, "maximum_value_warning": 300 }
+    "material_standby_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
+    "support_extruder_nr": { "value": 1 }
   }
 }

@@ -159,7 +159,7 @@ Item
     }
 
 
-    property var extruderModel: CuraApplication.getExtrudersModel()
+//    property var extruderModel: CuraApplication.getExtrudersModel()
 
 
 

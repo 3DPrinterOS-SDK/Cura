@@ -205,6 +205,9 @@
     },
     "support_type": {
       "enabled": true
+    },
+    "speed_slowdown_layers": {
+      "default_value": 4
     }
 
   }

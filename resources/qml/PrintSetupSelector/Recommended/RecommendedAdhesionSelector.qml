@@ -169,6 +169,85 @@ Item
         }
     }
 
+    Item
+    {
+        id: draftShieldContainer
+        height: visible ? draftShieldEnabledItem.height : 0
+        visible: Cura.MachineManager.activeIntentCategory === "hightemp"
+        anchors {
+            top: enableAdhesionContainer.bottom
+            topMargin: UM.Theme.getSize("narrow_margin").width
+            left: parent.left
+        }
+
+        Text {
+            id: draftShieldText
+            anchors {
+                top: parent.top
+                left: parent.left
+                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
+                verticalCenter: parent.verticalCenter
+            }
+            width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
+            font: UM.Theme.getFont("medium")
+            text: catalog.i18nc("@label", "Draft Shield")
+        }
+
+        Item
+        {
+            id: draftShieldEnabledItem
+            height: visible ? draftShieldCheckBox.height : 0
+            visible: Cura.MachineManager.activeIntentCategory === "hightemp"
+            anchors
+            {
+                left: draftShieldText.right
+                right: parent.right
+                verticalCenter: draftShieldContainer.verticalCenter
+            }
+
+            CheckBox
+            {
+                id: draftShieldCheckBox
+                anchors.verticalCenter: parent.verticalCenter
+
+                property alias _hovered: draftShieldMouseArea.containsMouse
+
+                style: UM.Theme.styles.checkbox
+                enabled: recommendedPrintSetup.settingsEnabled
+
+                checked: draftShieldEnabled.properties.value == "True"
+
+                MouseArea
+                {
+                    id: draftShieldMouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+
+                    onClicked: draftShieldEnabled.setPropertyValue("value", draftShieldEnabled.properties.value != "True")
+
+                    onEntered:
+                    {
+                        base.showTooltip(draftShieldCheckBox, Qt.point(-draftShieldCheckBox.x - UM.Theme.getSize("thick_margin").width, 0),
+                            catalog.i18nc("@label", draftShieldEnabled.properties.description))
+                    }
+                    onExited: base.hideTooltip()
+                }
+            }
+
+            Text {
+                id: draftShieldDescText
+                anchors {
+                    left: draftShieldCheckBox.right
+                    leftMargin: UM.Theme.getSize("narrow_margin").width
+                    verticalCenter: parent.verticalCenter
+                }
+//                width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
+                font: UM.Theme.getFont("small")
+                text: catalog.i18nc("@label", "Prevent heavy shrinkage")
+            }
+        }
+    }
+
     UM.SettingPropertyProvider
     {
         id: platformAdhesionType
@@ -185,6 +264,16 @@ Item
         containerStack: Cura.MachineManager.activeStack
         removeUnusedValue: false //Doesn't work with settings that are resolved.
         key: "magic_fuzzy_skin_enabled"
+        watchedProperties: [ "value", "description", "enabled" ]
+        storeIndex: 0
+    }
+
+    UM.SettingPropertyProvider
+    {
+        id: draftShieldEnabled
+        containerStack: Cura.MachineManager.activeMachine
+        removeUnusedValue: false //Doesn't work with settings that are resolved.
+        key: "draft_shield_enabled"
         watchedProperties: [ "value", "description", "enabled" ]
         storeIndex: 0
     }

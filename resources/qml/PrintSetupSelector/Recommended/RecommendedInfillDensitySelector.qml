@@ -183,6 +183,62 @@ Item
         }
     }
 
+    Item
+    {
+        id: wallThicknessItem
+
+        anchors {
+            top: infillSliderContainer.bottom
+            topMargin: UM.Theme.getSize("wide_margin").width
+            left: parent.left
+        }
+
+        height: wallThicknessTextField.height
+
+        Text {
+            id: wallThicknessText
+            anchors {
+                top: parent.top
+                left: parent.left
+                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
+            }
+            width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
+            font: UM.Theme.getFont("medium")
+            text: catalog.i18nc("@label", "Wall thickness")
+        }
+
+        Item {
+            id: wallThicknessTextEdit
+            height: wallThicknessTextField.height
+            anchors
+            {
+                left: wallThicknessText.right
+                right: parent.right
+                verticalCenter: wallThicknessText.verticalCenter
+            }
+
+            TextField
+            {
+                id: wallThicknessTextField
+                anchors.verticalCenter: parent.verticalCenter
+                style: UM.Theme.styles.text_field
+                validator : RegExpValidator { regExp : /[0-9]+\.[0-9]+/ }
+                text: wallThickness.properties.value
+                onTextChanged: wallThickness.setPropertyValue("value", wallThicknessTextField.text)
+            }
+        }
+    }
+
+
+    UM.SettingPropertyProvider
+    {
+        id: wallThickness
+        containerStackId: Cura.MachineManager.activeStackId
+        key: "wall_thickness"
+        watchedProperties: [ "value", "enabled", "description"  ]
+        storeIndex: 0
+    }
+
     UM.SettingPropertyProvider
     {
         id: infillDensity
