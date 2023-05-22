@@ -153,7 +153,7 @@
       "default_value": true
     },
     "bridge_fan_speed": {
-      "value": "min(100, (cool_fan_speed * 1.1))"
+      "value": "cool_fan_speed"
     },
     "speed_wall_x": {
       "value": "speed_print * 0.5"
