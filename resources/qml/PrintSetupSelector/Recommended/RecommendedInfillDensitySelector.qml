@@ -195,37 +195,22 @@ Item
 
         height: wallThicknessTextField.height
 
-        Text {
-            id: wallThicknessText
-            anchors {
-                top: parent.top
-                left: parent.left
-                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
-            }
-            width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
-            font: UM.Theme.getFont("medium")
-            text: catalog.i18nc("@label", "Wall thickness")
-        }
-
-        Item {
-            id: wallThicknessTextEdit
-            height: wallThicknessTextField.height
+        Cura.NumericTextFieldWithUnit
+        {
+            id: wallThicknessTextField
             anchors
             {
-                left: wallThicknessText.right
+                left: parent.left
+                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
                 right: parent.right
-                verticalCenter: wallThicknessText.verticalCenter
+                verticalCenter: parent.verticalCenter
             }
-
-            TextField
-            {
-                id: wallThicknessTextField
-                anchors.verticalCenter: parent.verticalCenter
-                style: UM.Theme.styles.text_field
-                validator : RegExpValidator { regExp : /[0-9]+\.[0-9]+/ }
-                text: wallThickness.properties.value
-                onTextChanged: wallThickness.setPropertyValue("value", wallThicknessTextField.text)
-            }
+            containerStackId: Cura.MachineManager.activeStackId
+            settingKey: "wall_thickness"
+            labelText: catalog.i18nc("@label", "Wall thickness")
+            labelFont: UM.Theme.getFont("medium")
+            labelWidth: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("default_margin").width * 1.5
+            unitText: catalog.i18nc("@label", "mm")
         }
     }
 

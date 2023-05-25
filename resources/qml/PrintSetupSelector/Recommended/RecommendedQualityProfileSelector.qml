@@ -56,36 +56,36 @@ Item
                 width: labelColumnWidth
                 iconSize: UM.Theme.getSize("medium_button_icon").width
             }
-            UM.SimpleButton
-            {
-                id: resetToDefaultQualityButton
-
-                visible: Cura.SimpleModeSettingsManager.isProfileCustomized || Cura.MachineManager.hasCustomQuality
-                height: visible ? UM.Theme.getSize("print_setup_icon").height : 0
-                width: height
-                anchors
-                {
-                    right: profileLabel.right
-                    rightMargin: UM.Theme.getSize("default_margin").width
-                    leftMargin: UM.Theme.getSize("default_margin").width
-                    verticalCenter: parent.verticalCenter
-                }
-
-                color: hovered ? UM.Theme.getColor("setting_control_button_hover") : UM.Theme.getColor("setting_control_button")
-                iconSource: UM.Theme.getIcon("ArrowReset")
-
-                onClicked:
-                {
-                    // if the current profile is user-created, switch to a built-in quality
-                    Cura.MachineManager.resetToUseDefaultQuality()
-                }
-                onEntered:
-                {
-                    var tooltipContent = catalog.i18nc("@tooltip","You have modified some profile settings. If you want to change these go to custom mode.")
-                    base.showTooltip(qualityRow, Qt.point(-UM.Theme.getSize("thick_margin").width, 0),  tooltipContent)
-                }
-                onExited: base.hideTooltip()
-            }
+//            UM.SimpleButton
+//            {
+//                id: resetToDefaultQualityButton
+//
+//                visible: Cura.SimpleModeSettingsManager.isProfileCustomized || Cura.MachineManager.hasCustomQuality
+//                height: visible ? UM.Theme.getSize("print_setup_icon").height : 0
+//                width: height
+//                anchors
+//                {
+//                    left: profileLabel.right
+////                    rightMargin: UM.Theme.getSize("default_margin").width
+////                    leftMargin: UM.Theme.getSize("default_margin").width
+//                    verticalCenter: parent.verticalCenter
+//                }
+//
+//                color: hovered ? UM.Theme.getColor("setting_control_button_hover") : UM.Theme.getColor("setting_control_button")
+//                iconSource: UM.Theme.getIcon("ArrowReset")
+//
+//                onClicked:
+//                {
+//                    // if the current profile is user-created, switch to a built-in quality
+//                    Cura.MachineManager.resetToUseDefaultQuality()
+//                }
+//                onEntered:
+//                {
+//                    var tooltipContent = catalog.i18nc("@tooltip","You have modified some profile settings. If you want to change these go to custom mode.")
+//                    base.showTooltip(qualityRow, Qt.point(-UM.Theme.getSize("thick_margin").width, 0),  tooltipContent)
+//                }
+//                onExited: base.hideTooltip()
+//            }
 
             Cura.LabelBar
             {

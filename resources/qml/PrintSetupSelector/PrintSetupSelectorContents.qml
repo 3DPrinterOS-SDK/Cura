@@ -141,7 +141,7 @@ Item
             anchors.margins: parent.padding
             leftPadding: UM.Theme.getSize("default_margin").width
             rightPadding: UM.Theme.getSize("default_margin").width
-            text: catalog.i18nc("@button", "Recommended")
+//            text: catalog.i18nc("@button", "Recommended")
             iconSource: UM.Theme.getIcon("ChevronSingleLeft")
             visible: currentModeIndex == PrintSetupSelectorContents.Mode.Custom
             onClicked: {
@@ -152,13 +152,47 @@ Item
 
         Cura.SecondaryButton
         {
+            id: resetToDefaultQualityButton
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.margins: UM.Theme.getSize("default_margin").width
+            leftPadding: UM.Theme.getSize("default_margin").width
+            rightPadding: UM.Theme.getSize("default_margin").width
+//            text: catalog.i18nc("@button", "Reset")
+            iconSource: UM.Theme.getIcon("ArrowReset")
+            isIconOnRightSide: false
+            visible: (currentModeIndex == PrintSetupSelectorContents.Mode.Recommended) && (Cura.SimpleModeSettingsManager.isProfileCustomized || Cura.MachineManager.hasCustomQuality)
+            onClicked:
+            {
+                // if the current profile is user-created, switch to a built-in quality
+                Cura.MachineManager.resetToUseDefaultQuality()
+            }
+        }
+
+        Text {
+            id: resetDescText
+            visible: resetToDefaultQualityButton.visible
+//            height: resetToDefaultQualityButton.height
+            anchors {
+                left: resetToDefaultQualityButton.right
+                leftMargin: UM.Theme.getSize("default_margin").width
+                verticalCenter: resetToDefaultQualityButton.verticalCenter
+            }
+            text: "*Settings have been changed. Reset to the default"
+            color: "#2E75B6"
+            renderType: Text.NativeRendering
+            font: UM.Theme.getFont("small")
+        }
+
+        Cura.SecondaryButton
+        {
             id: customSettingsButton
             anchors.top: parent.top
             anchors.right: parent.right
             anchors.margins: UM.Theme.getSize("default_margin").width
             leftPadding: UM.Theme.getSize("default_margin").width
             rightPadding: UM.Theme.getSize("default_margin").width
-            text: catalog.i18nc("@button", "Custom")
+//            text: catalog.i18nc("@button", "Custom")
             iconSource: UM.Theme.getIcon("ChevronSingleRight")
             isIconOnRightSide: true
             visible: currentModeIndex == PrintSetupSelectorContents.Mode.Recommended

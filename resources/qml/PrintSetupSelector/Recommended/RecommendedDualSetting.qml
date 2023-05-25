@@ -27,7 +27,7 @@ Item
         id: dualSettingsRowTitle
         anchors.top: parent.top
         anchors.left: parent.left
-        source: UM.Theme.getIcon("DualExtrusion")
+        source: UM.Theme.getIcon("DualSetting")
         text: catalog.i18nc("@label", "Dual Setting")
         font: UM.Theme.getFont("medium")
         width: labelColumnWidth
@@ -51,6 +51,7 @@ Item
                 left: parent.left
                 leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
             }
+            renderType: Text.NativeRendering
             width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
             font: UM.Theme.getFont("medium")
             text: catalog.i18nc("@label", "Prime Tower")
@@ -124,38 +125,57 @@ Item
 
         height: zHopHeightTextField.height
 
-        Text {
-            id: zHopHeightText
-            anchors {
-                top: parent.top
-                left: parent.left
-                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
-            }
-            width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
-            font: UM.Theme.getFont("medium")
-            text: catalog.i18nc("@label", "Z Hop Height")
-        }
-
-        Item {
-            id: zHopHeightTextEdit
-            height: parent.height
+        Cura.NumericTextFieldWithUnit
+        {
+            id: zHopHeightTextField
             anchors
             {
-                left: zHopHeightText.right
+                left: parent.left
+                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
                 right: parent.right
-                verticalCenter: zHopHeightText.verticalCenter
+                verticalCenter: parent.verticalCenter
             }
-
-            TextField
-            {
-                id: zHopHeightTextField
-                anchors.verticalCenter: parent.verticalCenter
-                style: UM.Theme.styles.text_field
-                validator : RegExpValidator { regExp : /[0-9]+\.[0-9]+/ }
-                text: zHopHeightValue.properties.value
-                onTextChanged: zHopHeightValue.setPropertyValue("value", zHopHeightTextField.text)
-            }
+            containerStackId: Cura.MachineManager.activeStackId
+            settingKey: "retraction_hop"
+            labelText: catalog.i18nc("@label", "Z Hop Height")
+            labelFont: UM.Theme.getFont("medium")
+            labelWidth: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("default_margin").width * 1.5
+            unitText: catalog.i18nc("@label", "mm")
         }
+
+//        Text {
+//            id: zHopHeightText
+//            anchors {
+//                top: parent.top
+//                left: parent.left
+//                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
+//            }
+//            renderType: Text.NativeRendering
+//            width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
+//            font: UM.Theme.getFont("medium")
+//            text: catalog.i18nc("@label", "Z Hop Height")
+//        }
+//
+//        Item {
+//            id: zHopHeightTextEdit
+//            height: parent.height
+//            anchors
+//            {
+//                left: zHopHeightText.right
+//                right: parent.right
+//                verticalCenter: zHopHeightText.verticalCenter
+//            }
+//
+//            TextField
+//            {
+//                id: zHopHeightTextField
+//                anchors.verticalCenter: parent.verticalCenter
+//                style: UM.Theme.styles.text_field
+//                validator : RegExpValidator { regExp : /[0-9]+\.[0-9]+/ }
+//                text: zHopHeightValue.properties.value
+//                onTextChanged: zHopHeightValue.setPropertyValue("value", zHopHeightTextField.text)
+//            }
+//        }
     }
 
 

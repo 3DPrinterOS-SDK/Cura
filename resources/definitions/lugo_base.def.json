@@ -98,9 +98,6 @@
     "retraction_hop_after_extruder_switch_height": {
       "value": 3
     },
-    "retraction_hop_enabled": {
-      "default_value": true
-    },
     "retraction_hop_only_when_collides": {
       "default_value": true
     },
@@ -208,7 +205,15 @@
     },
     "speed_slowdown_layers": {
       "default_value": 4
+    },
+    "support_infill_rate": {
+      "default_value": 37
+    },
+    "support_offset": {
+      "default_value": 0.2
+    },
+    "default_material_bed_temperature": {
+      "label": "Bed Temperature"
     }
-
   }
 }

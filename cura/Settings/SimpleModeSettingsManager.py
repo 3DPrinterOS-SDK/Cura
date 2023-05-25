@@ -59,4 +59,5 @@ class SimpleModeSettingsManager(QObject):
                                      "infill_sparse_density",
                                      "gradual_infill_steps",
                                      "adhesion_type",
-                                     "support_extruder_nr"]
+                                     "support_extruder_nr",
+                                     "draft_shield_enabled"]

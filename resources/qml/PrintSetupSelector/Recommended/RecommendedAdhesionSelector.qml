@@ -101,17 +101,18 @@ Item
             left: parent.left
         }
 
-        Text {
+        Cura.IconWithText
+        {
             id: enableFuzzySkinText
-            anchors {
-                top: parent.top
-                left: parent.left
-                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
-                verticalCenter: parent.verticalCenter
-            }
-            width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
-            font: UM.Theme.getFont("medium")
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+            visible: parent.visible
+            source: UM.Theme.getIcon("FuzzySkin")
             text: catalog.i18nc("@label", "Fuzzy Skin")
+            font: UM.Theme.getFont("medium")
+            width: labelColumnWidth
+            iconSize: UM.Theme.getSize("medium_button_icon").width
         }
 
         Item
@@ -180,18 +181,32 @@ Item
             left: parent.left
         }
 
-        Text {
+        Cura.IconWithText
+        {
             id: draftShieldText
-            anchors {
-                top: parent.top
-                left: parent.left
-                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
-                verticalCenter: parent.verticalCenter
-            }
-            width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
-            font: UM.Theme.getFont("medium")
+            visible: parent.visible
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+            source: UM.Theme.getIcon("DraftShield")
             text: catalog.i18nc("@label", "Draft Shield")
+            font: UM.Theme.getFont("medium")
+            width: labelColumnWidth
+            iconSize: UM.Theme.getSize("medium_button_icon").width
         }
+
+//        Text {
+//            id: draftShieldText
+//            anchors {
+//                top: parent.top
+//                left: parent.left
+//                leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
+//                verticalCenter: parent.verticalCenter
+//            }
+//            width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
+//            font: UM.Theme.getFont("medium")
+//            text: catalog.i18nc("@label", "Draft Shield")
+//        }
 
         Item
         {
