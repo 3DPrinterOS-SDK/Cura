@@ -107,11 +107,12 @@ Item
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            visible: parent.visible
+//            visible: parent.visible
             source: UM.Theme.getIcon("FuzzySkin")
             text: catalog.i18nc("@label", "Fuzzy Skin")
             font: UM.Theme.getFont("medium")
             width: labelColumnWidth
+            height: parent.height
             iconSize: UM.Theme.getSize("medium_button_icon").width
         }
 
@@ -184,7 +185,6 @@ Item
         Cura.IconWithText
         {
             id: draftShieldText
-            visible: parent.visible
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
@@ -192,6 +192,7 @@ Item
             text: catalog.i18nc("@label", "Draft Shield")
             font: UM.Theme.getFont("medium")
             width: labelColumnWidth
+            height: parent.height
             iconSize: UM.Theme.getSize("medium_button_icon").width
         }
 

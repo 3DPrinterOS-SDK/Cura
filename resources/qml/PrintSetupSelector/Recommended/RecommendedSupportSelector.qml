@@ -329,7 +329,7 @@ Item
                 left: parent.left
                 leftMargin: UM.Theme.getSize("medium_button_icon").width + UM.Theme.getSize("narrow_margin").width
             }
-
+            renderType: Text.NativeRendering
             width: labelColumnWidth - UM.Theme.getSize("medium_button_icon").width - UM.Theme.getSize("narrow_margin").width
             font: UM.Theme.getFont("medium")
             text: catalog.i18nc("@label", "Placement")
