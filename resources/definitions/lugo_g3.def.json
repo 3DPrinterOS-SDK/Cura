@@ -50,13 +50,16 @@
       "value": "[[[-100.5, -87.5],[100.5, -87.5],[-100.5, -80.5],[100.5, -80.5]]]"
     },
     "prime_tower_min_volume": {
-      "default_value": 12
+      "default_value": 12,
+      "value": 12
     },
     "prime_tower_position_x": {
-      "default_value": 170
+      "default_value": 170,
+      "value": 170
     },
     "prime_tower_position_y": {
-      "default_value": 135
+      "default_value": 135,
+      "value": 135
     },
 
     "material_print_temperature": { "maximum_value": 420, "maximum_value_warning": 300 },
