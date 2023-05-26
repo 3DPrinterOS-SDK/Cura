@@ -216,6 +216,11 @@
     },
     "default_material_bed_temperature": {
       "label": "Bed Temperature"
+    },
+    "prime_tower_brim_enable": {
+      "default_value": false,
+      "value": false,
+      "resolve": false
     }
   }
 }
