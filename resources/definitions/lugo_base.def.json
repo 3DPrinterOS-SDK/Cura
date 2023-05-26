@@ -207,10 +207,12 @@
       "default_value": 4
     },
     "support_infill_rate": {
-      "default_value": 37
+      "default_value": 37,
+      "value": 37
     },
     "support_offset": {
-      "default_value": 0.2
+      "default_value": 0.2,
+      "value": 0.2
     },
     "default_material_bed_temperature": {
       "label": "Bed Temperature"
