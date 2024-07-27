@@ -14,6 +14,8 @@ Item
 {
     UM.I18nCatalog { id: catalog; name: "cura" }
 
+    property var goToThirdPartyPrinter
+
     UM.Label
     {
         id: titleLabel
@@ -56,6 +58,7 @@ Item
             CuraApplication.writeToLog("i", "User accepted the User-Agreement.")
             CuraApplication.setNeedToShowUserAgreement(false)
             base.showNextPage()
+
         }
     }
 

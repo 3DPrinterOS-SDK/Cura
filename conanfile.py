@@ -43,7 +43,7 @@ class CuraConan(ConanFile):
         "staging": "False",
         "devtools": False,
         "cloud_api_version": "1",
-        "display_name": "UltiMaker Cura",
+        "display_name": "LayerLoop3D Slicer",
         "cura_debug_mode": False,  # Not yet implemented
         "internal": "False",
         "enable_i18n": False,

@@ -60,6 +60,7 @@ Cura.RoundedRectangle
     UM.ColorImage
     {
         id: rightIcon
+        visible: false
         anchors.right: parent.right
         anchors.rightMargin: UM.Theme.getSize("default_margin").width
         anchors.verticalCenter: parent.verticalCenter
