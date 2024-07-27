@@ -22,7 +22,7 @@ Item
     {
         anchors.top: parent.top
         anchors.topMargin: UM.Theme.getSize("wide_margin").height
-        anchors.bottom: backButton.top
+        anchors.bottom: nextButton.top
         anchors.bottomMargin: UM.Theme.getSize("default_margin").height
         anchors.left: parent.left
         anchors.right: parent.right
