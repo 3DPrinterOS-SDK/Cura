@@ -175,7 +175,7 @@ class CuraApplicationPatches():
                     leading_edge = min(leading_edge, existing_node.getBoundingBox().back)
 
                 if not build_plate_empty or leading_edge < half_node_depth:
-                    node.setPosition(Vector(0, 0, leading_edge - half_node_depth - self._application._margin_between_models))
+                    node.setPosition(Vector(0, 0, leading_edge - half_node_depth - self._margin_between_models))
 
             if file_extension != "3mf" and not is_belt_printer:
                 ### END PATCH
