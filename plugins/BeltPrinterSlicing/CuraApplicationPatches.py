@@ -16,6 +16,7 @@ from cura.Arranging.ShapeArray import ShapeArray
 from cura.Arranging.ArrangeObjectsJob import ArrangeObjectsJob
 
 from UM.Logger import Logger
+from UM.Scene.SceneNode import SceneNode
 #from UM.Application import Application
 #from UM.Decorators import override
 

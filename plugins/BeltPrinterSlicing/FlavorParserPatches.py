@@ -14,8 +14,8 @@ class FlavorParserPatches():
         self._flavor_parser.processGCodeStream = self.processGCodeStream
 
     # Calls original FlavorParser.processGCodeStream and untransform the parsed layers if necessary
-    def processGCodeStream(self, stream: str) -> Optional[CuraSceneNode]:
-        scene_node = self.__processGCodeStream(stream)
+    def processGCodeStream(self, stream: str, filename: str) -> Optional[CuraSceneNode]:
+        scene_node = self.__processGCodeStream(stream, filename)
         if not scene_node:
             return None
 

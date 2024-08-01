@@ -15,7 +15,7 @@ from UM.Math.Vector import Vector
 
 from UM.i18n import i18nCatalog
 catalog = i18nCatalog("cura")
-
+# import trimesh
 if(Platform.isWindows()):
     from .ThirdParty.win import trimesh
 elif(Platform.isOSX()):

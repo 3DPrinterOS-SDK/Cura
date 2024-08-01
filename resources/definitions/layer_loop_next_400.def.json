@@ -1,0 +1,37 @@
+{
+    "version": 2,
+    "name": "Layerloop NEXT 400",
+    "inherits": "beltprinter",
+    "metadata":{
+        "author": "btz",
+        "manufacturer": "LayerLoop3D",
+        "visible": true,
+        "file_formats": "text/x-gcode",
+        "has_materials": true,
+		"platform": "Banco_400_Cura.STL",
+        "machine_extruder_trains": 
+        {
+            "0": "layer_loop_extruder"
+        },
+        "first_start_actions": ["MachineSettingsAction"]
+    },
+    "overrides": 
+    {
+        "machine_name": { "default_value": "Layerloop NEXT 400" },
+        "machine_extruder_count": { "default_value": 1 },
+        "machine_width": { "default_value": 400.0 },
+        "machine_depth": { "default_value": 99999 },
+        "machine_height": { "default_value": 180.0 },
+        "gantry_height": { "value": 200.0 },
+        "machine_gcode_flavor": { "default_value": "Marlin" },
+        "machine_start_gcode":
+        {
+            "default_value":"G28 \nG92 Z0 \nG92 E0 \nG90               ; Set to Absolute Positioning \nG1 X50 Y0 F2000 \nG1 X150 E10 F800 \nG1 Z1 F800 \nG1 X50 E20 F800 \nG1 Z10 F800 \nM82               ; Set extruder to absolute mode \nG21               ; Metric values \nG92 Z0 E0   ; Set all axis to 0 \n;˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅ - copy from here / paste codes just under here - ˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅ \nM107              ; Start with the fan off"
+        },
+        "machine_end_gcode":
+        {
+            "default_value":"M104 S0 \nM140 S0 \nG92 Z0 \nG1 Z10 F1000 \nG92 E1 \nG1 E-1 F300 \nM84"
+        }
+    }
+
+}

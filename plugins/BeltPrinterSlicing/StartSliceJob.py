@@ -9,7 +9,7 @@ from typing import Any, cast, Dict, List, Optional, Set
 import copy
 import math
 import re
-#import Arcus #For typing.
+
 import pyArcus as Arcus  # For typing.
 
 from UM.Application import Application
@@ -166,6 +166,7 @@ class StartSliceJob(Job):
                 self.setResult(StartJobResult.ObjectSettingError)
                 return
 
+        with self._scene._lock:
             # Remove old layer data.
             for node in DepthFirstIterator(self._scene.getRoot()): #type: ignore #Ignore type error because iter() should get called automatically by Python syntax.
                 if node.callDecoration("getLayerData") and node.callDecoration("getBuildPlateNumber") == self._build_plate_number:
@@ -365,7 +366,7 @@ class StartSliceJob(Job):
                                 add_support_mesh = node_enable_support if node_enable_support is not None else global_enable_support
 
                                 belt_support_gantry_angle_bias = self._preferences.getValue("BeltPlugin/support_gantry_angle_bias")
-                                belt_support_minimum_island_area = self._preferences.getValue("BeltPlugin/support_minimum_island_area") 
+                                belt_support_minimum_island_area = self._preferences.getValue("BeltPlugin/support_minimum_island_area")
                             else:
                                 add_support_mesh = global_enable_support
 
