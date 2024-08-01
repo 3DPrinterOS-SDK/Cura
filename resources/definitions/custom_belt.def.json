@@ -6,11 +6,11 @@
     {
         "visible": true,
         "author": "btz",
-		"machine_depth": { "default_value": 99999 },
         "manufacturer": "Custom",
         "file_formats": "text/x-gcode",
         "first_start_actions": [ "MachineSettingsAction" ],
         "has_materials": true,
+        "machine_depth": { "default_value": 99999 },
         "machine_extruder_trains":
         {
             "0": "custom_extruder_1",
