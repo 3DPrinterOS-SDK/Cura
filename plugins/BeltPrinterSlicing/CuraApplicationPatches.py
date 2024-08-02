@@ -181,7 +181,7 @@ class CuraApplicationPatches():
 
                 if not build_plate_empty or leading_edge < half_node_depth:
                     node.setPosition(
-                        Vector(0, 0, leading_edge - half_node_depth - self._application._margin_between_models))
+                        Vector(0, 0, leading_edge - half_node_depth - self._margin_between_models))
 
             if file_extension != "3mf" and not is_blackbelt_printer:
                 ### END PATCH
