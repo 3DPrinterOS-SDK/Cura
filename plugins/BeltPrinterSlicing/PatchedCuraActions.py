@@ -29,7 +29,7 @@ class PatchedCuraActions(CuraActions):
             return
 
         # definition_container = global_container_stack.getBottom()
-        gantry_angle = global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+        gantry_angle = global_container_stack.getProperty("belt_gantry_angle", "value")
 
         if not gantry_angle:
             # for all other printers do the normal multiply/arrange

@@ -52,9 +52,9 @@ class CuraApplicationPatches():
             return
 
         definition_container = global_container_stack.getBottom()
-        gantry_angle = global_container_stack.getProperty("blackbelt_gantry_angle", "value")
-        is_blackbelt_printer = gantry_angle and float(gantry_angle) > 0
-        if is_blackbelt_printer:
+        gantry_angle = global_container_stack.getProperty("belt_gantry_angle", "value")
+        is_belt_printer = gantry_angle and float(gantry_angle) > 0
+        if is_belt_printer:
             leading_edge = self._application.getBuildVolume().getBoundingBox().front
 
             for fixed_node in fixed_nodes:
@@ -81,9 +81,9 @@ class CuraApplicationPatches():
 
         definition_container = global_container_stack.getBottom()
         print("aaa:"+definition_container.getId())
-        gantry_angle = global_container_stack.getProperty("blackbelt_gantry_angle", "value")
-        is_blackbelt_printer = (gantry_angle and float(gantry_angle) > 0)
-        print("is_blackbelt_printer: " + str(is_blackbelt_printer))
+        gantry_angle = global_container_stack.getProperty("belt_gantry_angle", "value")
+        is_belt_printer = (gantry_angle and float(gantry_angle) > 0)
+        print("is_belt_printer: " + str(is_belt_printer))
         ### END PATCH
 
         if not self._application._volume:
@@ -164,7 +164,7 @@ class CuraApplicationPatches():
 
             ### START PATCH: don't do standard arrange on load for belt printers
             ###              but place in a line instead
-            if is_blackbelt_printer:
+            if is_belt_printer:
                 half_node_depth = node.getBoundingBox().depth / 2
                 build_plate_empty = True
                 leading_edge = self._application.getBuildVolume().getBoundingBox().front
@@ -183,7 +183,7 @@ class CuraApplicationPatches():
                     node.setPosition(
                         Vector(0, 0, leading_edge - half_node_depth - self._margin_between_models))
 
-            if file_extension != "3mf" and not is_blackbelt_printer:
+            if file_extension != "3mf" and not is_belt_printer:
                 ### END PATCH
                 if node.callDecoration("isSliceable"):
                     # Ensure that the bottom of the bounding box is on the build plate

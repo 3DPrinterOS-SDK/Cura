@@ -173,8 +173,8 @@ class ProcessSlicedLayersJob(Job):
 
                 ### START PATCH
                 # Adjust layer data to show Raft line type, if it is enabled
-                if global_container_stack.getProperty("blackbelt_raft", "value"):
-                    raft_thickness = global_container_stack.getProperty("blackbelt_raft_thickness", "value")
+                if global_container_stack.getProperty("belt_raft", "value"):
+                    raft_thickness = global_container_stack.getProperty("belt_raft_thickness", "value")
 
                     extrusion_started = False
                     for index, segment_type in enumerate(line_types):
@@ -186,8 +186,8 @@ class ProcessSlicedLayersJob(Job):
                                 break
 
                 # Adjust layer data to show Belt Wall feed rate, if it is enabled
-                if global_container_stack.getProperty("blackbelt_belt_wall_enabled", "value"):
-                    belt_wall_feedrate = global_container_stack.getProperty("blackbelt_belt_wall_speed", "value")
+                if global_container_stack.getProperty("belt_wall_enabled", "value"):
+                    belt_wall_feedrate = global_container_stack.getProperty("belt_wall_speed", "value")
 
                     belt_wall_indices = []
                     for index,point in enumerate(points):
@@ -312,9 +312,9 @@ class ProcessSlicedLayersJob(Job):
             transform_matrix = new_node.getLocalTransformation().preMultiply(transform.getInverse())
             new_node.setTransformation(transform_matrix)
             front_offset = self._scene.getRoot().callDecoration("getSceneFrontOffset")
-            if global_container_stack.getProperty("blackbelt_raft", "value"):
-                    front_offset = front_offset - global_container_stack.getProperty("blackbelt_raft_margin", "value") \
-                                                - global_container_stack.getProperty("blackbelt_raft_thickness", "value")
+            if global_container_stack.getProperty("belt_raft", "value"):
+                    front_offset = front_offset - global_container_stack.getProperty("belt_raft_margin", "value") \
+                                                - global_container_stack.getProperty("belt_raft_thickness", "value")
             new_node.translate(Vector(0, 0, front_offset), SceneNode.TransformSpace.World)
         ### END PATCH
 

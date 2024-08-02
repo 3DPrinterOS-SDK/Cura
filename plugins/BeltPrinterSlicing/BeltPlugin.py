@@ -160,13 +160,13 @@ class BeltPlugin(QObject,Extension):
 
         if self._global_container_stack:
             self._global_container_stack.propertyChanged.connect(self._onSettingValueChanged)
-            gantry_angle = self._global_container_stack.getProperty("blackbelt_gantry_angle", "value")
-            print("on_glob: gantry_angle: " + gantry_angle)
-            # HACK: Move blackbelt_settings to the top of the list of settings
+            gantry_angle = self._global_container_stack.getProperty("belt_gantry_angle", "value")
+            # print("on_glob: gantry_angle: " + gantry_angle)
+            # HACK: Move belt_settings to the top of the list of settings
             definition_container = self._global_container_stack.getBottom()
-            if definition_container._definitions[0].key != "blackbelt_settings":
+            if definition_container._definitions[0].key != "belt_settings":
                 for index, definition in enumerate(definition_container._definitions):
-                    if definition.key == "blackbelt_settings":
+                    if definition.key == "belt_settings":
                         definition_container._definitions.insert(0, definition_container._definitions.pop(index))
 
             # HOTFIXES for Blackbelt stacks
@@ -194,11 +194,11 @@ class BeltPlugin(QObject,Extension):
 
                     # Make sure the extruder quality is a blackbelt quality profile
                     if extruder_stack.quality != self._application.empty_quality_container and extruder_stack.quality.getDefinition().getId() != "blackbelt":
-                        qualityList = ContainerRegistry.getInstance().findContainers(id = "blackbelt_normal")
+                        qualityList = ContainerRegistry.getInstance().findContainers(id = "belt_normal")
                         if qualityList:
-                            blackbelt_normal_quality = qualityList[0]                        
-                            extruder_stack.setQuality(blackbelt_normal_quality)
-                            self._global_container_stack.setQuality(blackbelt_normal_quality)
+                            belt_normal_quality = qualityList[0]                        
+                            extruder_stack.setQuality(belt_normal_quality)
+                            self._global_container_stack.setQuality(belt_normal_quality)
 
         self._adjustLayerViewNozzle()
     def _onSlicingStarted(self) -> None:
@@ -211,7 +211,7 @@ class BeltPlugin(QObject,Extension):
         if not extruder_stack:
             return
 
-        gantry_angle = self._global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+        gantry_angle = self._global_container_stack.getProperty("belt_gantry_angle", "value")
         print("_onActiveVariantChanged: gantry_angle " + gantry_angle)
         if not gantry_angle:
             return
@@ -228,27 +228,27 @@ class BeltPlugin(QObject,Extension):
             return
 
 
-        gantry_angle = self._global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+        gantry_angle = self._global_container_stack.getProperty("belt_gantry_angle", "value")
         print("_onActiveQualityChanged: gantry_angle " + gantry_angle)
         if not gantry_angle:
             return
 
         if extruder_stack.quality.getMetaDataEntry("global_quality", False) or not self._global_container_stack.quality.getMetaDataEntry("global_quality", False):
-            qualityList = ContainerRegistry.getInstance().findContainers(id = "blackbelt_global_normal")
+            qualityList = ContainerRegistry.getInstance().findContainers(id = "belt_global_normal")
             if qualityList:
-                blackbelt_global_quality = qualityList[0]
-                self._global_container_stack.setQuality(blackbelt_global_quality)
+                belt_global_quality = qualityList[0]
+                self._global_container_stack.setQuality(belt_global_quality)
 
-            qualityList = ContainerRegistry.getInstance().findContainers(id = "blackbelt_normal")
+            qualityList = ContainerRegistry.getInstance().findContainers(id = "belt_normal")
             if qualityList:
-                blackbelt_quality = qualityList[0]
-                extruder_stack.setQuality(blackbelt_quality)
+                belt_quality = qualityList[0]
+                extruder_stack.setQuality(belt_quality)
 
     def _onSettingValueChanged(self, key, property_name):
-        if property_name != "value" or not self._global_container_stack.hasProperty("blackbelt_gantry_angle", "value"):
+        if property_name != "value" or not self._global_container_stack.hasProperty("belt_gantry_angle", "value"):
             return
 
-        elif key == "blackbelt_gantry_angle":
+        elif key == "belt_gantry_angle":
             # Setting the gantry angle changes the build volume.
             # Force rebuilding the build volume by reloading the global container stack.
             # This is a bit of a hack, but it seems quick enough.
@@ -266,7 +266,7 @@ class BeltPlugin(QObject,Extension):
             # Wait until the default visible settings have been set
             return
 
-        if "blackbelt_settings" in visible_settings and not forced:
+        if "belt_settings" in visible_settings and not forced:
             return
 
         if self._application.getSettingVisibilityPresetsModel():
@@ -274,7 +274,7 @@ class BeltPlugin(QObject,Extension):
 
         visible_settings_changed = False
         default_visible_settings = [
-            "blackbelt_settings", "blackbelt_repetitions"
+            "belt_settings", "belt_repetitions"
         ]
         for key in default_visible_settings:
             if key not in visible_settings:
@@ -294,7 +294,7 @@ class BeltPlugin(QObject,Extension):
 
         view = self._application.getController().getActiveView()
         if view and view.getPluginId() == "SimulationView":
-            gantry_angle = global_stack.getProperty("blackbelt_gantry_angle", "value")
+            gantry_angle = global_stack.getProperty("belt_gantry_angle", "value")
             if gantry_angle and float(gantry_angle) > 0:
                 view.getNozzleNode().setParent(None)
             else:
@@ -303,7 +303,7 @@ class BeltPlugin(QObject,Extension):
 
     def _filterGcode(self, output_device) -> None:
         global_stack = self._application.getGlobalContainerStack()
-        gantry_angle = global_stack.getProperty("blackbelt_gantry_angle", "value")
+        gantry_angle = global_stack.getProperty("belt_gantry_angle", "value")
         Logger.log("i", "gantry_angle : " + str(gantry_angle))
         if not gantry_angle:
             return
@@ -314,20 +314,20 @@ class BeltPlugin(QObject,Extension):
             return
         dict_changed = False
 
-        enable_secondary_fans = global_stack.extruders["0"].getProperty("blackbelt_secondary_fans_enabled", "value")
+        enable_secondary_fans = global_stack.extruders["0"].getProperty("belt_secondary_fans_enabled", "value")
         if enable_secondary_fans:
-            secondary_fans_speed = global_stack.extruders["0"].getProperty("blackbelt_secondary_fans_speed", "value") / 100
+            secondary_fans_speed = global_stack.extruders["0"].getProperty("belt_secondary_fans_speed", "value") / 100
 
-        enable_belt_wall = global_stack.getProperty("blackbelt_belt_wall_enabled", "value")
+        enable_belt_wall = global_stack.getProperty("belt_wall_enabled", "value")
         if enable_belt_wall:
-            belt_wall_flow = global_stack.getProperty("blackbelt_belt_wall_flow", "value") / 100
-            belt_wall_speed = global_stack.getProperty("blackbelt_belt_wall_speed", "value") * 60
+            belt_wall_flow = global_stack.getProperty("belt_wall_flow", "value") / 100
+            belt_wall_speed = global_stack.getProperty("belt_wall_speed", "value") * 60
             minimum_y = global_stack.extruders["0"].getProperty("wall_line_width_0", "value") * 0.6 #  0.5 would be non-tolerant
 
-        repetitions = global_stack.getProperty("blackbelt_repetitions", "value") or 1
+        repetitions = global_stack.getProperty("belt_repetitions", "value") or 1
         if repetitions > 1:
-            repetitions_distance = global_stack.getProperty("blackbelt_repetitions_distance", "value")
-            repetitions_gcode = global_stack.getProperty("blackbelt_repetitions_gcode", "value")
+            repetitions_distance = global_stack.getProperty("belt_repetitions_distance", "value")
+            repetitions_gcode = global_stack.getProperty("belt_repetitions_gcode", "value")
 
         for plate_id in gcode_dict:
             gcode_list = gcode_dict[plate_id]

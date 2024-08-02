@@ -34,6 +34,7 @@ Item
             id: curaImage
             anchors.horizontalCenter: parent.horizontalCenter
             source: UM.Theme.getImage("welcome_cura")
+            visible: false
             fillMode: Image.PreserveAspectFit
             width: UM.Theme.getSize("welcome_wizard_content_image_big").width
             sourceSize.width: width
@@ -52,8 +53,8 @@ Item
             id: titleLabel
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
-            text: "Welcome to UltiMaker Cura"
-            color: UM.Theme.getColor("primary_button")
+            text: "Welcome to LayerLoop Slicer"
+            color: UM.Theme.getColor("primary_button_text")
             font: UM.Theme.getFont("huge_bold")
         }
 
@@ -63,7 +64,7 @@ Item
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             width: titleLabel.width + 2 * UM.Theme.getSize("thick_margin").width
-            text: "Please follow these steps to set up UltiMaker Cura. This will only take a few moments."
+            text: "Please follow these steps to set up LayerLoop Slicer. This will only take a few moments."
             font: UM.Theme.getFont("medium")
         }
 

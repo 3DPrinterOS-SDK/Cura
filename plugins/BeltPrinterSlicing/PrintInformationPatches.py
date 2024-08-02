@@ -17,7 +17,7 @@ class PrintInformationPatches():
 
     def _onMachineChanged(self) -> None:
         definition_container = self._global_stack.getBottom()
-        gantry_angle = self._global_stack.getProperty("blackbelt_gantry_angle", "value")
+        gantry_angle = self._global_stack.getProperty("belt_gantry_angle", "value")
         if self._global_stack:
             if gantry_angle:
                 self._global_stack.containersChanged.disconnect(self._onContainersChanged)
@@ -42,7 +42,7 @@ class PrintInformationPatches():
             return
 
         ### START PATCH: construct prefix from variant & material
-        gantry_angle = global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+        gantry_angle = global_container_stack.getProperty("belt_gantry_angle", "value")
         if gantry_angle:
             extruder_stack = self._print_information._application.getMachineManager()._active_container_stack
             if not extruder_stack:

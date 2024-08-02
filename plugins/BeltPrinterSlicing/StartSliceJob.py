@@ -206,7 +206,7 @@ class StartSliceJob(Job):
                 temp_list = []
                 has_printing_mesh = False
                 # print convex hull nodes as "faux-raft"
-                print_convex_hulls = stack.getProperty("blackbelt_raft", "value")
+                print_convex_hulls = stack.getProperty("belt_raft", "value")
                 for node in DepthFirstIterator(self._scene.getRoot()): #type: ignore #Ignore type error because iter() should get called automatically by Python syntax.
                     slice_node = (print_convex_hulls and type(node) is ConvexHullNode) or node.callDecoration("isSliceable")
                     if slice_node and node.getMeshData() and node.getMeshData().getVertices() is not None:
@@ -337,8 +337,8 @@ class StartSliceJob(Job):
 
                         # ConvexHullNodes get none of the usual decorators. If it made it here, it is meant to be printed
                         if type(object) is ConvexHullNode:
-                            raft_thickness = stack.getProperty("blackbelt_raft_thickness", "value")
-                            raft_margin = stack.getProperty("blackbelt_raft_margin", "value")
+                            raft_thickness = stack.getProperty("belt_raft_thickness", "value")
+                            raft_margin = stack.getProperty("belt_raft_margin", "value")
 
                             mb = MeshBuilder()
                             hull_polygon = object.getHull()
@@ -354,8 +354,8 @@ class StartSliceJob(Job):
                         elif not is_non_printing_mesh:
                             Logger.log("i","My Log 5 - From %s Non Printing Mesh", object.getName())
                             # add support mesh if needed
-                            blackbelt_support_gantry_angle_bias = None
-                            blackbelt_support_minimum_island_area = None
+                            belt_support_gantry_angle_bias = None
+                            belt_support_minimum_island_area = None
                             if per_object_stack:
                                 is_non_printing_mesh = any(per_object_stack.getProperty(key, "value") for key in NON_PRINTING_MESH_SETTINGS)
 
@@ -364,21 +364,21 @@ class StartSliceJob(Job):
                                     node_enable_support = node_enable_support or per_object_stack.getProperty("support_mesh_drop_down", "value")
                                 add_support_mesh = node_enable_support if node_enable_support is not None else global_enable_support
 
-                                blackbelt_support_gantry_angle_bias = per_object_stack.getProperty("blackbelt_support_gantry_angle_bias", "value")
-                                blackbelt_support_minimum_island_area = per_object_stack.getProperty("blackbelt_support_minimum_island_area", "value")
+                                belt_support_gantry_angle_bias = per_object_stack.getProperty("belt_support_gantry_angle_bias", "value")
+                                belt_support_minimum_island_area = per_object_stack.getProperty("belt_support_minimum_island_area", "value")
                             else:
                                 add_support_mesh = global_enable_support
 
                             if add_support_mesh:
-                                if blackbelt_support_gantry_angle_bias is None:
-                                    blackbelt_support_gantry_angle_bias = global_stack.getProperty("blackbelt_support_gantry_angle_bias", "value")
-                                biased_down_angle = math.radians(blackbelt_support_gantry_angle_bias)
-                                if blackbelt_support_minimum_island_area is None:
-                                    blackbelt_support_minimum_island_area = global_stack.getProperty("blackbelt_support_minimum_island_area", "value")
+                                if belt_support_gantry_angle_bias is None:
+                                    belt_support_gantry_angle_bias = global_stack.getProperty("belt_support_gantry_angle_bias", "value")
+                                biased_down_angle = math.radians(belt_support_gantry_angle_bias)
+                                if belt_support_minimum_island_area is None:
+                                    belt_support_minimum_island_area = global_stack.getProperty("belt_support_minimum_island_area", "value")
                                 support_mesh_data = SupportMeshCreator(
                                     down_vector=numpy.array([0, -math.cos(math.radians(biased_down_angle)), -math.sin(biased_down_angle)]),
                                     bottom_cut_off=stack.getProperty("wall_line_width_0", "value") / 2,
-                                    minimum_island_area=blackbelt_support_minimum_island_area
+                                    minimum_island_area=belt_support_minimum_island_area
                                 ).createSupportMeshForNode(object)
                                 if support_mesh_data:
                                     new_node = self._addMeshFromData(support_mesh_data, "generatedSupportMesh")
@@ -415,10 +415,10 @@ class StartSliceJob(Job):
             raft_speed = None
             raft_flow = 1.0
 
-            if stack.getProperty("blackbelt_raft", "value"):
-                raft_offset = stack.getProperty("blackbelt_raft_thickness", "value") + stack.getProperty("blackbelt_raft_gap", "value")
-                raft_speed = stack.getProperty("blackbelt_raft_speed", "value")
-                raft_flow = stack.getProperty("blackbelt_raft_flow", "value") * math.sin(gantry_angle)
+            if stack.getProperty("belt_raft", "value"):
+                raft_offset = stack.getProperty("belt_raft_thickness", "value") + stack.getProperty("belt_raft_gap", "value")
+                raft_speed = stack.getProperty("belt_raft_speed", "value")
+                raft_flow = stack.getProperty("belt_raft_flow", "value") * math.sin(gantry_angle)
 
             adhesion_extruder_nr = stack.getProperty("adhesion_extruder_nr", "value")
             support_extruder_nr = stack.getProperty("support_extruder_nr", "value")
