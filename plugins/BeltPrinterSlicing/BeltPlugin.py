@@ -69,51 +69,53 @@ class BeltPlugin(QObject,Extension):
 
         self._preferences = self._application.getPreferences()
         #Belt Plugin environment variable#############################
-        self._preferences.addPreference("BeltPlugin/on_plugin", False) #Belt Plugin ON:True,OFF:False
-
-        self._preferences.addPreference("BeltPlugin/gantry_angle", 45) 
-
-        self._preferences.addPreference("BeltPlugin/support_gantry_angle_bias", 45) 
-        self._preferences.addPreference("BeltPlugin/support_minimum_island_area", 3.0) 
-
-        self._preferences.addPreference("BeltPlugin/repetitions", 1) 
-        self._preferences.addPreference("BeltPlugin/repetitions_distance", 300) 
-
-        #TODO Allow user to be set
-        self._preferences.addPreference("BeltPlugin/repetitions_gcode", "\nG92 E0   ; Set Extruder to zero\nG1 E-4 F3900  ; Retract 4mm at 65mm/s\nG92 Z0   ; Set Belt to zero\nG1 Z{belt_repetitions_distance}   ; Advance belt between repetitions\nG92 Z0   ; Set Belt to zero again\n\n;˄˄˄˄˄˄˄˄˄˄˄˄˄˄˄˄ - repetition - ˄˄˄˄˄˄˄˄˄˄˄˄˄˄˄˄\n\nM107    ; Start with the fan off\nG0 X170 ; Move X to the center\nG1 Y1   ; Move y to the belt\nG1 E0   ; Move extruder back to 0\nG92 E-5 ; Add 5mm restart distance\n\n")
-
-        #TODO Raft setting Default Cura
-        self._preferences.addPreference("BeltPlugin/raft", False)
-        self._preferences.addPreference("BeltPlugin/raft_margin", 0.0)
-        self._preferences.addPreference("BeltPlugin/raft_thickness", 0.8)
-        self._preferences.addPreference("BeltPlugin/raft_gap", 0.5)
-        self._preferences.addPreference("BeltPlugin/raft_speed", 18.0)
-        self._preferences.addPreference("BeltPlugin/raft_flow", 1.0)
-
-
-        self._preferences.addPreference("BeltPlugin/belt_wall_enabled", False)
-        self._preferences.addPreference("BeltPlugin/belt_wall_speed", 600.0)
-        self._preferences.addPreference("BeltPlugin/belt_wall_flow", 1.0)
-        
-        self._preferences.addPreference("BeltPlugin/z_offset_gap", 0.25)
-
-        self._preferences.addPreference("BeltPlugin/secondary_fans_enabled", False)
-        self._preferences.addPreference("BeltPlugin/secondary_fans_speed", 0)
-
-        #Not setting user
-        self._preferences.addPreference("BeltPlugin/z_offset", 0.2)
-        self._preferences.addPreference("BeltPlugin/view_depth", 160)
-
-        ###########################################
-        self.setMenuName("Belt Extension")
-        self.addMenuItem("Setting", self.showSettings)
+        # self._preferences.addPreference("BeltPlugin/on_plugin", False) #Belt Plugin ON:True,OFF:False
+        #
+        # self._preferences.addPreference("BeltPlugin/gantry_angle", 45)
+        #
+        # self._preferences.addPreference("BeltPlugin/support_gantry_angle_bias", 45)
+        # self._preferences.addPreference("BeltPlugin/support_minimum_island_area", 3.0)
+        #
+        # self._preferences.addPreference("BeltPlugin/repetitions", 1)
+        # self._preferences.addPreference("BeltPlugin/repetitions_distance", 300)
+        #
+        # #TODO Allow user to be set
+        # self._preferences.addPreference("BeltPlugin/repetitions_gcode", "\nG92 E0   ; Set Extruder to zero\nG1 E-4 F3900  ; Retract 4mm at 65mm/s\nG92 Z0   ; Set Belt to zero\nG1 Z{belt_repetitions_distance}   ; Advance belt between repetitions\nG92 Z0   ; Set Belt to zero again\n\n;˄˄˄˄˄˄˄˄˄˄˄˄˄˄˄˄ - repetition - ˄˄˄˄˄˄˄˄˄˄˄˄˄˄˄˄\n\nM107    ; Start with the fan off\nG0 X170 ; Move X to the center\nG1 Y1   ; Move y to the belt\nG1 E0   ; Move extruder back to 0\nG92 E-5 ; Add 5mm restart distance\n\n")
+        #
+        # #TODO Raft setting Default Cura
+        # self._preferences.addPreference("BeltPlugin/raft", False)
+        # self._preferences.addPreference("BeltPlugin/raft_margin", 0.0)
+        # self._preferences.addPreference("BeltPlugin/raft_thickness", 0.8)
+        # self._preferences.addPreference("BeltPlugin/raft_gap", 0.5)
+        # self._preferences.addPreference("BeltPlugin/raft_speed", 18.0)
+        # self._preferences.addPreference("BeltPlugin/raft_flow", 1.0)
+        #
+        #
+        # self._preferences.addPreference("BeltPlugin/belt_wall_enabled", False)
+        # self._preferences.addPreference("BeltPlugin/belt_wall_speed", 600.0)
+        # self._preferences.addPreference("BeltPlugin/belt_wall_flow", 1.0)
+        #
+        # self._preferences.addPreference("BeltPlugin/z_offset_gap", 0.25)
+        #
+        # self._preferences.addPreference("BeltPlugin/secondary_fans_enabled", False)
+        # self._preferences.addPreference("BeltPlugin/secondary_fans_speed", 0)
+        #
+        # #Not setting user
+        # self._preferences.addPreference("BeltPlugin/z_offset", 0.2)
+        # self._preferences.addPreference("BeltPlugin/view_depth", 160)
+        #
+        # ###########################################
+        # self.setMenuName("Belt Extension")
+        # self.addMenuItem("Setting", self.showSettings)
 
         self._scene_root = self._application.getController().getScene().getRoot()
         self._scene_root.addDecorator(BeltDecorator.BeltDecorator())
-
         self._application.getOutputDeviceManager().writeStarted.connect(self._filterGcode)
-
         self._application.pluginsLoaded.connect(self._onPluginsLoaded)
+        self._application.globalContainerStackChanged.connect(self._onGlobalContainerStackChanged)
+        self._onGlobalContainerStackChanged()
+
+        self._force_visibility_update = True
 
         # disable update checker plugin (because it checks the wrong version)
         #plugin_registry = PluginRegistry.getInstance()
@@ -137,22 +139,150 @@ class BeltPlugin(QObject,Extension):
         Logger.log("d", "Apply Build Volume")
         self._build_volume_patches = BuildVolumePatches.BuildVolumePatches(self._application.getBuildVolume())
         self._cura_engine_backend_patches = CuraEngineBackendPatches.CuraEngineBackendPatches(self._application.getBackend())
+        # self._print_information_patches = PrintInformationPatches.PrintInformationPatches(self._application.getPrintInformation())
         self._output_device_patches = {}
-
         self._application._cura_actions = PatchedCuraActions.PatchedCuraActions()
         self._application._qml_engine.rootContext().setContextProperty("CuraActions", self._application._cura_actions)
-
-
         self._application.getBackend().slicingStarted.connect(self._onSlicingStarted)
-
         gcode_reader_plugin = PluginRegistry.getInstance().getPluginObject("GCodeReader")
         self._flavor_parser_patches = {}
         if gcode_reader_plugin:
             for (parser_name, parser_object) in gcode_reader_plugin._flavor_readers_dict.items():
                 self._flavor_parser_patches[parser_name] = FlavorParserPatches.FlavorParserPatches(parser_object)
+        self._fixVisibilityPreferences(forced = self._force_visibility_update)
+        #
 
+    def _onGlobalContainerStackChanged(self):
+        if self._global_container_stack:
+            self._global_container_stack.propertyChanged.disconnect(self._onSettingValueChanged)
+
+        self._global_container_stack = self._application.getGlobalContainerStack()
+
+        if self._global_container_stack:
+            self._global_container_stack.propertyChanged.connect(self._onSettingValueChanged)
+            gantry_angle = self._global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+            print("on_glob: gantry_angle: " + gantry_angle)
+            # HACK: Move blackbelt_settings to the top of the list of settings
+            definition_container = self._global_container_stack.getBottom()
+            if definition_container._definitions[0].key != "blackbelt_settings":
+                for index, definition in enumerate(definition_container._definitions):
+                    if definition.key == "blackbelt_settings":
+                        definition_container._definitions.insert(0, definition_container._definitions.pop(index))
+
+            # HOTFIXES for Blackbelt stacks
+            if gantry_angle and self._application._machine_manager:
+                extruder_stack = self._application.getMachineManager()._active_container_stack
+
+                if extruder_stack:
+                    # Make sure the extruder material diameter matches the global material diameter
+                    material_diameter = extruder_stack.getProperty("material_diameter", "value")
+                    if material_diameter:
+                        definition_changes_container = extruder_stack.definitionChanges
+                        if "material_diameter" not in definition_changes_container.getAllKeys():
+                            # Make sure there is a definition_changes container to store the machine settings
+                            if definition_changes_container == ContainerRegistry.getInstance().getEmptyInstanceContainer():
+                                print("extruder_stack.getId: " + extruder_stack.getId)
+                                definition_changes_container = CuraStackBuilder.createDefinitionChangesContainer(
+                                    extruder_stack, extruder_stack.getId() + "_settings")
+
+                            definition_changes_container.setProperty("material_diameter", "value", material_diameter)
+
+                        # Make sure approximate diameters are in check
+                        approximate_diameter = str(round(material_diameter))
+                        extruder_stack.setMetaDataEntry("approximate_diameter", approximate_diameter)
+                        self._global_container_stack.setMetaDataEntry("approximate_diameter", approximate_diameter)
+
+                    # Make sure the extruder quality is a blackbelt quality profile
+                    if extruder_stack.quality != self._application.empty_quality_container and extruder_stack.quality.getDefinition().getId() != "blackbelt":
+                        qualityList = ContainerRegistry.getInstance().findContainers(id = "blackbelt_normal")
+                        if qualityList:
+                            blackbelt_normal_quality = qualityList[0]                        
+                            extruder_stack.setQuality(blackbelt_normal_quality)
+                            self._global_container_stack.setQuality(blackbelt_normal_quality)
+
+        self._adjustLayerViewNozzle()
     def _onSlicingStarted(self) -> None:
         self._scene_root.callDecoration("calculateTransformData")
+
+    def _onActiveVariantChanged(self):
+        if not self._global_container_stack:
+            return
+        extruder_stack = self._application.getMachineManager()._active_container_stack
+        if not extruder_stack:
+            return
+
+        gantry_angle = self._global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+        print("_onActiveVariantChanged: gantry_angle " + gantry_angle)
+        if not gantry_angle:
+            return
+
+        if self._global_container_stack.variant != extruder_stack.variant:
+            self._global_container_stack.setVariant(extruder_stack.variant)
+
+    def _onActiveQualityChanged(self):
+        # HOTFIX: make sure global quality is correctly set
+        if not self._global_container_stack:
+            return
+        extruder_stack = self._application.getMachineManager()._active_container_stack
+        if not extruder_stack:
+            return
+
+
+        gantry_angle = self._global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+        print("_onActiveQualityChanged: gantry_angle " + gantry_angle)
+        if not gantry_angle:
+            return
+
+        if extruder_stack.quality.getMetaDataEntry("global_quality", False) or not self._global_container_stack.quality.getMetaDataEntry("global_quality", False):
+            qualityList = ContainerRegistry.getInstance().findContainers(id = "blackbelt_global_normal")
+            if qualityList:
+                blackbelt_global_quality = qualityList[0]
+                self._global_container_stack.setQuality(blackbelt_global_quality)
+
+            qualityList = ContainerRegistry.getInstance().findContainers(id = "blackbelt_normal")
+            if qualityList:
+                blackbelt_quality = qualityList[0]
+                extruder_stack.setQuality(blackbelt_quality)
+
+    def _onSettingValueChanged(self, key, property_name):
+        if property_name != "value" or not self._global_container_stack.hasProperty("blackbelt_gantry_angle", "value"):
+            return
+
+        elif key == "blackbelt_gantry_angle":
+            # Setting the gantry angle changes the build volume.
+            # Force rebuilding the build volume by reloading the global container stack.
+            # This is a bit of a hack, but it seems quick enough.
+            self._application.globalContainerStackChanged.emit()
+
+    def _onPreferencesChanged(self, preference):
+        if preference == "general/visible_settings":
+            self._fixVisibilityPreferences()
+
+    def _fixVisibilityPreferences(self, forced = False):
+        # Fix setting visibility preferences
+        preferences = self._application.getPreferences()
+        visible_settings = preferences.getValue("general/visible_settings")
+        if not visible_settings:
+            # Wait until the default visible settings have been set
+            return
+
+        if "blackbelt_settings" in visible_settings and not forced:
+            return
+
+        if self._application.getSettingVisibilityPresetsModel():
+            self._application.getSettingVisibilityPresetsModel().setActivePreset("blackbelt")
+
+        visible_settings_changed = False
+        default_visible_settings = [
+            "blackbelt_settings", "blackbelt_repetitions"
+        ]
+        for key in default_visible_settings:
+            if key not in visible_settings:
+                visible_settings += ";%s" % key
+                visible_settings_changed = True
+
+        if visible_settings_changed:
+            preferences.setValue("general/visible_settings", visible_settings)
 
     def _onActiveViewChanged(self) -> None:
         self._adjustLayerViewNozzle()
@@ -164,7 +294,7 @@ class BeltPlugin(QObject,Extension):
 
         view = self._application.getController().getActiveView()
         if view and view.getPluginId() == "SimulationView":
-            gantry_angle = self._preferences.getValue("BeltPlugin/gantry_angle")
+            gantry_angle = global_stack.getProperty("blackbelt_gantry_angle", "value")
             if gantry_angle and float(gantry_angle) > 0:
                 view.getNozzleNode().setParent(None)
             else:
@@ -173,11 +303,10 @@ class BeltPlugin(QObject,Extension):
 
     def _filterGcode(self, output_device) -> None:
         global_stack = self._application.getGlobalContainerStack()
-
-        if not self._preferences.getValue("BeltPlugin/on_plugin"):
+        gantry_angle = global_stack.getProperty("blackbelt_gantry_angle", "value")
+        Logger.log("i", "gantry_angle : " + str(gantry_angle))
+        if not gantry_angle:
             return
-
-
         scene = self._application.getController().getScene()
         gcode_dict = getattr(scene, "gcode_dict", {})
         if not gcode_dict: # this also checks for an empty dict
@@ -185,20 +314,20 @@ class BeltPlugin(QObject,Extension):
             return
         dict_changed = False
 
-        enable_secondary_fans = self._preferences.getValue("BeltPlugin/secondary_fans_enabled")
+        enable_secondary_fans = global_stack.extruders["0"].getProperty("blackbelt_secondary_fans_enabled", "value")
         if enable_secondary_fans:
-            secondary_fans_speed = self._preferences.getValue("BeltPlugin/secondary_fans_speed")
+            secondary_fans_speed = global_stack.extruders["0"].getProperty("blackbelt_secondary_fans_speed", "value") / 100
 
-        enable_belt_wall = self._preferences.getValue("BeltPlugin/belt_wall_enabled")
+        enable_belt_wall = global_stack.getProperty("blackbelt_belt_wall_enabled", "value")
         if enable_belt_wall:
-            belt_wall_flow = self._preferences.getValue("BeltPlugin/belt_wall_flow")
-            belt_wall_speed = self._preferences.getValue("BeltPlugin/belt_wall_speed")
+            belt_wall_flow = global_stack.getProperty("blackbelt_belt_wall_flow", "value") / 100
+            belt_wall_speed = global_stack.getProperty("blackbelt_belt_wall_speed", "value") * 60
             minimum_y = global_stack.extruders["0"].getProperty("wall_line_width_0", "value") * 0.6 #  0.5 would be non-tolerant
 
-        repetitions = self._preferences.getValue("BeltPlugin/repetitions") or 1
+        repetitions = global_stack.getProperty("blackbelt_repetitions", "value") or 1
         if repetitions > 1:
-            repetitions_distance = self._preferences.getValue("BeltPlugin/repetitions_distance")
-            repetitions_gcode = self._preferences.getValue("BeltPlugin/repetitions_gcode")
+            repetitions_distance = global_stack.getProperty("blackbelt_repetitions_distance", "value")
+            repetitions_gcode = global_stack.getProperty("blackbelt_repetitions_gcode", "value")
 
         for plate_id in gcode_dict:
             gcode_list = gcode_dict[plate_id]
@@ -271,14 +400,14 @@ class BeltPlugin(QObject,Extension):
             _wall_line_width_0 = float(global_stack.extruders["0"].getProperty("wall_line_width_0", "value"))
             _xy_offset = float(global_stack.extruders["0"].getProperty("xy_offset", "value"))
 
-            Logger.log("d", "wall_line_width_0: " + str(_wall_line_width_0) + " xy_offset: " + str(_xy_offset))
-            _belt_z_offset_gap = float(self._preferences.getValue("BeltPlugin/z_offset_gap"))
-            _gantry_angle = float(self._preferences.getValue("BeltPlugin/gantry_angle"))
-
-            _belt_z_offset = round( ( _wall_line_width_0 / 2.0) - (_belt_z_offset_gap / math.sin(math.radians(_gantry_angle))) - _xy_offset, 4) 
-            Logger.log("d", "belt_z_offset" + str(_belt_z_offset))
-            gcode_list[1] = gcode_list[1].replace("{belt_z_offset}", str(_belt_z_offset))
-            gcode_list[-1] = gcode_list[-1].replace("{belt_z_offset}", str(_belt_z_offset))
+            # Logger.log("d", "wall_line_width_0: " + str(_wall_line_width_0) + " xy_offset: " + str(_xy_offset))
+            # _belt_z_offset_gap = float(self._preferences.getValue("BeltPlugin/z_offset_gap"))
+            # _gantry_angle = float(self._preferences.getValue("BeltPlugin/gantry_angle"))
+            #
+            # # _belt_z_offset = round( ( _wall_line_width_0 / 2.0) - (_belt_z_offset_gap / math.sin(math.radians(_gantry_angle))) - _xy_offset, 4)
+            # Logger.log("d", "belt_z_offset" + str(_belt_z_offset))
+            # gcode_list[1] = gcode_list[1].replace("{belt_z_offset}", str(_belt_z_offset))
+            # gcode_list[-1] = gcode_list[-1].replace("{belt_z_offset}", str(_belt_z_offset))
 
             # adjust walls that touch the belt
             if enable_belt_wall:
@@ -372,12 +501,12 @@ class BeltPlugin(QObject,Extension):
         if dict_changed:
             setattr(scene, "gcode_dict", gcode_dict)
 
-    def showSettings(self) -> None:
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), self._qml_folder, "BeltSettings.qml")
-        
-        self._settings_dialog = self._application.createQmlComponent(path, {"manager": self})
-        if self._settings_dialog:
-            self._settings_dialog.show()
+    # def showSettings(self) -> None:
+    #     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), self._qml_folder, "BeltSettings.qml")
+    #
+    #     self._settings_dialog = self._application.createQmlComponent(path, {"manager": self})
+    #     if self._settings_dialog:
+    #         self._settings_dialog.show()
     
     @pyqtSlot()
     def resetSlice(self) -> None:

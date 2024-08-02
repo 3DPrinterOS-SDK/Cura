@@ -342,6 +342,7 @@
         "action_button_disabled": [19, 24, 28, 255],
         "action_button_disabled_text": [200, 200, 200, 80],
         "action_button_disabled_border": [255, 255, 255, 30],
+        "action_button_hover_text": [0, 0, 0, 255],
 
         "scrollbar_background": [39, 44, 48, 0],
         "scrollbar_handle": [255, 255, 255, 105],

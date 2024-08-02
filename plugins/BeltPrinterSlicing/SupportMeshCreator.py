@@ -3,9 +3,9 @@
 
 import numpy
 import math
-#from . import trimesh
+import trimesh
 
-from UM.Platform import Platform
+#from UM.Platform import Platform
 from UM.Extension import Extension
 from UM.Application import Application
 from UM.Logger import Logger
@@ -16,10 +16,10 @@ from UM.Math.Vector import Vector
 from UM.i18n import i18nCatalog
 catalog = i18nCatalog("cura")
 # import trimesh
-if(Platform.isWindows()):
-    from .ThirdParty.win import trimesh
-elif(Platform.isOSX()):
-    from .ThirdParty.mac import trimesh
+#if(Platform.isWindows()):
+#    from .ThirdParty.win import trimesh
+#elif(Platform.isOSX()):
+#    from .ThirdParty.mac import trimesh
 
 
 
@@ -94,6 +94,7 @@ class SupportMeshCreator():
         roof.remove_unreferenced_vertices()
         roof.process()
 
+        firstflag = True
         if self._minimum_island_area > 0:
             # filter out all islands that would result in small towers
             scale_matrix = trimesh.transformations.scale_matrix(0, direction=[0,1,0])
@@ -104,7 +105,11 @@ class SupportMeshCreator():
                 xy_element = roof_element.copy()
                 xy_element.apply_transform(scale_matrix)
                 if xy_element.area >= self._minimum_island_area:
-                    roof = roof + roof_element
+                    if firstflag:
+                        roof = roof_element
+                        firstflag = False
+                    else:
+                        roof = roof + roof_element
 
         num_roof_vertices = len(roof.vertices)
         if num_roof_vertices == 0:

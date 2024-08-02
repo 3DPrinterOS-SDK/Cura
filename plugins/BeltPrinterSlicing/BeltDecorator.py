@@ -23,9 +23,9 @@ class BeltDecorator(SceneNodeDecorator):
 
         self._scene_front_offset = 0
 
-        gantry_angle = 0
-        if(preferences.getValue("BeltPlugin/on_plugin")):
-            gantry_angle = preferences.getValue("BeltPlugin/gantry_angle")
+        #gantry_angle = 0
+        #if(preferences.getValue("BeltPlugin/on_plugin")):
+        gantry_angle = global_stack.getProperty("blackbelt_gantry_angle", "value")
 
         Logger.log("i","gantry_angle : " + str(gantry_angle))
         if not gantry_angle:

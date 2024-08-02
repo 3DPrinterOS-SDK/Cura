@@ -195,8 +195,9 @@ Item
             {
                 width: parent.width - (2 * UM.Theme.getSize("default_margin").width)
                 text: base.getMachineName()
-                color: UM.Theme.getColor("primary_button")
+                //color: UM.Theme.getColor("primary_button_text")
                 font: UM.Theme.getFont("huge")
+                //font.color: UM.Theme.getColor("primary_button_text_hover")
                 elide: Text.ElideRight
             }
             Grid

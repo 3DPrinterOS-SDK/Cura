@@ -2,6 +2,7 @@ from UM.Math.Vector import Vector
 from UM.Scene.Iterator.DepthFirstIterator import DepthFirstIterator
 from UM.Scene.Selection import Selection
 from UM.Operations.AddSceneNodeOperation import AddSceneNodeOperation
+from UM.Scene.SceneNode import SceneNode
 
 from cura.Scene.CuraSceneNode import CuraSceneNode
 
@@ -10,24 +11,23 @@ from cura.Scene.ConvexHullDecorator import ConvexHullDecorator
 from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
 from cura.Scene.BlockSlicingDecorator import BlockSlicingDecorator
 
-#from cura.Arranging.Arrange import Arrange
+# from cura.Arranging.Arrange import Arrange
 from cura.Arranging.Nest2DArrange import arrange
 from cura.Arranging.ShapeArray import ShapeArray
 from cura.Arranging.ArrangeObjectsJob import ArrangeObjectsJob
 
 from UM.Logger import Logger
-from UM.Scene.SceneNode import SceneNode
-#from UM.Application import Application
-#from UM.Decorators import override
+# from UM.Application import Application
+# from UM.Decorators import override
 
-#from typing import cast, TYPE_CHECKING, Optional, Callable, List, Any, Dict
-#from cura.Machines.Models.GlobalStacksModel import GlobalStacksModel
+# from typing import cast, TYPE_CHECKING, Optional, Callable, List, Any, Dict
+# from cura.Machines.Models.GlobalStacksModel import GlobalStacksModel
 
-#from cura.Settings.GlobalStack import GlobalStack
-
+# from cura.Settings.GlobalStack import GlobalStack
 
 
 import os
+
 
 class CuraApplicationPatches():
     def __init__(self, application):
@@ -45,13 +45,16 @@ class CuraApplicationPatches():
     #   Copied verbatim from CuraApplication.arrange, with a patch to place objects in a row
     def arrange(self, nodes, fixed_nodes):
         Logger.log("d", "ApplicationPatches Arrange!")
-        
+
         ### START PATCH: perform simplified arrange for belt printers
         global_container_stack = self._application.getGlobalContainerStack()
         if not global_container_stack:
             return
 
-        if self._preferences.getValue("BeltPlugin/on_plugin"):
+        definition_container = global_container_stack.getBottom()
+        gantry_angle = global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+        is_blackbelt_printer = gantry_angle and float(gantry_angle) > 0
+        if is_blackbelt_printer:
             leading_edge = self._application.getBuildVolume().getBoundingBox().front
 
             for fixed_node in fixed_nodes:
@@ -66,11 +69,8 @@ class CuraApplicationPatches():
         ### END PATCH
 
         min_offset = self._application.getBuildVolume().getEdgeDisallowedSize() + 2  # Allow for some rounding errors
-        job = ArrangeObjectsJob(nodes, fixed_nodes, min_offset = max(min_offset, 8))
+        job = ArrangeObjectsJob(nodes, fixed_nodes, min_offset=max(min_offset, 8))
         job.start()
-
-
-
 
     #   Copied verbatim from CuraApplication._readMeshFinished, with a patch to place objects in a row
     def _readMeshFinished(self, job):
@@ -79,8 +79,11 @@ class CuraApplicationPatches():
             Logger.log("w", "Can't load meshes before a printer is added.")
             return
 
-        ### START PATCH: detect belt printer          
-        is_belt_printer = self._preferences.getValue("BeltPlugin/on_plugin")
+        definition_container = global_container_stack.getBottom()
+        print("aaa:"+definition_container.getId())
+        gantry_angle = global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+        is_blackbelt_printer = (gantry_angle and float(gantry_angle) > 0)
+        print("is_blackbelt_printer: " + str(is_blackbelt_printer))
         ### END PATCH
 
         if not self._application._volume:
@@ -102,16 +105,18 @@ class CuraApplicationPatches():
         root = self._application.getController().getScene().getRoot()
         fixed_nodes = []
         for node_ in DepthFirstIterator(root):
-            if node_.callDecoration("isSliceable") and node_.callDecoration("getBuildPlateNumber") == target_build_plate:
+            if node_.callDecoration("isSliceable") and node_.callDecoration(
+                    "getBuildPlateNumber") == target_build_plate:
                 fixed_nodes.append(node_)
 
         default_extruder_position = self._application.getMachineManager().defaultExtruderPosition
-        default_extruder_id = self._application._global_container_stack.extruderList[int(default_extruder_position)].getId()
+        default_extruder_id = self._application._global_container_stack.extruderList[
+            int(default_extruder_position)].getId()
 
         select_models_on_load = self._application.getPreferences().getValue("cura/select_models_on_load")
 
         nodes_to_arrange = []  # type: List[CuraSceneNode]
-        
+
         fixed_nodes = []
         for node_ in DepthFirstIterator(self._application.getController().getScene().getRoot()):
             # Only count sliceable objects
@@ -140,7 +145,7 @@ class CuraApplicationPatches():
             if is_non_sliceable:
                 # Need to switch first to the preview stage and then to layer view
                 self._application.callLater(lambda: (self._application.getController().setActiveStage("PreviewStage"),
-                                        self._application.getController().setActiveView("SimulationView")))
+                                                     self._application.getController().setActiveView("SimulationView")))
 
                 block_slicing_decorator = BlockSlicingDecorator()
                 node.addDecorator(block_slicing_decorator)
@@ -159,26 +164,26 @@ class CuraApplicationPatches():
 
             ### START PATCH: don't do standard arrange on load for belt printers
             ###              but place in a line instead
-            if is_belt_printer:
+            if is_blackbelt_printer:
                 half_node_depth = node.getBoundingBox().depth / 2
                 build_plate_empty = True
                 leading_edge = self._application.getBuildVolume().getBoundingBox().front
 
                 for existing_node in DepthFirstIterator(root):
                     if (
-                        not issubclass(type(existing_node), CuraSceneNode) or
-                        (not existing_node.getMeshData() and not existing_node.callDecoration("getLayerData")) or
-                        (existing_node.callDecoration("getBuildPlateNumber") != target_build_plate)):
-
+                            not issubclass(type(existing_node), CuraSceneNode) or
+                            (not existing_node.getMeshData() and not existing_node.callDecoration("getLayerData")) or
+                            (existing_node.callDecoration("getBuildPlateNumber") != target_build_plate)):
                         continue
 
                     build_plate_empty = False
                     leading_edge = min(leading_edge, existing_node.getBoundingBox().back)
 
                 if not build_plate_empty or leading_edge < half_node_depth:
-                    node.setPosition(Vector(0, 0, leading_edge - half_node_depth - self._margin_between_models))
+                    node.setPosition(
+                        Vector(0, 0, leading_edge - half_node_depth - self._application._margin_between_models))
 
-            if file_extension != "3mf" and not is_belt_printer:
+            if file_extension != "3mf" and not is_blackbelt_printer:
                 ### END PATCH
                 if node.callDecoration("isSliceable"):
                     # Ensure that the bottom of the bounding box is on the build plate

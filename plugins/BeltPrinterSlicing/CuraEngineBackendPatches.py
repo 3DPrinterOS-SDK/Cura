@@ -8,6 +8,8 @@ from .StartSliceJob import StartSliceJob
 
 from time import time
 
+from cura.CuraApplication import CuraApplication
+
 class CuraEngineBackendPatches():
     def __init__(self, backend):
         self._backend = backend

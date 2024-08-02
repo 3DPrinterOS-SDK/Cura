@@ -54,7 +54,7 @@ class BuildVolumePatches():
         ### DEPTH Overraide
         #TODO Calculate the ratio
         if self._build_volume._depth >= 99999:
-            max_d = self._preferences.getValue("BeltPlugin/view_depth")
+            max_d = 160
         ### END
 
         z_fight_distance = 0.2 # Distance between buildplate and disallowed area meshes to prevent z-fighting

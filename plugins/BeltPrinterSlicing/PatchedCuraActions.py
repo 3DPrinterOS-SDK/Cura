@@ -24,12 +24,14 @@ class PatchedCuraActions(CuraActions):
     def multiplySelection(self, count: int) -> None:
         application = cura.CuraApplication.CuraApplication.getInstance()
         global_container_stack = application.getGlobalContainerStack()
-        preferences = application.getPreferences()
 
         if not global_container_stack:
             return
 
-        if not preferences.getValue("BeltPlugin/on_plugin"):
+        # definition_container = global_container_stack.getBottom()
+        gantry_angle = global_container_stack.getProperty("blackbelt_gantry_angle", "value")
+
+        if not gantry_angle:
             # for all other printers do the normal multiply/arrange
             super().multiplySelection(count)
             return
