@@ -274,7 +274,10 @@ class BeltPlugin(QObject,Extension):
 
         visible_settings_changed = False
         default_visible_settings = [
-            "belt_settings", "belt_repetitions"
+            "belt_settings", "belt_repetitions",  "belt_repetitions_distance",
+            "belt_raft", "belt_raft_margin", "belt_raft_thickness", "belt_raft_gap", "belt_raft_speed",
+            "belt_raft_flow", "belt_wall_enabled", "belt_wall_speed", "belt_wall_flow",
+            "belt_support_gantry_angle_bias", "belt_support_minimum_island_area"
         ]
         for key in default_visible_settings:
             if key not in visible_settings:
