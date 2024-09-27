@@ -316,6 +316,7 @@ class ProcessSlicedLayersJob(Job):
                     front_offset = front_offset - global_container_stack.getProperty("belt_raft_margin", "value") \
                                                 - global_container_stack.getProperty("belt_raft_thickness", "value")
             new_node.translate(Vector(0, 0, front_offset), SceneNode.TransformSpace.World)
+
         ### END PATCH
 
         if self._progress_message:

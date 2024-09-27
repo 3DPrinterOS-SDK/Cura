@@ -53,7 +53,7 @@ class BuildVolumePatches():
 
         ### DEPTH Overraide
         #TODO Calculate the ratio
-        if self._build_volume._depth >= 99999:
+        if self._build_volume._depth >= 2000:
             max_d = 160
         ### END
 

@@ -249,9 +249,9 @@ class StartSliceJob(Job):
                 for node in group:
                     # Only check if the printing extruder is enabled for printing meshes
                     is_non_printing_mesh = node.callDecoration("evaluateIsNonPrintingMesh")
-                    extruder_position = int(node.callDecoration("getActiveExtruderPosition"))
+                    extruder_position = None
                     if extruder_position is None: # raft meshes may not have an extruder position (yet)
-                        extruder_position = "0"
+                        extruder_position = 0
                     if not is_non_printing_mesh and not extruders_enabled[extruder_position]:
                         skip_group = True
                         has_model_with_disabled_extruders = True
@@ -376,7 +376,7 @@ class StartSliceJob(Job):
                                 if belt_support_minimum_island_area is None:
                                     belt_support_minimum_island_area = global_stack.getProperty("belt_support_minimum_island_area", "value")
                                 support_mesh_data = SupportMeshCreator(
-                                    down_vector=numpy.array([0, -math.cos(math.radians(biased_down_angle)), -math.sin(biased_down_angle)]),
+                                    down_vector=numpy.array([0, -math.cos(math.radians(biased_down_angle)), -math.sin(math.radians(biased_down_angle))]),
                                     bottom_cut_off=stack.getProperty("wall_line_width_0", "value") / 2,
                                     minimum_island_area=belt_support_minimum_island_area
                                 ).createSupportMeshForNode(object)
@@ -384,6 +384,7 @@ class StartSliceJob(Job):
                                     new_node = self._addMeshFromData(support_mesh_data, "generatedSupportMesh")
                                     added_meshes.append(new_node)
                                     support_meshes.append(new_node.getName())
+
 
                             # check if the bottom needs to be cut off
                             aabb = object.getBoundingBox()
@@ -418,7 +419,7 @@ class StartSliceJob(Job):
             if stack.getProperty("belt_raft", "value"):
                 raft_offset = stack.getProperty("belt_raft_thickness", "value") + stack.getProperty("belt_raft_gap", "value")
                 raft_speed = stack.getProperty("belt_raft_speed", "value")
-                raft_flow = stack.getProperty("belt_raft_flow", "value") * math.sin(gantry_angle)
+                raft_flow = stack.getProperty("belt_raft_flow", "value") * math.sin(math.radians(gantry_angle))
 
             adhesion_extruder_nr = stack.getProperty("adhesion_extruder_nr", "value")
             support_extruder_nr = stack.getProperty("support_extruder_nr", "value")

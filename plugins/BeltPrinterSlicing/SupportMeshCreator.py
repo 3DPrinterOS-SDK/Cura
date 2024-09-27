@@ -5,23 +5,11 @@ import numpy
 import math
 import trimesh
 
-#from UM.Platform import Platform
-from UM.Extension import Extension
 from UM.Application import Application
 from UM.Logger import Logger
-
 from UM.Mesh.MeshData import MeshData, calculateNormalsFromIndexedVertices
-from UM.Math.Vector import Vector
-
 from UM.i18n import i18nCatalog
 catalog = i18nCatalog("cura")
-# import trimesh
-#if(Platform.isWindows()):
-#    from .ThirdParty.win import trimesh
-#elif(Platform.isOSX()):
-#    from .ThirdParty.mac import trimesh
-
-
 
 class SupportMeshCreator():
     def __init__(self,
@@ -39,8 +27,7 @@ class SupportMeshCreator():
                 support_angle_stack = Application.getInstance().getExtruderManager().getExtruderStack(support_extruder_nr)
                 self._support_angle = support_angle_stack.getProperty("support_angle", "value")
             else:
-                self._support_angle = 50
-
+                self._support_angle = 0
         self._filter_upwards_facing_faces = filter_upwards_facing_faces
         self._minimum_island_area = minimum_island_area
         self._down_vector = down_vector
@@ -61,6 +48,7 @@ class SupportMeshCreator():
         support_mesh = self.createSupportMesh(node_name, node_vertices, node_indices)
         if support_mesh is not None:
             # convert resulting trimesh into meshdata
+
             mesh_data = self._toMeshData(support_mesh)
             return mesh_data
 
@@ -139,13 +127,13 @@ class SupportMeshCreator():
 
         return support_mesh
 
+
+
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
         tri_faces = tri_node.faces
         tri_vertices = tri_node.vertices
-
         indices = []
         vertices = []
-
         index_count = 0
         face_count = 0
         for tri_face in tri_faces:
@@ -156,10 +144,8 @@ class SupportMeshCreator():
                 index_count += 1
             indices.append(face)
             face_count += 1
-
         vertices = numpy.asarray(vertices, dtype=numpy.float32)
         indices = numpy.asarray(indices, dtype=numpy.int32)
         normals = calculateNormalsFromIndexedVertices(vertices, indices, face_count)
-
         mesh_data = MeshData(vertices=vertices, indices=indices, normals=normals)
         return mesh_data
