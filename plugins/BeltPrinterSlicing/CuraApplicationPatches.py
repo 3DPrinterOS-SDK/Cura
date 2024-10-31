@@ -193,7 +193,6 @@ class CuraApplicationPatches():
                         center_y = 0
 
                     node.translate(Vector(0, center_y, 0))
-
                     nodes_to_arrange.append(node)
 
             # This node is deep copied from some other node which already has a BuildPlateDecorator, but the deepcopy

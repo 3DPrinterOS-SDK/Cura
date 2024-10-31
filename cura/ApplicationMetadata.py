@@ -6,7 +6,7 @@
 # ---------
 DEFAULT_CURA_APP_NAME = "layerloop3d-slicer"
 DEFAULT_CURA_DISPLAY_NAME = "LayerLoop Slicer"
-DEFAULT_CURA_VERSION = "5.7.0.0"
+DEFAULT_CURA_VERSION = "5.7.3.0"
 DEFAULT_CURA_BUILD_TYPE = ""
 DEFAULT_CURA_DEBUG_MODE = False
 DEFAULT_CURA_LATEST_URL = "https://software.ultimaker.com/latest.json"

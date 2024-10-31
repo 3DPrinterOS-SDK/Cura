@@ -118,10 +118,10 @@ class BeltPlugin(QObject,Extension):
         self._force_visibility_update = True
 
         # disable update checker plugin (because it checks the wrong version)
-        #plugin_registry = PluginRegistry.getInstance()
-        #if "UpdateChecker" not in plugin_registry._disabled_plugins:
-        #    Logger.log("d", "Disabling Update Checker plugin")
-        #    plugin_registry._disabled_plugins.append("UpdateChecker")
+        plugin_registry = PluginRegistry.getInstance()
+        if "UpdateChecker" not in plugin_registry._disabled_plugins:
+           Logger.log("d", "Disabling Update Checker plugin")
+           plugin_registry._disabled_plugins.append("UpdateChecker")
 
     def _onPluginsLoaded(self) -> None:
         # make sure the we connect to engineCreatedSignal later than PrepareStage does, so we can substitute our own sidebar
@@ -130,6 +130,8 @@ class BeltPlugin(QObject,Extension):
 
         # Hide nozzle in simulation view
         self._application.getController().activeViewChanged.connect(self._onActiveViewChanged)
+        preferences = self._application.getPreferences()
+        preferences.preferenceChanged.connect(self._onPreferencesChanged)
 
     def _onEngineCreated(self) -> None:
 

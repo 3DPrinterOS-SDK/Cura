@@ -42,12 +42,12 @@ def generate_nsi(source_path: str, dist_path: str, filename: str):
 
 
     nsis_content = template.render(
-        app_name = f"LayerLoop3D Slicer 5.7.2",
+        app_name = f"LayerLoop3D Slicer 5.7.3",
         main_app = "LayerLoop-Slicer.exe",
-        version = "5.7.2",
+        version = "5.7.3",
         version_major = "5",
         version_minor = "7",
-        version_patch = "2",
+        version_patch = "3",
         company = "3DPrinterOS",
         web_site = "https://3dprinteros.com",
         year = datetime.now().year,

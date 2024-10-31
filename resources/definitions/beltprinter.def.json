@@ -180,6 +180,9 @@
             "enabled": false,
             "settable_per_mesh": false
         },
+        "support_structure": {
+            "options": { "normal": "Normal"}
+        },
         "support_tree_enable":
         {
             "enabled": false,
