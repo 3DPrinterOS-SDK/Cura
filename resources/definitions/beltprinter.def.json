@@ -173,15 +173,16 @@
         "support_roof_pattern": { "enabled": "support_roof_enable and True" },
         "support_skip_some_zags": { "enabled": "(support_pattern == 'zigzag')" },
         "support_skip_zag_per_mm": { "enabled": "(support_pattern == 'zigzag') and support_skip_some_zags" },
+        "support_structure":
+        {
+            "options": { "normal": "Normal" }
+        },
         "support_supported_skin_fan_speed": { "enabled": "support_fan_enable" },
         "support_top_distance": { "enabled": "True" },
         "support_tree_branch_distance":
         {
             "enabled": false,
             "settable_per_mesh": false
-        },
-        "support_structure": {
-            "options": { "normal": "Normal"}
         },
         "support_tree_enable":
         {
@@ -381,7 +382,7 @@
                     "type": "enum",
                     "unit": "\u00b0"
                 },
-                "belt_repetitions_gcode": { "default_value": "\nG92 E0   ; Set Extruder to zero\nG1 E-4 F3900  ; Retract 4mm at 65mm/s\nG92 Z0   ; Set Belt to zero\nG1 Z{belt_repetitions_distance }   ; Advance belt between repetitions\nG92 Z0   ; Set Belt to zero again\n\n;-----repetition-----\n\nM107    ; Start with the fan off\nG0 X170 ; Move X to the center\nG1 Y1   ; Move y to the belt\nG1 E0   ; Move extruder back to 0\nG92 E-5 ; Add 5mm restart distance\n\n",
+                "belt_repetitions_gcode": { "default_value": "\nG92 E0   ; Set Extruder to zero\nG1 E-4 F3900  ; Retract 4mm at 65mm/s\nG92 Z0   ; Set Belt to zero\nG1 Z{belt_repetitions_distance  }   ; Advance belt between repetitions\nG92 Z0   ; Set Belt to zero again\n\n;-----repetition-----\n\nM107    ; Start with the fan off\nG0 X170 ; Move X to the center\nG1 Y1   ; Move y to the belt\nG1 E0   ; Move extruder back to 0\nG92 E-5 ; Add 5mm restart distance\n\n",
                     "description": "Gcode commands to be executed between repetitions - separated by \\n.",
                     "enabled": "belt_repetitions > 1",
                     "label": "Repetitions GCode",
