@@ -58,7 +58,6 @@ plugins/GodMode
 plugins/OctoPrintPlugin
 plugins/ProfileFlattener
 plugins/SettingsGuide
-plugins/SettingsGuide2
 plugins/SVGToolpathReader
 plugins/X3GWriter
 plugins/CuraFlatPack
@@ -66,7 +65,6 @@ plugins/CuraRemoteSupport
 plugins/ModelCutter
 plugins/PrintProfileCreator
 plugins/MultiPrintPlugin
-plugins/CuraOrientationPlugin
 
 #Build stuff
 CMakeCache.txt

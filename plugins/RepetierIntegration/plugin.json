@@ -1,0 +1,10 @@
+{
+    "name": "Repetier Integration",
+    "author": "Shane Bumpurs - c/o fieldOfView",
+    "version": "5.0",    
+    "minimum_cura_version": "5.0",
+    "description": "Enables network printing and monitoring to Repetier",
+    "api": 5,
+    "supported_sdk_versions": ["5.0.0", "6.0.0", "7.0.0", "8.0.0"],
+    "i18n-catalog": "cura"
+}
