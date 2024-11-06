@@ -22,8 +22,8 @@
             102
         ],
         "preferred_variant_name": "0.35 mm",
-        "variants_name": "Nozzle Diam",
-        "supports_network_connection": true
+        "supports_network_connection": true,
+        "variants_name": "Nozzle Diam"
     },
     "overrides":
     {
