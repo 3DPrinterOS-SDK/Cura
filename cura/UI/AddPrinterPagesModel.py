@@ -14,6 +14,10 @@ class AddPrinterPagesModel(WelcomePagesModel):
         self._pages.append({"id": "third_party_printer",
                            "page_url": self._getBuiltinWelcomePagePath("AddThirdPartyPrinter.qml")
                            })
+        self._pages.append({"id": "add_printer_by_ip",
+                            "page_url": self._getBuiltinWelcomePagePath("AddPrinterByIpContent.qml"),
+                            "next_page_id": "machine_actions",
+                            })
         self._pages.append({"id": "machine_actions",
                             "page_url": self._getBuiltinWelcomePagePath("FirstStartMachineActionsContent.qml"),
                             "should_show_function": self.shouldShowMachineActions,
