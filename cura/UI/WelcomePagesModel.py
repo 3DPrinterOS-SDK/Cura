@@ -258,7 +258,8 @@ class WelcomePagesModel(ListModel):
                            "page_url": self._getBuiltinWelcomePagePath("UserAgreementContent.qml")
                            },
                           {"id": "third_party_printer",
-                           "page_url": self._getBuiltinWelcomePagePath("AddThirdPartyPrinter.qml")
+                           "page_url": self._getBuiltinWelcomePagePath("AddThirdPartyPrinter.qml"),
+                           "next_page_id": "machine_actions",
                            },
                           {"id": "machine_actions",
                            "page_url": self._getBuiltinWelcomePagePath("FirstStartMachineActionsContent.qml"),

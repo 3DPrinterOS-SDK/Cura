@@ -12,7 +12,8 @@ class AddPrinterPagesModel(WelcomePagesModel):
 
     def initialize(self, cancellable: bool = True) -> None:
         self._pages.append({"id": "third_party_printer",
-                           "page_url": self._getBuiltinWelcomePagePath("AddThirdPartyPrinter.qml")
+                           "page_url": self._getBuiltinWelcomePagePath("AddThirdPartyPrinter.qml"),
+                           "next_page_id": "machine_actions",
                            })
         self._pages.append({"id": "add_printer_by_ip",
                             "page_url": self._getBuiltinWelcomePagePath("AddPrinterByIpContent.qml"),
