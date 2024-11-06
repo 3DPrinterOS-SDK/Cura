@@ -18,15 +18,15 @@ def generate_nsi(source_path: str, dist_path: str, filename: str):
     dist_loc = Path(os.getcwd(), dist_path)
     source_loc = Path(os.getcwd(), source_path)
     instdir = Path("$INSTDIR")
-    dist_paths = [p.relative_to(dist_loc.joinpath("LayerLoop-Slicer")) for p in sorted(dist_loc.joinpath("LayerLoop-Slicer").rglob("*")) if p.is_file()]
+    dist_paths = [p.relative_to(dist_loc.joinpath("FELIXslicer")) for p in sorted(dist_loc.joinpath("FELIXslicer").rglob("*")) if p.is_file()]
     mapped_out_paths = {}
     for dist_path in dist_paths:
         if "__pycache__" not in dist_path.parts:
             out_path = instdir.joinpath(dist_path).parent
             if out_path not in mapped_out_paths:
-                mapped_out_paths[out_path] = [(dist_loc.joinpath("LayerLoop-Slicer", dist_path), instdir.joinpath(dist_path))]
+                mapped_out_paths[out_path] = [(dist_loc.joinpath("FELIXslicer", dist_path), instdir.joinpath(dist_path))]
             else:
-                mapped_out_paths[out_path].append((dist_loc.joinpath("LayerLoop-Slicer", dist_path), instdir.joinpath(dist_path)))
+                mapped_out_paths[out_path].append((dist_loc.joinpath("FELIXslicer", dist_path), instdir.joinpath(dist_path)))
 
     rmdir_paths = set()
     for rmdir_f in mapped_out_paths.values():
@@ -42,8 +42,8 @@ def generate_nsi(source_path: str, dist_path: str, filename: str):
 
 
     nsis_content = template.render(
-        app_name = f"LayerLoop3D Slicer 5.7.3",
-        main_app = "LayerLoop-Slicer.exe",
+        app_name = f"FELIXslicer 5.8.1",
+        main_app = "FELIXslicer.exe",
         version = "5.7.3",
         version_major = "5",
         version_minor = "7",

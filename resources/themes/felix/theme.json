@@ -236,7 +236,6 @@
     },
 
     "colors": {
-
         "main_background": "background_1",
         "detail_background": "background_2",
         "wide_lining": [245, 245, 245, 255],

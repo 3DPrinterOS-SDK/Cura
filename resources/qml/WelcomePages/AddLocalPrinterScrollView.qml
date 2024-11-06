@@ -22,7 +22,7 @@ Item
     property var currentSections: new Set()
     // By default (when this list shows up) we always expand the "Ultimaker" section.
     property var preferredCategories: {
-        "LayerLoop3D": -2,
+        "FELIX": -2,
         "Custom": -1
     }
 
@@ -69,7 +69,7 @@ Item
 
     Component.onCompleted:
     {
-        const initialSection = "LayerLoop3D";
+        const initialSection = "FELIX";
         base.currentSections.add(initialSection);
         updateCurrentItemUponSectionChange(initialSection);
         // Trigger update on base.currentSections

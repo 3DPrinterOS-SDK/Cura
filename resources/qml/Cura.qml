@@ -196,16 +196,7 @@ UM.MainWindow
             Rectangle
             {
                 anchors.fill: parent
-                // color: UM.Theme.getColor("main_window_header_background")
-                gradient: Gradient {
-                    orientation: Gradient.Horizontal
-                    GradientStop { position: 0.0; color: "#181818" }
-                    GradientStop { position: 0.32; color: "#181818" }
-                    GradientStop { position: 0.54; color: Qt.rgba(3/255, 56/255, 74/255, 0.82) }
-                    GradientStop { position: 0.77; color: Qt.rgba(114/255, 35/255, 75/255, 0.87) }
-                    GradientStop { position: 0.90; color: Qt.rgba(0, 0, 0, 0.76) }
-                    GradientStop { position: 1.0; color: "#222222" }
-                }
+                color: UM.Theme.getColor("main_window_header_background")
             }
 
             // This is a placeholder for adding a pattern in the header

@@ -28,7 +28,7 @@ Item
             height: UM.Theme.getSize("thick_margin").width
             width: parent.width
         }
-
+/*
         Image
         {
             id: curaImage
@@ -41,7 +41,7 @@ Item
             sourceSize.width: width
             sourceSize.height: height
         }
-
+*/
         // Filler item
         Item
         {

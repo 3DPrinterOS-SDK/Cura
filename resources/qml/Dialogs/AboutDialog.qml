@@ -175,7 +175,7 @@ UM.Dialog
                     {
                         //Do NOT add dependencies of our dependencies here, nor CI-dependencies!
                         //UltiMaker's own projects and forks.
-                        projectsModel.append({ name: "LayerLoop Slicer", description: catalog.i18nc("@label Description for application component", "Fork of Cura's graphical user interface"), license: "LGPLv3", url: "https://github.com/3DPrinterOS-SDK/Cura/tree/layerloop5.7" });
+                        projectsModel.append({ name: "FELIXslicer", description: catalog.i18nc("@label Description for application component", "Fork of Cura's graphical user interface"), license: "LGPLv3", url: "https://github.com/3DPrinterOS-SDK/Cura/tree/felixslicer5.8" });
                         projectsModel.append({ name: "Cura", description: catalog.i18nc("@label Description for application component", "Graphical user interface"), license: "LGPLv3", url: "https://github.com/Ultimaker/Cura" });
                         projectsModel.append({ name: "Uranium", description: catalog.i18nc("@label Description for application component", "Application framework"), license: "LGPLv3", url: "https://github.com/Ultimaker/Uranium" });
                         projectsModel.append({ name: "CuraEngine", description: catalog.i18nc("@label Description for application component", "G-code generator"), license: "AGPLv3", url: "https://github.com/Ultimaker/CuraEngine" });
@@ -219,11 +219,6 @@ UM.Dialog
                         projectsModel.append({ name: "Pyinstaller", description: catalog.i18nc("@label Description for development tool", "Packaging Python-applications"), license: "GPLv2", url: "https://pyinstaller.org/" });
                         projectsModel.append({ name: "AppImageKit", description: catalog.i18nc("@label Description for development tool", "Linux cross-distribution application deployment"), license: "MIT", url: "https://github.com/AppImage/AppImageKit" });
                         projectsModel.append({ name: "NSIS", description: catalog.i18nc("@label Description for development tool", "Generating Windows installers"), license: "Zlib", url: "https://nsis.sourceforge.io/" });
-
-                        // Custom plugin
-                        projectsModel.append({ name: "CustomSupportCylinder", description: catalog.i18nc("@label Description for application dependency", "Custom Supports Plugin for Cura"), license: "GPL-3.0", url: "https://github.com/5axes/CustomSupportCylinder" });
-                        projectsModel.append({ name: "BeltPrinterSlicing", description: catalog.i18nc("@label Description for application dependency", "This is a port of the BLACKBELT Cura plugin to work with the latest versions of Cura "), license: "LGPL-3.0", url: "https://github.com/KingBain/BeltPrinterSlicing/tree/cura_5_support" });
-
                     }
                 }
             }
