@@ -15,7 +15,7 @@
         "preferred_material": "generic_pla",
         "preferred_quality_type": "normal",
         "machine_extruder_trains": { "0": "fdmextruder" },
-        "supports_usb_connection": true,
+        "supports_usb_connection": false,
         "supports_network_connection": false
     },
     "settings":

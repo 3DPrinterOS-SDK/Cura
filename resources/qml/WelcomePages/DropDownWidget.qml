@@ -37,7 +37,7 @@ Item
         target: header
         function onClicked()
         {
-            base.contentShown = !base.contentShown
+            // base.contentShown = !base.contentShown
             clicked()
         }
     }

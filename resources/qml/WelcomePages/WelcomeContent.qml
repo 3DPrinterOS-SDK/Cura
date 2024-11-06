@@ -35,6 +35,7 @@ Item
             anchors.horizontalCenter: parent.horizontalCenter
             visible: false
             source: UM.Theme.getImage("welcome_cura")
+            visible: false
             fillMode: Image.PreserveAspectFit
             width: UM.Theme.getSize("welcome_wizard_content_image_big").width
             sourceSize.width: width

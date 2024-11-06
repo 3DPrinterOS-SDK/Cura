@@ -74,16 +74,16 @@ class CuraSplashScreen(QSplashScreen):
         painter.setFont(font)
 
         if len(version) == 1:
-            painter.drawText(40, 104 + self._version_y_offset, round(330 * self._scale), round(230 * self._scale), Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop, version[0] if not ApplicationMetadata.IsAlternateVersion else ApplicationMetadata.CuraBuildType)
+            painter.drawText(50, 130 + self._version_y_offset, round(330 * self._scale), round(230 * self._scale), Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop, version[0] if not ApplicationMetadata.IsAlternateVersion else ApplicationMetadata.CuraBuildType)
         elif len(version) > 1:
-            painter.drawText(40, 104 + self._version_y_offset, round(330 * self._scale), round(230 * self._scale), Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop, f"{version[0]}-{version[1]}" if not ApplicationMetadata.IsAlternateVersion else ApplicationMetadata.CuraBuildType)
+            painter.drawText(50, 130 + self._version_y_offset, round(330 * self._scale), round(230 * self._scale), Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop, f"{version[0]}-{version[1]}" if not ApplicationMetadata.IsAlternateVersion else ApplicationMetadata.CuraBuildType)
 
         # Draw the loading image
         pen = QPen()
         pen.setWidthF(2 * self._scale)
         pen.setColor(QColor(255, 255, 255, 255))
         painter.setPen(pen)
-        painter.drawArc(38, 324, round(20 * self._scale), round(20 * self._scale), round(self._loading_image_rotation_angle * 16), 300 * 16)
+        painter.drawArc(50, 324, round(20 * self._scale), round(20 * self._scale), round(self._loading_image_rotation_angle * 16), 300 * 16)
 
         # Draw message text
         if self._current_message:
@@ -93,7 +93,7 @@ class CuraSplashScreen(QSplashScreen):
             pen.setColor(QColor(255, 255, 255, 255))
             painter.setPen(pen)
             painter.setFont(font)
-            painter.drawText(70, 308, 170, 48,
+            painter.drawText(82, 308, 170, 48,
                              Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter | Qt.TextFlag.TextWordWrap,
                              self._current_message)
 

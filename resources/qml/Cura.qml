@@ -1,8 +1,8 @@
 // Copyright (c) 2022 Ultimaker B.V.
 // Cura is released under the terms of the LGPLv3 or higher.
 
-import QtQuick 2.7
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 import QtQuick.Dialogs
 
 import UM 1.5 as UM
@@ -196,7 +196,16 @@ UM.MainWindow
             Rectangle
             {
                 anchors.fill: parent
-                color: UM.Theme.getColor("main_window_header_background")
+                // color: UM.Theme.getColor("main_window_header_background")
+                gradient: Gradient {
+                    orientation: Gradient.Horizontal
+                    GradientStop { position: 0.0; color: "#181818" }
+                    GradientStop { position: 0.32; color: "#181818" }
+                    GradientStop { position: 0.54; color: Qt.rgba(3/255, 56/255, 74/255, 0.82) }
+                    GradientStop { position: 0.77; color: Qt.rgba(114/255, 35/255, 75/255, 0.87) }
+                    GradientStop { position: 0.90; color: Qt.rgba(0, 0, 0, 0.76) }
+                    GradientStop { position: 1.0; color: "#222222" }
+                }
             }
 
             // This is a placeholder for adding a pattern in the header

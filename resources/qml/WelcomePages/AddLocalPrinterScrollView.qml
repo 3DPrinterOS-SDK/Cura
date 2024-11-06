@@ -22,7 +22,7 @@ Item
     property var currentSections: new Set()
     // By default (when this list shows up) we always expand the "Ultimaker" section.
     property var preferredCategories: {
-        "Ultimaker B.V.": -2,
+        "LayerLoop3D": -2,
         "Custom": -1
     }
 
@@ -69,7 +69,7 @@ Item
 
     Component.onCompleted:
     {
-        const initialSection = "Ultimaker B.V.";
+        const initialSection = "LayerLoop3D";
         base.currentSections.add(initialSection);
         updateCurrentItemUponSectionChange(initialSection);
         // Trigger update on base.currentSections
@@ -304,8 +304,11 @@ Item
             {
                 id: machineName
                 width: parent.width - (2 * UM.Theme.getSize("default_margin").width)
-                color: UM.Theme.getColor("primary_button")
+
+                text: base.getMachineName()
+                //color: UM.Theme.getColor("primary_button_text")
                 font: UM.Theme.getFont("huge")
+                //font.color: UM.Theme.getColor("primary_button_text_hover")
                 elide: Text.ElideRight
             }
             Grid

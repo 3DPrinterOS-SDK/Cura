@@ -14,6 +14,8 @@ Item
 {
     UM.I18nCatalog { id: catalog; name: "cura" }
 
+    property var goToThirdPartyPrinter
+
     UM.Label
     {
         id: titleLabel
@@ -21,7 +23,7 @@ Item
         anchors.horizontalCenter: parent.horizontalCenter
         horizontalAlignment: Text.AlignHCenter
         text: catalog.i18nc("@label", "User Agreement")
-        color: UM.Theme.getColor("primary_button")
+        color: UM.Theme.getColor("primary_button_text")
         font: UM.Theme.getFont("huge")
     }
 
@@ -56,6 +58,7 @@ Item
             CuraApplication.writeToLog("i", "User accepted the User-Agreement.")
             CuraApplication.setNeedToShowUserAgreement(false)
             base.showNextPage()
+
         }
     }
 
