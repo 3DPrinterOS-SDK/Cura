@@ -11,27 +11,27 @@
         "platform": "",
         "has_materials": true,
         "has_variants": true,
-        "variants_name": "Nozzle diameter",
-        "preferred_variant_name": "2 mm",
         "machine_extruder_trains":
         {
             "0": "felixfood_dual_extruder_0",
             "1": "felixfood_dual_extruder_1"
         },
-        "supports_network_connection": true
+        "preferred_variant_name": "2 mm",
+        "supports_network_connection": true,
+        "variants_name": "Nozzle diameter"
     },
     "overrides":
     {
         "gantry_height": { "value": "0" },
-        "machine_nozzle_size": { "default_value": 0.26 },
         "layer_height": { "default_value": 0.15 },
         "machine_center_is_zero": { "default_value": false },
         "machine_depth": { "default_value": 600 },
-		"machine_height": { "default_value": 400 },
-		"machine_width": { "default_value": 600 },
         "machine_extruder_count": { "default_value": 2 },
         "machine_gcode_flavor": { "default_value": "Repetier" },
         "machine_heated_bed": { "default_value": true },
-        "machine_name": { "default_value": "FeliexFood" }
+        "machine_height": { "default_value": 400 },
+        "machine_name": { "default_value": "FeliexFood" },
+        "machine_nozzle_size": { "default_value": 0.26 },
+        "machine_width": { "default_value": 600 }
     }
 }

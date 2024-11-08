@@ -14,6 +14,6 @@
             "default_value": 1,
             "maximum_value": "2"
         },
-        "material_diameter": { "default_value": 12.00 }
+        "material_diameter": { "default_value": 12.0 }
     }
 }
