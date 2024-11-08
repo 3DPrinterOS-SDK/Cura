@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "FELIX Pro 2 Dual",
+    "name": "FELIX Pro 2",
     "inherits": "fdmprinter",
     "metadata":
     {

@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "FELIX Tec 4 Dual",
+    "name": "FELIX Tec 4",
     "inherits": "fdmprinter",
     "metadata":
     {
