@@ -43,7 +43,7 @@ class CuraApplicationPatches():
     #   \param nodes nodes that we have to place
     #   \param fixed_nodes nodes that are placed in the arranger before finding spots for nodes
     #   Copied verbatim from CuraApplication.arrange, with a patch to place objects in a row
-    def arrange(self, nodes, fixed_nodes):
+    def arrange(self, nodes, fixed_nodes, *,  grid_arrangement=False):
         Logger.log("d", "ApplicationPatches Arrange!")
 
         ### START PATCH: perform simplified arrange for belt printers
