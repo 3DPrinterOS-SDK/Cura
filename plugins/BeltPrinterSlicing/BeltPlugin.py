@@ -319,15 +319,15 @@ class BeltPlugin(QObject,Extension):
             return
         dict_changed = False
 
-        enable_secondary_fans = global_stack.extruders["0"].getProperty("belt_secondary_fans_enabled", "value")
+        enable_secondary_fans = global_stack._extruders["0"].getProperty("belt_secondary_fans_enabled", "value")
         if enable_secondary_fans:
-            secondary_fans_speed = global_stack.extruders["0"].getProperty("belt_secondary_fans_speed", "value") / 100
+            secondary_fans_speed = global_stack._extruders["0"].getProperty("belt_secondary_fans_speed", "value") / 100
 
         enable_belt_wall = global_stack.getProperty("belt_wall_enabled", "value")
         if enable_belt_wall:
             belt_wall_flow = global_stack.getProperty("belt_wall_flow", "value") / 100
             belt_wall_speed = global_stack.getProperty("belt_wall_speed", "value") * 60
-            minimum_y = global_stack.extruders["0"].getProperty("wall_line_width_0", "value") * 0.6 #  0.5 would be non-tolerant
+            minimum_y = global_stack._extruders["0"].getProperty("wall_line_width_0", "value") * 0.6 #  0.5 would be non-tolerant
 
         repetitions = global_stack.getProperty("belt_repetitions", "value") or 1
         if repetitions > 1:
@@ -347,7 +347,7 @@ class BeltPlugin(QObject,Extension):
             # note: this simplified view is only valid for single extrusion printers
             setting_values = {}
             setting_summary = ";Setting summary:\n"
-            for stack in [global_stack.extruders["0"], global_stack]:
+            for stack in [global_stack._extruders["0"], global_stack]:
                 for index, container in enumerate(stack.getContainers()):
                     if index == ContainerIndexes.Definition:
                         continue
@@ -402,8 +402,8 @@ class BeltPlugin(QObject,Extension):
                     gcode_list[layer_number] = re.sub(search_regex, lambda m: "M106 P1 S%d\nM106 S%s" % (int(min(255, float(m.group(1)) * secondary_fans_speed)), m.group(1)), layer) #Replace all.
             
             # z_offset change
-            _wall_line_width_0 = float(global_stack.extruders["0"].getProperty("wall_line_width_0", "value"))
-            _xy_offset = float(global_stack.extruders["0"].getProperty("xy_offset", "value"))
+            _wall_line_width_0 = float(global_stack._extruders["0"].getProperty("wall_line_width_0", "value"))
+            _xy_offset = float(global_stack._extruders["0"].getProperty("xy_offset", "value"))
 
             # Logger.log("d", "wall_line_width_0: " + str(_wall_line_width_0) + " xy_offset: " + str(_xy_offset))
             # _belt_z_offset_gap = float(self._preferences.getValue("BeltPlugin/z_offset_gap"))
