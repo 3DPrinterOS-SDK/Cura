@@ -11,6 +11,7 @@
         "platform": "Banco_eXtend_Cura.STL",
         "first_start_actions": [ "MachineSettingsAction" ],
         "has_materials": true,
+        "quality_definition": "beltprinter",
         "machine_extruder_trains": { "0": "layer_loop_extruder" }
     },
     "overrides":
