@@ -6,7 +6,8 @@
     {
         "visible": false,
         "author": "btz",
-        "manufacturer": "LayerLoop"
+        "manufacturer": "LayerLoop",
+        "has_machine_quality": true
     },
     "overrides":
     {

@@ -180,7 +180,7 @@ class ProcessSlicedLayersJob(Job):
                     for index, segment_type in enumerate(line_types):
                         if points[index + 1][1] <= half_outer_wall_thickness + raft_thickness:
                             if segment_type in [LayerPolygon.LayerPolygon.Inset0Type, LayerPolygon.LayerPolygon.InsetXType]:
-                                line_types[index] = LayerPolygon.LayerPolygon.SkirtType
+                              #  line_types[index] = LayerPolygon.LayerPolygon.SkirtType # in Cura 5 readonly property
                                 extrusion_started = True
                             elif extrusion_started:
                                 break
@@ -190,7 +190,7 @@ class ProcessSlicedLayersJob(Job):
                     belt_wall_feedrate = global_container_stack.getProperty("belt_wall_speed", "value")
 
                     belt_wall_indices = []
-                    for index,point in enumerate(points):
+                    for index, point in enumerate(points):
                         if point[1] <= half_outer_wall_thickness + EPSILON:
                             if last_point_hit_wall and line_feedrates[index - 1] > belt_wall_feedrate:
                                 belt_wall_indices.append(index)
@@ -238,7 +238,6 @@ class ProcessSlicedLayersJob(Job):
 
                 this_poly = LayerPolygon.LayerPolygon(extruder, line_types, new_points, line_widths, line_thicknesses, line_feedrates)
                 this_poly.buildCache()
-
                 this_layer.polygons.append(this_poly)
 
                 Job.yieldThread()

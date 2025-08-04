@@ -923,7 +923,7 @@ class CuraApplication(QtApplication):
         self._welcome_pages_model.initialize()
         self._add_printer_pages_model.initialize()
         self._add_printer_pages_model_without_cancel.initialize(cancellable = False)
-        self._whats_new_pages_model.initialize()
+        #self._whats_new_pages_model.initialize()
 
         # Initialize the FileProviderModel
         self._file_provider_model.initialize(self._onFileProviderEnabledChanged)
@@ -2259,12 +2259,13 @@ class CuraApplication(QtApplication):
 
     @pyqtSlot(result = bool)
     def shouldShowWhatsNewDialog(self) -> bool:
-        has_active_machine = self._machine_manager.activeMachine is not None
-        has_app_just_upgraded = self.hasJustUpdatedFromOldVersion()
-
-        # Only show the what's new dialog if there's no machine and we have just upgraded
-        show_whatsnew_only = has_active_machine and has_app_just_upgraded
-        return show_whatsnew_only
+        return False
+        # has_active_machine = self._machine_manager.activeMachine is not None
+        # has_app_just_upgraded = self.hasJustUpdatedFromOldVersion()
+        #
+        # # Only show the what's new dialog if there's no machine and we have just upgraded
+        # show_whatsnew_only = has_active_machine and has_app_just_upgraded
+        # return show_whatsnew_only
 
     @pyqtSlot(result = int)
     def appWidth(self) -> int:
