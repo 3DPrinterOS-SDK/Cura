@@ -10,10 +10,12 @@ This is the baseline profile for Carbon Fiber Filled Polyamides for the Print Pr
             <color>Generic</color>
         </name>
         <GUID>bd66b243-9d50-4e12-bfc3-51c874fca16a</GUID>
-        <version>22</version>
+        <version>25</version>
         <color_code>#212F3D</color_code>
         <description>This is the baseline profile for Carbon Fiber Filled Polyamides for the Print Profile Assistant.</description>
         <adhesion_info>Use glue.</adhesion_info>
+        <cura:pva_compatible>True</cura:pva_compatible>
+        <cura:breakaway_compatible>True</cura:breakaway_compatible>
     </metadata>
     <properties>
         <density>1.35</density>
@@ -49,7 +51,6 @@ This is the baseline profile for Carbon Fiber Filled Polyamides for the Print Pr
 
         <!-- For material flow sensor -->
         <setting key="relative extrusion">1.0</setting>
-        <setting key="flow sensor detection margin">0.8</setting>
         <setting key="retract compensation">0</setting>
 
         <machine>
@@ -115,7 +116,7 @@ This is the baseline profile for Carbon Fiber Filled Polyamides for the Print Pr
         <machine>
             <machine_identifier manufacturer="Ultimaker B.V." product="Ultimaker Factor 4" />
 
-            <setting key="build volume temperature">50</setting>
+            <setting key="build volume temperature">40</setting>
             <setting key="print cooling">1</setting>
             <setting key="anti ooze retract position">-6</setting>
             <setting key="no load move factor">1</setting>

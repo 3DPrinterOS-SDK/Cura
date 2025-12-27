@@ -10,10 +10,12 @@ Generic CPE+ profile. The data in this file may not be correct for your specific
             <color>Generic</color>
         </name>
         <GUID>e2409626-b5a0-4025-b73e-b58070219259</GUID>
-        <version>39</version>
+        <version>41</version>
         <color_code>#3633F2</color_code>
         <description>Chemically resistant and tough. CPE+ is chemically inert, tough, dimensionally stable and handles temperatures up to 100ºC.</description>
         <adhesion_info>Use glue for small prints. An adhesion sheet is recommended for larger prints.</adhesion_info>
+        <cura:pva_compatible>False</cura:pva_compatible>
+        <cura:breakaway_compatible>True</cura:breakaway_compatible>
     </metadata>
     <properties>
         <density>1.18</density>
@@ -50,7 +52,6 @@ Generic CPE+ profile. The data in this file may not be correct for your specific
 
         <!-- For material flow sensor -->
         <setting key="relative extrusion">1.0</setting>
-        <setting key="flow sensor detection margin">0.8</setting>
         <setting key="retract compensation">0</setting>
 
         <machine>
@@ -142,6 +143,7 @@ Generic CPE+ profile. The data in this file may not be correct for your specific
             <setting key="anti ooze retract position">-4</setting>
             <setting key="break preparation position">-12</setting>
             <setting key="no load move factor">1</setting>
+            <setting key="retraction amount">5</setting>
             <cura:setting key="material_shrinkage_percentage">100.4</cura:setting>
             <hotend id="AA 0.4">
                 <setting key="hardware compatible">yes</setting>

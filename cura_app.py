@@ -135,12 +135,12 @@ if Platform.isLinux() and hasattr(sys, "frozen"):
 # incompatibility issues with libArcus
 if "PYTHONPATH" in os.environ.keys():                       # If PYTHONPATH is used
     PYTHONPATH = os.environ["PYTHONPATH"].split(os.pathsep) # Get the value, split it..
-    PYTHONPATH.reverse()                                    # and reverse it, because we always insert at 1
-    for PATH in PYTHONPATH:                                 # Now beginning with the last PATH
-        PATH_real = os.path.realpath(PATH)                  # Making the the path "real"
-        if PATH_real in sys.path:                           # This should always work, but keep it to be sure..
-            sys.path.remove(PATH_real)
-        sys.path.insert(1, PATH_real)                       # Insert it at 1 after os.curdir, which is 0.
+   # PYTHONPATH.reverse()                                    # and reverse it, because we always insert at 1
+   # for PATH in PYTHONPATH:                                 # Now beginning with the last PATH
+   #     PATH_real = os.path.realpath(PATH)                  # Making the the path "real"
+   #     if PATH_real in sys.path:                           # This should always work, but keep it to be sure..
+   #         sys.path.remove(PATH_real)
+   #     sys.path.insert(1, PATH_real)                       # Insert it at 1 after os.curdir, which is 0.
 
 
 def exceptHook(hook_type, value, traceback):
@@ -193,7 +193,7 @@ if sys.stderr and not sys.stderr.closed:
     faulthandler.enable(file = sys.stderr, all_threads = True)
 elif sys.stdout and not sys.stdout.closed:
     faulthandler.enable(file = sys.stdout, all_threads = True)
-
+print(sys.path)
 from cura.CuraApplication import CuraApplication
 
 
